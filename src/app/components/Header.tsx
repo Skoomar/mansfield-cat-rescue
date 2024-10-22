@@ -10,7 +10,6 @@ import Image from 'next/image';
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { HamburgerMenuIcon } from '@radix-ui/react-icons';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
 const NextNavigationMenuLink = ({ href, children }: { href: string, children: ReactNode }) => (
@@ -36,6 +35,7 @@ const AdoptionContent = () => (
 
 const Header = () => (
     <header className="flex w-1/2 justify-between lg:w-full">
+        {/* Make the sheet close on page load or on click of a link*/}
         <Sheet>
             <SheetTrigger asChild>
                 <Button className="lg:hidden" variant="outline" size="icon">
@@ -55,8 +55,9 @@ const Header = () => (
                             </div>
                         </CollapsibleContent>
                     </Collapsible>
-                    <Link href="/blog">Blog</Link>
-                    <Link href="/contact-me">Contact Me</Link>
+                    <Link href="/fostering">Fostering</Link>
+                    <Link href="/support-us">Support Us</Link>
+                    <Link href="/contact-us">Contact Us</Link>
                 </div>
             </SheetContent>
         </Sheet>
@@ -74,7 +75,7 @@ const Header = () => (
                         </NavigationMenuContent>
                     </NavigationMenuItem>
                     <NextNavigationMenuLink href="/fostering">Fostering</NextNavigationMenuLink>
-                    <NextNavigationMenuLink href="/support">Support</NextNavigationMenuLink>
+                    <NextNavigationMenuLink href="/support">Support Us</NextNavigationMenuLink>
                     <NextNavigationMenuLink href="/contact-us">Contact Us</NextNavigationMenuLink>
                 </NavigationMenuList>
             </NavigationMenu>
