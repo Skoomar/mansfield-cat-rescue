@@ -7,9 +7,11 @@ import {
 } from '@/components/ui/navigation-menu';
 import { ReactNode } from 'react';
 import Image from 'next/image';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { HamburgerMenuIcon } from '@radix-ui/react-icons';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
 const NextNavigationMenuLink = ({ href, children }: { href: string, children: ReactNode }) => (
     <Link href={href} passHref legacyBehavior>
@@ -33,8 +35,7 @@ const AdoptionContent = () => (
 );
 
 const Header = () => (
-    <header className="w-1/2 flex justify-between">
-        {/* TODO: convert this sheeit to sidebar */}
+    <header className="flex w-1/2 justify-between lg:w-full">
         <Sheet>
             <SheetTrigger asChild>
                 <Button className="lg:hidden" variant="outline" size="icon">
@@ -42,11 +43,20 @@ const Header = () => (
                 </Button>
             </SheetTrigger>
             <SheetContent side="left">
+                <SheetHeader>Mansfield Cat Rescue</SheetHeader>
                 <div className="flex flex-col gap-2 py-5">
-                    <Link href="/public" className="text-lg">Home</Link>
-                    <Link href="/portfolio" className="text-lg">Portfolio</Link>
-                    <Link href="/blog" className="text-lg">Blog</Link>
-                    <Link href="/contact-me" className="text-lg">Contact Me</Link>
+                    <Link href="/">Home</Link>
+                    <Collapsible>
+                        <CollapsibleTrigger className="text-left">Adoption</CollapsibleTrigger>
+                        <CollapsibleContent>
+                            <div className="flex flex-col justify-between gap-2 ml-4 mt-2">
+                                <Link href="/adoption/cats" className="block">Cats</Link>
+                                <Link href="/adoption/kittens" className="block">Kittens</Link>
+                            </div>
+                        </CollapsibleContent>
+                    </Collapsible>
+                    <Link href="/blog">Blog</Link>
+                    <Link href="/contact-me">Contact Me</Link>
                 </div>
             </SheetContent>
         </Sheet>
