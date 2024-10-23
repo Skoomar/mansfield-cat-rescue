@@ -1,3 +1,4 @@
+'use client'
 import Link from 'next/link';
 import {
     NavigationMenu, NavigationMenuContent, NavigationMenuItem,
@@ -5,7 +6,7 @@ import {
     NavigationMenuList, NavigationMenuTrigger,
     navigationMenuTriggerStyle
 } from '@/components/ui/navigation-menu';
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import Image from 'next/image';
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
@@ -33,54 +34,61 @@ const AdoptionContent = () => (
     </div>
 );
 
-const Header = () => (
-    <header className="flex w-1/2 justify-between lg:w-full">
-        {/* Make the sheet close on page load or on click of a link*/}
-        <Sheet>
-            <SheetTrigger asChild>
-                <Button className="lg:hidden" variant="outline" size="icon">
-                    <HamburgerMenuIcon />
-                </Button>
-            </SheetTrigger>
-            <SheetContent side="left">
-                <SheetHeader>Mansfield Cat Rescue</SheetHeader>
-                <div className="flex flex-col gap-2 py-5">
-                    <Link href="/">Home</Link>
-                    <Collapsible>
-                        <CollapsibleTrigger className="text-left">Adoption</CollapsibleTrigger>
-                        <CollapsibleContent>
-                            <div className="flex flex-col justify-between gap-2 ml-4 mt-2">
-                                <Link href="/adoption/cats" className="block">Cats</Link>
-                                <Link href="/adoption/kittens" className="block">Kittens</Link>
-                            </div>
-                        </CollapsibleContent>
-                    </Collapsible>
-                    <Link href="/fostering">Fostering</Link>
-                    <Link href="/support-us">Support Us</Link>
-                    <Link href="/contact-us">Contact Us</Link>
-                </div>
-            </SheetContent>
-        </Sheet>
-        <Link href="/" className="lg:">Logo</Link>
-        <nav className="hidden lg:flex gap-2">
-            <NavigationMenu>
-                <NavigationMenuList>
-                    {/* TODO: seeing if it still works if you don't wrap each thing in NavigationMenuItem unless it's
-                        got content. Put it back in if stuff starts going wrong with the header links */}
-                    <NextNavigationMenuLink href="/">Home</NextNavigationMenuLink>
-                    <NavigationMenuItem>
-                        <NavigationMenuTrigger>Adoption</NavigationMenuTrigger>
-                        <NavigationMenuContent>
-                            <AdoptionContent />
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                    <NextNavigationMenuLink href="/fostering">Fostering</NextNavigationMenuLink>
-                    <NextNavigationMenuLink href="/support">Support Us</NextNavigationMenuLink>
-                    <NextNavigationMenuLink href="/contact-us">Contact Us</NextNavigationMenuLink>
-                </NavigationMenuList>
-            </NavigationMenu>
-        </nav>
-    </header>
-);
+const Header = () => {
+    const [mobileNavOpen, setMobileNavOpen] = useState(false);
+
+    const closeMobileNav = () => {
+        setMobileNavOpen(false);
+    }
+
+    return (
+        <header className="flex w-1/2 justify-between lg:w-full">
+            <Sheet open={mobileNavOpen} onOpenChange={setMobileNavOpen}>
+                <SheetTrigger asChild>
+                    <Button className="lg:hidden" variant="outline" size="icon">
+                        <HamburgerMenuIcon />
+                    </Button>
+                </SheetTrigger>
+                <SheetContent side="left">
+                    <SheetHeader>Mansfield Cat Rescue</SheetHeader>
+                    <div className="flex flex-col gap-2 py-5">
+                        <Link href="/" onClick={closeMobileNav}>Home</Link>
+                        <Collapsible>
+                            <CollapsibleTrigger className="text-left">Adoption</CollapsibleTrigger>
+                            <CollapsibleContent>
+                                <div className="flex flex-col justify-between gap-2 ml-4 mt-2">
+                                    <Link href="/adoption/cats" onClick={closeMobileNav}>Cats</Link>
+                                    <Link href="/adoption/kittens" onClick={closeMobileNav}>Kittens</Link>
+                                </div>
+                            </CollapsibleContent>
+                        </Collapsible>
+                        <Link href="/fostering" onClick={closeMobileNav}>Fostering</Link>
+                        <Link href="/support-us" onClick={closeMobileNav}>Support Us</Link>
+                        <Link href="/contact-us" onClick={closeMobileNav}>Contact Us</Link>
+                    </div>
+                </SheetContent>
+            </Sheet>
+            <Link href="/" className="lg:">Logo</Link>
+            <nav className="hidden lg:flex gap-2">
+                <NavigationMenu>
+                    <NavigationMenuList>
+                        {/* TODO: seeing if it still works if you don't wrap each thing in NavigationMenuItem unless it's
+                            got content. Put it back in if stuff starts going wrong with the header links */}
+                        <NextNavigationMenuLink href="/">Home</NextNavigationMenuLink>
+                        <NavigationMenuItem>
+                            <NavigationMenuTrigger>Adoption</NavigationMenuTrigger>
+                            <NavigationMenuContent>
+                                <AdoptionContent />
+                            </NavigationMenuContent>
+                        </NavigationMenuItem>
+                        <NextNavigationMenuLink href="/fostering">Fostering</NextNavigationMenuLink>
+                        <NextNavigationMenuLink href="/support-us">Support Us</NextNavigationMenuLink>
+                        <NextNavigationMenuLink href="/contact-us">Contact Us</NextNavigationMenuLink>
+                    </NavigationMenuList>
+                </NavigationMenu>
+            </nav>
+        </header>
+    );
+}
 
 export default Header;
