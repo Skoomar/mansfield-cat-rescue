@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import Link from 'next/link';
 import {
     NavigationMenu, NavigationMenuContent, NavigationMenuItem,
@@ -8,7 +8,7 @@ import {
 } from '@/components/ui/navigation-menu';
 import { ReactNode, useState } from 'react';
 import Image from 'next/image';
-import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { HamburgerMenuIcon } from '@radix-ui/react-icons';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
@@ -39,7 +39,7 @@ const Header = () => {
 
     const closeMobileNav = () => {
         setMobileNavOpen(false);
-    }
+    };
 
     return (
         <header className="flex w-1/2 justify-between lg:w-full">
@@ -50,7 +50,7 @@ const Header = () => {
                     </Button>
                 </SheetTrigger>
                 <SheetContent side="left">
-                    <SheetHeader>Mansfield Cat Rescue</SheetHeader>
+                    <SheetHeader><SheetTitle>Mansfield Cat Rescue</SheetTitle></SheetHeader>
                     <div className="flex flex-col gap-2 py-5">
                         <Link href="/" onClick={closeMobileNav}>Home</Link>
                         <Collapsible>
@@ -89,6 +89,6 @@ const Header = () => {
             </nav>
         </header>
     );
-}
+};
 
 export default Header;
