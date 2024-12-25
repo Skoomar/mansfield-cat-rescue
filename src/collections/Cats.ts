@@ -94,6 +94,15 @@ export const Cats: CollectionConfig = {
     //   relationTo: 'adoption-groups',
     // },
     {
+      name: 'image-input-label',
+      type: 'ui',
+      admin: {
+        components: {
+          Field: 'src/components/CollectionCustomUI/ImageInputLabel.tsx'
+        }
+      }
+    },
+    {
       name: 'image',
       type: 'upload',
       relationTo: 'media',
