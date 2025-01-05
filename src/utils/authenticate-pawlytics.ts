@@ -1,5 +1,7 @@
 // TODO: maybe move this file closer to the adoption page - don't think this code will be used elsewhere so it's probably safe to put it there rather than some random utils folder
-export const fetchPawlyticsAuthResponse = async () => {
+import { Redis } from '@upstash/redis';
+
+const fetchPawlyticsAuthResponse = async () => {
     // POST to get API token and calculate expiry time. store both in redis
     const options = {
         method: 'POST',
@@ -29,13 +31,25 @@ export const fetchPawlyticsAuthResponse = async () => {
     }
 };
 
-// const getPawlyticsAuthToken = async () => {
-//     const redis = Redis.fromEnv();
-//     const apiToken = await redis.get('pawlytics_auth_token');
-//
-//     if (apiToken) {
-//         if (apiToken.expiry)
-//     }
-// };
+export const getPawlyticsAuthToken = async () => {
+    const redis = Redis.fromEnv();
+    const apiToken = await redis.hgetall('pawlytics_auth_token');
+
+    if (apiToken && apiToken.expiry < Date.now()) {
+        return apiToken.access_token;
+    }
+
+    try {
+        const authResponse = await fetchPawlyticsAuthResponse();
+        await redis.hset('pawlytics_auth_token', {
+            'access_token': authResponse['access_token'],
+            'expiry': authResponse['expires_in'] + Date.now()
+        });
+        return authResponse['access_token'];
+    } catch (error) {
+        console.error('Error in fetchPawlyticsAuthResponse:', error);
+        throw new Error(`Error when fetching Pawlytics API authentication token: ${error.message}`);
+    }
+};
 
 

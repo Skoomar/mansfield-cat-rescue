@@ -1,11 +1,12 @@
 import { describe, it } from 'vitest';
 import { loadEnvConfig } from '@next/env';
-import { fetchPawlyticsAuthResponse } from '@/utils/authenticate-pawlytics';
+import { getPawlyticsAuthToken } from '@/utils/authenticate-pawlytics';
 
-loadEnvConfig('.')
-describe('fetchAuthResponse', () => {
-    it('should get auth response', async () => {
-        const response = await fetchPawlyticsAuthResponse();
-        console.log(response)
-    })
-})
+loadEnvConfig('.');
+describe('getPawlyticsAuthToken', () => {
+    it('should get auth token', async () => {
+        const token = await getPawlyticsAuthToken();
+        console.log(token);
+    });
+});
+
