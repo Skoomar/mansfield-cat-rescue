@@ -43,7 +43,7 @@ export const getPawlyticsAuthToken = async () => {
         const authResponse = await fetchPawlyticsAuthResponse();
         await redis.hset('pawlytics_auth_token', {
             'access_token': authResponse['access_token'],
-            'expiry': authResponse['expires_in'] + Date.now()
+            'expiry': Date.now() + authResponse['expires_in']
         });
         return authResponse['access_token'];
     } catch (error) {
