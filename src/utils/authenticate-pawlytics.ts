@@ -1,8 +1,8 @@
 // TODO: maybe move this file closer to the adoption page - don't think this code will be used elsewhere so it's probably safe to put it there rather than some random utils folder
+// TODO: also maybe re-purpose it to contain all the API calls for getting pets etc as well so it's all easily accessible in one place
 import { Redis } from '@upstash/redis';
 
 const fetchPawlyticsAuthResponse = async () => {
-    // POST to get API token and calculate expiry time. store both in redis
     const options = {
         method: 'POST',
         headers: {
@@ -26,12 +26,15 @@ const fetchPawlyticsAuthResponse = async () => {
         }
         return await response.json();
     } catch (error) {
-        console.error('Error when authenticating Pawlytics API:', error);
+        // TODO: maybe set up some kind of logging instead of using console.error - don't want to potentially leak data out to users - could just throw logs into a free DB instead of paying for logz.io or whatever
+        // console.error('Error when authenticating Pawlytics API:', error);
         throw error;
     }
 };
 
-export const getPawlyticsAuthToken = async () => {
+// TODO: try 'use cache' on these functions: https://nextjs.org/docs/app/api-reference/directives/use-cache
+// TODO: also try Apollo or some other GraphQL client so the query isn't horrible
+const getPawlyticsAuthToken = async () => {
     const redis = Redis.fromEnv();
     const apiToken = await redis.hgetall('pawlytics_auth_token');
 
@@ -47,9 +50,75 @@ export const getPawlyticsAuthToken = async () => {
         });
         return authResponse['access_token'];
     } catch (error) {
-        console.error('Error in fetchPawlyticsAuthResponse:', error);
+        // console.error('Error in fetchPawlyticsAuthResponse:', error);
         throw new Error(`Error when fetching Pawlytics API authentication token: ${error.message}`);
     }
 };
 
+export const getAdoptableCats = async () => {
+    const authToken = await getPawlyticsAuthToken();
+    const query = `query OrganizationPets { 
+        organization_pets2(
+            filter: { 
+                organization_pet_status: ADOPTABLE 
+            } 
+            organization_id: "${process.env.PAWLYTICS_ORG_ID}"
+        ) {
+        entities {
+            id
+            status
+            adoption_fee {
+                amount
+                currency
+            }
+            pet {
+                name
+                status
+                status_details
+                description
+                species
+                breed_rabbit
+                breed_cat
+                breed_dog
+                breed_guinea_pig
+                breed_small_animal
+                mixed
+                estimated_birth_date
+                special_needs
+                distinguishing_marks
+                weight_lbs
+                youtube_video_url
+                gender
+                siblings {
+                  id
+                  name
+                }
+                images {
+                  url
+                }
+              }
+            }
+          }
+        }
+    `;
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${authToken}`
+        },
+        body: JSON.stringify({query}),
+    };
+
+    try {
+        const response = await fetch('https://api.pawlytics.com/api/graphql', options);
+        if (!response.ok) {
+            throw new Error(`HTTP error in getAdoptableCats! Status: ${response.status}; Error message: ${response.statusText}`);
+        }
+        return await response.json();
+    } catch (error) {
+        // console.error('Error in getAdoptableCats:', error);
+        throw new Error(`Error when fetching adoptable cats from Pawlytics: ${error.message}`);
+    }
+};
 
