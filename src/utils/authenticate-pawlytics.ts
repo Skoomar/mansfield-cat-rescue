@@ -1,6 +1,7 @@
 // TODO: maybe move this file closer to the adoption page - don't think this code will be used elsewhere so it's probably safe to put it there rather than some random utils folder
 // TODO: also maybe re-purpose it to contain all the API calls for getting pets etc as well so it's all easily accessible in one place
 import { Redis } from '@upstash/redis';
+import { Cat } from '@/types';
 
 const fetchPawlyticsAuthResponse = async () => {
     const options = {
@@ -36,9 +37,9 @@ const fetchPawlyticsAuthResponse = async () => {
 // TODO: also try Apollo or some other GraphQL client so the query isn't horrible
 const getPawlyticsAuthToken = async () => {
     const redis = Redis.fromEnv();
-    const apiToken = await redis.hgetall('pawlytics_auth_token');
+    const apiToken: Record<{access_token, expiry}, unknown> | null = await redis.hgetall('pawlytics_auth_token');
 
-    if (apiToken && apiToken.expiry < Date.now()) {
+    if (apiToken && Date.now() < apiToken.expiry) {
         return apiToken.access_token;
     }
 
@@ -55,7 +56,7 @@ const getPawlyticsAuthToken = async () => {
     }
 };
 
-export const getAdoptableCats = async () => {
+export const getAdoptableCats = async (): Promise<Cat[]> => {
     const authToken = await getPawlyticsAuthToken();
     const query = `query OrganizationPets { 
         organization_pets2(
@@ -77,11 +78,7 @@ export const getAdoptableCats = async () => {
                 status_details
                 description
                 species
-                breed_rabbit
                 breed_cat
-                breed_dog
-                breed_guinea_pig
-                breed_small_animal
                 mixed
                 estimated_birth_date
                 special_needs
@@ -101,6 +98,7 @@ export const getAdoptableCats = async () => {
           }
         }
     `;
+
     const options = {
         method: 'POST',
         headers: {
@@ -115,7 +113,8 @@ export const getAdoptableCats = async () => {
         if (!response.ok) {
             throw new Error(`HTTP error in getAdoptableCats! Status: ${response.status}; Error message: ${response.statusText}`);
         }
-        return await response.json();
+        const responseJson = await response.json();
+        return responseJson['data']['organization_pets2']['entities'];
     } catch (error) {
         // console.error('Error in getAdoptableCats:', error);
         throw new Error(`Error when fetching adoptable cats from Pawlytics: ${error.message}`);
