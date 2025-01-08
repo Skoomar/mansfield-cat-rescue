@@ -6,6 +6,8 @@ import { Cat } from '@/types';
 const CatCard = ({ cat }: { cat: Cat }) => (
     <div className="border-2">
         <p>ID: {cat.id}</p>
+        <p>Name: {cat.pet.name}</p>
+        <p>Adoption Fee: {cat.adoption_fee?.currency} {cat.adoption_fee?.amount}</p>
     </div>
 );
 
@@ -20,9 +22,7 @@ const Adoption = async () => {
         <>
             <h1>Adoption</h1>
             <div>
-                {
-                    {catCards}
-                }
+                {catCards}
             </div>
         </>
     );

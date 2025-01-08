@@ -2,27 +2,22 @@
 export type Cat = {
     id: string;
     status: string;
-    adoption_fee: { amount: number, currency: string };
+    adoption_fee: { amount: number, currency: string } | null;
     pet: {
         name: string;
         status: string;
-        status_details: string;
-        description: string;
-        species: string;
-        breed_cat: string[];
-        mixed: string;
-        estimated_birth_date: Date;
-        special_needs: string;
-        distinguishing_marks: string;
-        weight_lbs: number;
-        youtube_video_url: string;
-        gender: string
-        siblings: {
-            id: string;
-            name: string;
-        }
-        images: {
-            url: string;
-        }
+        status_details: string | null;
+        description: string | null;
+        species: string | null;
+        breed_cat: string | string[] | null;
+        mixed: string | null;
+        estimated_birth_date: string | null;
+        special_needs: string | null;
+        distinguishing_marks: string | null;
+        weight_lbs: number | null;
+        youtube_video_url: string | null;
+        gender: string | null;
+        siblings: { id: string, name: string }[] | null;
+        images: { url: string }[] | null;
     }
 };
