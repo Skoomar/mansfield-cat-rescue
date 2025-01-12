@@ -1,6 +1,6 @@
 import { vi, describe, it, beforeEach, afterEach } from 'vitest';
 import { loadEnvConfig } from '@next/env';
-import { getAdoptableCats } from '@/utils/authenticate-pawlytics';
+import { getAdoptableCats } from '@/app/adoption/callPawlytics';
 
 loadEnvConfig('.');
 

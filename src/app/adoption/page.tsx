@@ -1,27 +1,19 @@
-
 // TODO: error message if there's an issue when authenticating or fetching cats (and if the fetch cats returns an empty object)
-import { getAdoptableCats } from '@/utils/authenticate-pawlytics';
+import { getAdoptableCats } from '@/app/adoption/callPawlytics';
 import { Cat } from '@/types';
-
-const CatCard = ({ cat }: { cat: Cat }) => (
-    <div className="border-2">
-        <p>ID: {cat.id}</p>
-        <p>Name: {cat.pet.name}</p>
-        <p>Adoption Fee: {cat.adoption_fee?.currency} {cat.adoption_fee?.amount}</p>
-    </div>
-);
+import CatCard from '@/app/adoption/CatCard';
 
 const Adoption = async () => {
     const cats: Cat[] = await getAdoptableCats();
     let catCards;
     if (cats) {
-        catCards = cats.map((cat) => <CatCard key={cat.id} cat={cat} />)
+        catCards = cats.map((cat) => <CatCard key={cat.id} cat={cat} />);
     }
 
     return (
         <>
             <h1>Adoption</h1>
-            <div>
+            <div className="flex flex-row justify-between">
                 {catCards}
             </div>
         </>
