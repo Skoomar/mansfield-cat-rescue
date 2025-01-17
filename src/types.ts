@@ -14,7 +14,7 @@ export type Cat = {
         estimated_birth_date: string | null;
         special_needs: string | null;
         distinguishing_marks: string | null;
-        weight_lbs: number | null;
+        weight: { unit: string, value: number } | null;
         youtube_video_url: string | null;
         gender: string | null;
         siblings: { id: string, name: string }[] | null;

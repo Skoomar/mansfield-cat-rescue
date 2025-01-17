@@ -77,7 +77,7 @@ const ImageDisplay = ({ name, imageUrls }: { name: string, imageUrls: [{ url: st
     <>
         {imageUrls.length > 1
             ? (<ImageSlider name={name} imageUrls={imageUrls} />)
-            : <Image src={imageUrls[0].url} alt={name} />
+            : <Image src={imageUrls[0].url} alt={name} width={200} height={200} />
         }
     </>
 );
