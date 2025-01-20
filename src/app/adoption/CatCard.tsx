@@ -3,26 +3,29 @@ import ImageSlider from '@/app/adoption/ImageSlider';
 import Image from 'next/image';
 
 export const getAgeFromBirthdate = (birthdate: string): string => {
-    const birthdateObj = new Date(birthdate);
+    const birthdateObj: Date = new Date(birthdate);
     if (!birthdateObj.valueOf()) {
         return "Unknown";
     }
 
-    const today = new Date();
-    let months = (today.getFullYear() - birthdateObj.getFullYear()) * 12;
+    const today: Date = new Date();
+    let months: number = (today.getFullYear() - birthdateObj.getFullYear()) * 12;
     months -= birthdateObj.getMonth();
     months += today.getMonth();
+    if (today.getDate() < birthdateObj.getDate()) {
+        months -= 1;
+    }
 
     if (months < 0) {
         return 'Unknown';
     }
 
-    const monthsStr = months === 1 ? '1 month old' : `${months % 12} months old`;
+    const monthsStr: string = months % 12 === 1 ? '1 month old' : `${months % 12} months old`;
     if (months < 12) {
         return monthsStr;
     }
 
-    const years = Math.floor(months / 12);
+    const years: number = Math.floor(months / 12);
     return years === 1 ? `1 year ${monthsStr}` : `${years} years ${monthsStr}`;
 }
 
