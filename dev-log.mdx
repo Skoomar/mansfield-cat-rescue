@@ -1,16 +1,23 @@
 # To Do
 - Adoption page
-    - Set up request to Pawlytics API to get all adoptable cats *in a way that keeps the API call details server-side*
-        - to do this here are the steps:
-            - need to get a bearer token to use the GraphQL API, so get the token and store it in Upstash Redis KV
-          (Key-Vault) through Vercel
-                - probably should cache this (look at Nextjs docs for fetching & caching data from DB)
-            - set bearer token in the DB if it's null or expired
-            - get bearer token when needed for GraphQL request
-    - Loading spinner while request is being carried out
+    - cache bearer token for ~86400 seconds so i don't need to call Redis everytime
+    - Loading spinner while request is being carried out? would i even need one if the page is generated server side?
         - loading per item instead of waiting for whole page? would that need paginated request?
-    - Error message if data can't load
+    - Make error message on UI if data can't load
 
 - side-note: switch from using npm to pnpm
 
 - send this site to Pawlytics once it's done to show how I used the API
+
+- Use GraphQL client for the API calls
+- set up stubs for API calls
+- Integration tests & Dockerisation?
+
+# Done
+- Set up request to Pawlytics API to get all adoptable cats *in a way that keeps the API call details server-side*
+- to do this here are the steps:
+- need to get a bearer token to use the GraphQL API, so get the token and store it in Upstash Redis KV
+(Key-Vault) through Vercel
+- probably should cache this (look at Nextjs docs for fetching & caching data from DB)
+- set bearer token in the DB if it's null or expired
+- get bearer token when needed for GraphQL request

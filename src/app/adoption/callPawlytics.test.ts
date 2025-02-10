@@ -6,17 +6,17 @@ loadEnvConfig('.');
 
 // TODO: spy on redis calls to see they're being done
 
-const nullTokenFromRedis = () => ({});
-
-const mockTokenFromRedis = () => ({
-    access_token: 'redis_token',
-    expiry: 1
-});
-
-const mockPawlyticsAuthResponse = () => ({
-    access_token: 'response_token',
-    expires_in: 86400
-});
+// const nullTokenFromRedis = () => ({});
+//
+// const mockTokenFromRedis = () => ({
+//     access_token: 'redis_token',
+//     expiry: 1
+// });
+//
+// const mockPawlyticsAuthResponse = () => ({
+//     access_token: 'response_token',
+//     expires_in: 86400
+// });
 
 // describe('getPawlyticsAuthToken', () => {
 //     beforeEach(() => {

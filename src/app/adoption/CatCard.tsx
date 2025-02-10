@@ -1,11 +1,11 @@
 import { Cat } from '@/types';
-import ImageSlider from '@/app/adoption/ImageSlider';
+// import ImageSlider from '@/app/adoption/ImageSlider';
 import Image from 'next/image';
 
 export const getAgeFromBirthdate = (birthdate: string): string => {
     const birthdateObj: Date = new Date(birthdate);
     if (!birthdateObj.valueOf()) {
-        return "Unknown";
+        return 'Unknown';
     }
 
     const today: Date = new Date();
@@ -30,14 +30,11 @@ export const getAgeFromBirthdate = (birthdate: string): string => {
 }
 
 const CatCard = ({ cat }: { cat: Cat }) => {
-    let catImages;
+    const age = cat.pet.estimated_birth_date ? getAgeFromBirthdate(cat.pet.estimated_birth_date) : 'Unknown';
     // TODO: can these images be cached
     // if (cat.pet.images) {
     //     cat.pet.images.map((image) => )
     // }
-
-
-
 
     return (
         <div className="w-96 border-2">
@@ -46,10 +43,11 @@ const CatCard = ({ cat }: { cat: Cat }) => {
             {/* use onLoad and onError for stuff - and lazy loading */}
             {/* have a cute cartoon cat as placeholder */}
             {/*<ImageSlider imageUrls={cat.pet.images} />*/}
-            <Image src={cat.pet.images[0].url} alt={cat.pet.name} width={200} height={200} />
-            <p>Age: </p>
+            {cat.pet.images && (<Image src={cat.pet.images[0].url} alt={cat.pet.name} width={200} height={200} />)}
+            {/* TODO: does it make a difference if I just use getAgeFromBirthday here? It won't calculate it again and again will it? */}
+            <p>Age: {age}</p>
+            <p>Gender: {cat.pet.gender}</p>
             <p>Description: {cat.pet.description}</p>
-            <p>Adoption Fee: {cat.adoption_fee?.currency} {cat.adoption_fee?.amount}</p>
         </div>
     );
 };
