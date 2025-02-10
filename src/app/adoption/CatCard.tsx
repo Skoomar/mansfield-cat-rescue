@@ -5,7 +5,7 @@ import Image from 'next/image';
 export const getAgeFromBirthdate = (birthdate: string): string => {
     const birthdateObj: Date = new Date(birthdate);
     if (!birthdateObj.valueOf()) {
-        return "Unknown";
+        return 'Unknown';
     }
 
     const today: Date = new Date();
@@ -30,6 +30,7 @@ export const getAgeFromBirthdate = (birthdate: string): string => {
 }
 
 const CatCard = ({ cat }: { cat: Cat }) => {
+    const age = cat.pet.estimated_birth_date ? getAgeFromBirthdate(cat.pet.estimated_birth_date) : 'Unknown';
     let catImages;
     // TODO: can these images be cached
     // if (cat.pet.images) {
@@ -47,9 +48,10 @@ const CatCard = ({ cat }: { cat: Cat }) => {
             {/* have a cute cartoon cat as placeholder */}
             {/*<ImageSlider imageUrls={cat.pet.images} />*/}
             <Image src={cat.pet.images[0].url} alt={cat.pet.name} width={200} height={200} />
-            <p>Age: </p>
+            {/* TODO: does it make a difference if I just use getAgeFromBirthday here? It won't calculate it again and again will it? */}
+            <p>Age: {age}</p>
+            <p>Gender: {cat.pet.gender}</p>
             <p>Description: {cat.pet.description}</p>
-            <p>Adoption Fee: {cat.adoption_fee?.currency} {cat.adoption_fee?.amount}</p>
         </div>
     );
 };
