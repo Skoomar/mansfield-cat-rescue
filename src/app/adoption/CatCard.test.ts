@@ -1,4 +1,4 @@
-import { vi, describe, it, test, beforeAll, afterAll, expect } from 'vitest';
+import { vi, describe, test, beforeAll, afterAll, expect } from 'vitest';
 import { getAgeFromBirthdate } from '@/app/adoption/CatCard';
 
 describe('getAgeFromBirthdate', (): void => {

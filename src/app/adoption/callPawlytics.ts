@@ -34,15 +34,17 @@ const fetchPawlyticsAuthResponse = async () => {
 };
 
 // TODO: try 'use cache' on these functions: https://nextjs.org/docs/app/api-reference/directives/use-cache
+// TODO: could use middleware to modify these these requests if needed? https://nextjs.org/docs/app/building-your-application/routing/middleware
 // TODO: also try Apollo or some other GraphQL client so the query isn't horrible
 const getPawlyticsAuthToken = async () => {
     const redis = Redis.fromEnv();
-    const apiToken: Record<{ access_token, expiry }, unknown> | null = await redis.hgetall('pawlytics_auth_token');
+    const apiToken: Record<string, number> | null = await redis.hgetall('pawlytics_auth_token');
 
     if (apiToken && Date.now() < apiToken.expiry) {
         return apiToken.access_token;
     }
 
+    // TODO: make this error handling better to use the error response to display a message in UI
     try {
         const authResponse = await fetchPawlyticsAuthResponse();
         await redis.hset('pawlytics_auth_token', {
@@ -52,7 +54,7 @@ const getPawlyticsAuthToken = async () => {
         return authResponse['access_token'];
     } catch (error) {
         // console.error('Error in fetchPawlyticsAuthResponse:', error);
-        throw new Error(`Error when fetching Pawlytics API authentication token: ${error.message}`);
+        throw new Error(`Error when fetching Pawlytics API authentication token: ${error}`);
     }
 };
 
@@ -113,6 +115,7 @@ export const getAdoptableCats = async (): Promise<Cat[]> => {
         body: JSON.stringify({ query }),
     };
 
+    // TODO: make this error handling better to use the error response to display a message in UI
     try {
         const response = await fetch('https://api.pawlytics.com/api/graphql', options);
         if (!response.ok) {
@@ -122,7 +125,7 @@ export const getAdoptableCats = async (): Promise<Cat[]> => {
         return responseJson['data']['organization_pets2']['entities'];
     } catch (error) {
         // console.error('Error in getAdoptableCats:', error);
-        throw new Error(`Error when fetching adoptable cats from Pawlytics: ${error.message}`);
+        throw new Error(`Error when fetching adoptable cats from Pawlytics: ${error}`);
     }
 };
 
