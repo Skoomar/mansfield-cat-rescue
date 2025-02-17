@@ -2,6 +2,7 @@
 import { getAdoptableCats } from '@/app/adoption/callPawlytics';
 import { Cat } from '@/types';
 import CatCard from '@/app/adoption/CatCard';
+import { H1 } from '@/components/Headings';
 
 const Adoption = async () => {
     const cats: Cat[] = await getAdoptableCats();
@@ -12,7 +13,7 @@ const Adoption = async () => {
 
     return (
         <>
-            <h1>Adoption</h1>
+            <H1>Adoption</H1>
             <div className="flex flex-row justify-between">
                 {catCards}
             </div>
