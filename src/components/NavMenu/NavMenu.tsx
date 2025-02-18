@@ -28,7 +28,7 @@ const links = [
 ];
 
 const NavMenu = () => (
-    <nav className="sticky top-0 left-0 z-50 bg-background dark:bg-secondary w-full py-2 px-4 flex justify-between shadow lg:px-[3%]">
+    <nav className="sticky top-0 left-0 z-50 font-serif bg-background dark:bg-secondary w-full py-2 px-4 flex justify-between shadow lg:px-[3%]">
         <MobileSidebar links={links} />
         <Link href="/"><Logo /></Link>
         <div className="mx-auto hidden lg:flex items-center gap-14 font-bold">
