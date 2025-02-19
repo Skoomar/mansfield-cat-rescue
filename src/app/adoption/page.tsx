@@ -13,10 +13,17 @@ const Adoption = async () => {
 
     return (
         <>
-            <H1>Adoption</H1>
-            <div className="flex flex-row justify-between">
-                {catCards}
-            </div>
+            <header className="py-6">
+                <H1>Adoption</H1>
+            </header>
+            <section className="py-2 px-4">
+                <div>
+                    Filters
+                </div>
+                <div className="flex flex-row flex-wrap justify-between">
+                    {catCards}
+                </div>
+            </section>
         </>
     );
 };

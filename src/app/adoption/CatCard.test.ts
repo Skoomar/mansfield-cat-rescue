@@ -1,5 +1,5 @@
 import { vi, describe, test, beforeAll, afterAll, expect } from 'vitest';
-import { getAgeFromBirthdate } from '@/app/adoption/CatCard';
+import { getAgeFromBirthdate, toTitleCase } from '@/app/adoption/CatCard';
 
 describe('getAgeFromBirthdate', (): void => {
     beforeAll((): void => {
@@ -20,8 +20,7 @@ describe('getAgeFromBirthdate', (): void => {
         ['2024-01-30T00:00:00Z', '11 months old'],
         ['2024-01-30', '11 months old'],
     ])('should return the correct age in months', (birthday: string, expectedAge: string) => {
-            const age: string = getAgeFromBirthdate(birthday);
-            expect(age).toBe(expectedAge);
+            expect(getAgeFromBirthdate(birthday)).toBe(expectedAge);
         }
     );
 
@@ -34,8 +33,7 @@ describe('getAgeFromBirthdate', (): void => {
         ['2010-05-30T00:00:00Z', '14 years 7 months old'],
         ['2010-05-30', '14 years 7 months old'],
     ])('should return the correct age in years and months', (birthday: string, expectedAge: string) => {
-            const age: string = getAgeFromBirthdate(birthday);
-            expect(age).toBe(expectedAge);
+            expect(getAgeFromBirthdate(birthday)).toBe(expectedAge);
         }
     );
 
@@ -45,8 +43,22 @@ describe('getAgeFromBirthdate', (): void => {
         '2024-13-30T00:00:00Z',
         '2024-0530T00:00:00Z',
     ])('should return Unknown if the birthday is invalid', (birthday: string) => {
-            const age: string = getAgeFromBirthdate(birthday);
-            expect(age).toBe("Unknown");
+            expect(getAgeFromBirthdate(birthday)).toBeNull();
         }
     );
+});
+
+describe('toTitleCase', () => {
+    test.each([
+        ['MALE', 'Male'],
+        ['female', 'Female'],
+        ['bRuH', 'Bruh']
+    ])('should return the correct title case', (inputString: string, expectedString: string) => {
+        const outputString = toTitleCase(inputString);
+        expect(outputString).toBe(expectedString);
+    });
+
+    test.each([null, ''])('should return null if input has no value', (inputString) => {
+        expect(toTitleCase(inputString)).toBeNull();
+    })
 });

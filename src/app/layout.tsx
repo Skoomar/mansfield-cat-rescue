@@ -19,22 +19,22 @@ const superclarendon = localFont({
   src: [
     {
       path: './fonts/superclarendon-lt.woff',
-      weight: '300',
+      weight: '400',
       style: 'normal',
     },
     {
       path: './fonts/superclarendon-lt-italic.woff',
-      weight: '300',
+      weight: '400',
       style: 'italic',
     },
     {
       path: './fonts/superclarendon-rg.woff',
-      weight: '400',
+      weight: '500',
       style: 'normal',
     },
     {
       path: './fonts/superclarendon-rg-italic.woff',
-      weight: '400',
+      weight: '500',
       style: 'italic',
     },
     {
@@ -75,7 +75,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${superclarendon.variable} antialiased`}
+        className={`${superclarendon.variable} font-serif antialiased`}
       >
         <NavMenu />
         {children}

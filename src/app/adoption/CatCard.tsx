@@ -2,10 +2,13 @@ import { Cat } from '@/types';
 // import ImageSlider from '@/app/adoption/ImageSlider';
 import Image from 'next/image';
 
-export const getAgeFromBirthdate = (birthdate: string): string => {
+export const getAgeFromBirthdate = (birthdate: string | null): string | null => {
+    if (!birthdate) {
+        return null;
+    }
     const birthdateObj: Date = new Date(birthdate);
     if (!birthdateObj.valueOf()) {
-        return 'Unknown';
+        return null;
     }
 
     const today: Date = new Date();
@@ -17,7 +20,7 @@ export const getAgeFromBirthdate = (birthdate: string): string => {
     }
 
     if (months < 0) {
-        return 'Unknown';
+        return null;
     }
 
     const monthsStr: string = months % 12 === 1 ? '1 month old' : `${months % 12} months old`;
@@ -27,27 +30,29 @@ export const getAgeFromBirthdate = (birthdate: string): string => {
 
     const years: number = Math.floor(months / 12);
     return years === 1 ? `1 year ${monthsStr}` : `${years} years ${monthsStr}`;
+};
+
+export const toTitleCase = (inputString: string | null): string | null => {
+    return !inputString ? null : inputString.charAt(0).toUpperCase() + inputString.slice(1).toLowerCase();
 }
 
 const CatCard = ({ cat }: { cat: Cat }) => {
-    const age = cat.pet.estimated_birth_date ? getAgeFromBirthdate(cat.pet.estimated_birth_date) : 'Unknown';
     // TODO: can these images be cached
     // if (cat.pet.images) {
     //     cat.pet.images.map((image) => )
     // }
 
     return (
-        <div className="w-96 border-2">
-            <p>Name: {cat.pet.name}</p>
-            {/* allow to scroll through all images */}
-            {/* use onLoad and onError for stuff - and lazy loading */}
-            {/* have a cute cartoon cat as placeholder */}
+        <div className="mx-auto mb-8 md:w-1/2">
+            {/* TODO: allow to scroll through all images use onLoad and onError for stuff - and lazy loading have a cute cartoon cat as placeholder */}
             {/*<ImageSlider imageUrls={cat.pet.images} />*/}
             {cat.pet.images && (<Image src={cat.pet.images[0].url} alt={cat.pet.name} width={200} height={200} />)}
-            {/* TODO: does it make a difference if I just use getAgeFromBirthday here? It won't calculate it again and again will it? */}
-            <p>Age: {age}</p>
-            <p>Gender: {cat.pet.gender}</p>
-            <p>Description: {cat.pet.description}</p>
+            <p className="font-medium">{cat.pet.name}</p>
+            <div className="text-sm">
+            <p>{getAgeFromBirthdate(cat.pet.estimated_birth_date) ?? 'Age Unknown'}</p>
+            <p>{toTitleCase(cat.pet.gender) ?? 'Gender Unknown'}</p>
+            <p>{cat.pet.description}</p>
+            </div>
         </div>
     );
 };
