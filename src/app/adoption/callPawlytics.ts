@@ -1,5 +1,3 @@
-// TODO: maybe move this file closer to the adoption page - don't think this code will be used elsewhere so it's probably safe to put it there rather than some random utils folder
-// TODO: also maybe re-purpose it to contain all the API calls for getting pets etc as well so it's all easily accessible in one place
 import { Redis } from '@upstash/redis';
 import { Cat } from '@/types';
 
@@ -58,6 +56,8 @@ const getPawlyticsAuthToken = async () => {
     }
 };
 
+// TODO: is this a function that should be 'use server'?
+// ^ on second thoughts probably not
 export const getAdoptableCats = async (): Promise<Cat[]> => {
     // set up local testing flag temporarily
     if (process.env.LOCAL) {
@@ -206,6 +206,37 @@ const adoptableCatsStubResponse = [
             "weight": {
                 "unit": "KILOGRAMS",
                 "value": 6.0
+            },
+            "youtube_video_url": null,
+            "gender": "MALE",
+            "siblings": null,
+            "images": [
+                {
+                    "url": "https://dbmt2d395muck.cloudfront.net/d71eb772-0752-433f-bcd4-94c8b5ed39ea"
+                }
+            ]
+        }
+    },
+    {
+        "id": "b8fea0ac-9506-4630-9ed3-4b1fb0c2eef0",
+        "status": "ADOPTABLE",
+        "adoption_fee": null,
+        "pet": {
+            "name": "Kitto",
+            "status": "ORGANIZATION",
+            "status_details": null,
+            "description": null,
+            "species": "CAT",
+            "breed_cat": [
+                "DOMESTIC_SHORT_HAIR"
+            ],
+            "mixed": null,
+            "estimated_birth_date": "2025-01-31T23:00:00Z",
+            "special_needs": null,
+            "distinguishing_marks": null,
+            "weight": {
+                "unit": "KILOGRAMS",
+                "value": 2.0
             },
             "youtube_video_url": null,
             "gender": "MALE",

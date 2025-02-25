@@ -34,7 +34,7 @@ export const getAgeFromBirthdate = (birthdate: string | null): string | null => 
 
 export const toTitleCase = (inputString: string | null): string | null => {
     return !inputString ? null : inputString.charAt(0).toUpperCase() + inputString.slice(1).toLowerCase();
-}
+};
 
 const CatCard = ({ cat }: { cat: Cat }) => {
     // TODO: can these images be cached
@@ -46,12 +46,12 @@ const CatCard = ({ cat }: { cat: Cat }) => {
         <div className="mx-auto mb-8 md:w-1/2">
             {/* TODO: allow to scroll through all images use onLoad and onError for stuff - and lazy loading have a cute cartoon cat as placeholder */}
             {/*<ImageSlider imageUrls={cat.pet.images} />*/}
-            {cat.pet.images && (<Image src={cat.pet.images[0].url} alt={cat.pet.name} width={200} height={200} />)}
+            {cat.pet.images && (<Image src={cat.pet.images[0].url} alt={cat.pet.name} width={250} height={250} />)}
             <p className="font-medium">{cat.pet.name}</p>
             <div className="text-sm">
-            <p>{getAgeFromBirthdate(cat.pet.estimated_birth_date) ?? 'Age Unknown'}</p>
-            <p>{toTitleCase(cat.pet.gender) ?? 'Gender Unknown'}</p>
-            <p>{cat.pet.description}</p>
+                <p>{getAgeFromBirthdate(cat.pet.estimated_birth_date) ?? 'Age Unknown'}</p>
+                <p>{toTitleCase(cat.pet.gender) ?? 'Gender Unknown'}</p>
+                <p>{cat.pet.description}</p>
             </div>
         </div>
     );

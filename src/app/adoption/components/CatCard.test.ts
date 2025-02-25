@@ -1,5 +1,5 @@
 import { vi, describe, test, beforeAll, afterAll, expect } from 'vitest';
-import { getAgeFromBirthdate, toTitleCase } from '@/app/adoption/CatCard';
+import { getAgeFromBirthdate, toTitleCase } from '@/app/adoption/components/CatCard';
 
 describe('getAgeFromBirthdate', (): void => {
     beforeAll((): void => {
