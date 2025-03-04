@@ -43,12 +43,12 @@ const CatCard = ({ cat }: { cat: Cat }) => {
     // }
 
     return (
-        <div className="mx-auto mb-8 md:w-1/2">
+        <div className="bg-secondary border-2 rounded-2xl shadow-md px-6 pt-3 pb-4 mx-auto mb-8 hover:bg-green-200 md:w-1/2">
             {/* TODO: allow to scroll through all images use onLoad and onError for stuff - and lazy loading have a cute cartoon cat as placeholder */}
             {/*<ImageSlider imageUrls={cat.pet.images} />*/}
+            <p className="font-medium text-lg text-center mb-1">{cat.pet.name}</p>
             {cat.pet.images && (<Image src={cat.pet.images[0].url} alt={cat.pet.name} width={250} height={250} />)}
-            <p className="font-medium">{cat.pet.name}</p>
-            <div className="text-sm">
+            <div className="flex flex-col gap-1 text-sm mt-2">
                 <p>{getAgeFromBirthdate(cat.pet.estimated_birth_date) ?? 'Age Unknown'}</p>
                 <p>{toTitleCase(cat.pet.gender) ?? 'Gender Unknown'}</p>
                 <p>{cat.pet.description}</p>
