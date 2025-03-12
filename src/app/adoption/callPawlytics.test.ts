@@ -36,6 +36,6 @@ loadEnvConfig('.');
 describe('getAdoptableCats', () => {
     it('should get all adoptable cats', async () => {
         const cats = await getAdoptableCats();
-        console.log(cats)
+        console.log(cats);
     });
 });

@@ -7,8 +7,8 @@ const nextConfig = {
                 hostname: 'dbmt2d395muck.cloudfront.net',
                 port: '',
                 pathname: '**',
-            }
-        ]
-    }
+            },
+        ],
+    },
 };
 export default nextConfig;

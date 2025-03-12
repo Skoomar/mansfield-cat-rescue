@@ -15,13 +15,15 @@ const fetchPawlyticsAuthResponse = async () => {
             grant_type: 'password',
             scope: 'openid',
             responseType: 'token id_token',
-        })
+        }),
     };
 
     try {
         const response = await fetch('https://pawlytics.auth0.com/oauth/token', options);
         if (!response.ok) {
-            throw new Error(`HTTP error when authenticating Pawlytics API! Status: ${response.status}; Error message: ${response.statusText}`);
+            throw new Error(
+                `HTTP error when authenticating Pawlytics API! Status: ${response.status}; Error message: ${response.statusText}`,
+            );
         }
         return await response.json();
     } catch (error) {
@@ -46,8 +48,8 @@ const getPawlyticsAuthToken = async () => {
     try {
         const authResponse = await fetchPawlyticsAuthResponse();
         await redis.hset('pawlytics_auth_token', {
-            'access_token': authResponse['access_token'],
-            'expiry': Date.now() + authResponse['expires_in']
+            access_token: authResponse['access_token'],
+            expiry: Date.now() + authResponse['expires_in'],
         });
         return authResponse['access_token'];
     } catch (error) {
@@ -110,7 +112,7 @@ export const getAdoptableCats = async (): Promise<Cat[]> => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${authToken}`
+            Authorization: `Bearer ${authToken}`,
         },
         body: JSON.stringify({ query }),
     };
@@ -119,7 +121,9 @@ export const getAdoptableCats = async (): Promise<Cat[]> => {
     try {
         const response = await fetch('https://api.pawlytics.com/api/graphql', options);
         if (!response.ok) {
-            throw new Error(`HTTP error in getAdoptableCats! Status: ${response.status}; Error message: ${response.statusText}`);
+            throw new Error(
+                `HTTP error in getAdoptableCats! Status: ${response.status}; Error message: ${response.statusText}`,
+            );
         }
         const responseJson = await response.json();
         return responseJson['data']['organization_pets2']['entities'];
@@ -131,121 +135,113 @@ export const getAdoptableCats = async (): Promise<Cat[]> => {
 
 const adoptableCatsStubResponse = [
     {
-        "id": "2de96ecd-8389-4817-b32c-32d2af1641e8",
-        "status": "ADOPTABLE",
-        "adoption_fee": null,
-        "pet": {
-            "name": "Mo",
-            "status": "ORGANIZATION",
-            "status_details": null,
-            "description": null,
-            "species": "CAT",
-            "breed_cat": [
-                "DOMESTIC_SHORT_HAIR"
-            ],
-            "mixed": null,
-            "estimated_birth_date": "2022-11-01T00:00:00Z",
-            "special_needs": null,
-            "distinguishing_marks": null,
-            "weight": null,
-            "youtube_video_url": null,
-            "gender": "FEMALE",
-            "siblings": null,
-            "images": [
+        id: '2de96ecd-8389-4817-b32c-32d2af1641e8',
+        status: 'ADOPTABLE',
+        adoption_fee: null,
+        pet: {
+            name: 'Mo',
+            status: 'ORGANIZATION',
+            status_details: null,
+            description: null,
+            species: 'CAT',
+            breed_cat: ['DOMESTIC_SHORT_HAIR'],
+            mixed: null,
+            estimated_birth_date: '2022-11-01T00:00:00Z',
+            special_needs: null,
+            distinguishing_marks: null,
+            weight: null,
+            youtube_video_url: null,
+            gender: 'FEMALE',
+            siblings: null,
+            images: [
                 {
-                    "url": "https://dbmt2d395muck.cloudfront.net/235bf8b2-5e0a-44ac-a68f-77d15571b276/Mo.jpg"
-                }
-            ]
-        }
+                    url: 'https://dbmt2d395muck.cloudfront.net/235bf8b2-5e0a-44ac-a68f-77d15571b276/Mo.jpg',
+                },
+            ],
+        },
     },
     {
-        "id": "316fffca-8ea5-46bd-9f2d-8f7d7cce806f",
-        "status": "ADOPTABLE",
-        "adoption_fee": null,
-        "pet": {
-            "name": "Alf",
-            "status": "ORGANIZATION",
-            "status_details": null,
-            "description": null,
-            "species": "CAT",
-            "breed_cat": [
-                "DOMESTIC_SHORT_HAIR"
-            ],
-            "mixed": null,
-            "estimated_birth_date": "2022-11-01T00:00:00Z",
-            "special_needs": null,
-            "distinguishing_marks": null,
-            "weight": null,
-            "youtube_video_url": null,
-            "gender": "MALE",
-            "siblings": null,
-            "images": [
+        id: '316fffca-8ea5-46bd-9f2d-8f7d7cce806f',
+        status: 'ADOPTABLE',
+        adoption_fee: null,
+        pet: {
+            name: 'Alf',
+            status: 'ORGANIZATION',
+            status_details: null,
+            description: null,
+            species: 'CAT',
+            breed_cat: ['DOMESTIC_SHORT_HAIR'],
+            mixed: null,
+            estimated_birth_date: '2022-11-01T00:00:00Z',
+            special_needs: null,
+            distinguishing_marks: null,
+            weight: null,
+            youtube_video_url: null,
+            gender: 'MALE',
+            siblings: null,
+            images: [
                 {
-                    "url": "https://dbmt2d395muck.cloudfront.net/1e775003-7345-4618-af0d-7a0e2a9f7013"
-                }
-            ]
-        }
+                    url: 'https://dbmt2d395muck.cloudfront.net/1e775003-7345-4618-af0d-7a0e2a9f7013',
+                },
+            ],
+        },
     },
     {
-        "id": "b8fef0ac-9506-4630-9ed3-4b1fb0c2eef0",
-        "status": "ADOPTABLE",
-        "adoption_fee": null,
-        "pet": {
-            "name": "Tyson",
-            "status": "ORGANIZATION",
-            "status_details": null,
-            "description": null,
-            "species": "CAT",
-            "breed_cat": [
-                "DOMESTIC_SHORT_HAIR"
-            ],
-            "mixed": null,
-            "estimated_birth_date": "2020-08-31T23:00:00Z",
-            "special_needs": null,
-            "distinguishing_marks": null,
-            "weight": {
-                "unit": "KILOGRAMS",
-                "value": 6.0
+        id: 'b8fef0ac-9506-4630-9ed3-4b1fb0c2eef0',
+        status: 'ADOPTABLE',
+        adoption_fee: null,
+        pet: {
+            name: 'Tyson',
+            status: 'ORGANIZATION',
+            status_details: null,
+            description: null,
+            species: 'CAT',
+            breed_cat: ['DOMESTIC_SHORT_HAIR'],
+            mixed: null,
+            estimated_birth_date: '2020-08-31T23:00:00Z',
+            special_needs: null,
+            distinguishing_marks: null,
+            weight: {
+                unit: 'KILOGRAMS',
+                value: 6.0,
             },
-            "youtube_video_url": null,
-            "gender": "MALE",
-            "siblings": null,
-            "images": [
+            youtube_video_url: null,
+            gender: 'MALE',
+            siblings: null,
+            images: [
                 {
-                    "url": "https://dbmt2d395muck.cloudfront.net/d71eb772-0752-433f-bcd4-94c8b5ed39ea"
-                }
-            ]
-        }
+                    url: 'https://dbmt2d395muck.cloudfront.net/d71eb772-0752-433f-bcd4-94c8b5ed39ea',
+                },
+            ],
+        },
     },
     {
-        "id": "b8fea0ac-9506-4630-9ed3-4b1fb0c2eef0",
-        "status": "ADOPTABLE",
-        "adoption_fee": null,
-        "pet": {
-            "name": "Kitto",
-            "status": "ORGANIZATION",
-            "status_details": null,
-            "description": null,
-            "species": "CAT",
-            "breed_cat": [
-                "DOMESTIC_SHORT_HAIR"
-            ],
-            "mixed": null,
-            "estimated_birth_date": "2025-01-31T23:00:00Z",
-            "special_needs": null,
-            "distinguishing_marks": null,
-            "weight": {
-                "unit": "KILOGRAMS",
-                "value": 2.0
+        id: 'b8fea0ac-9506-4630-9ed3-4b1fb0c2eef0',
+        status: 'ADOPTABLE',
+        adoption_fee: null,
+        pet: {
+            name: 'Kitto',
+            status: 'ORGANIZATION',
+            status_details: null,
+            description: null,
+            species: 'CAT',
+            breed_cat: ['DOMESTIC_SHORT_HAIR'],
+            mixed: null,
+            estimated_birth_date: '2025-01-31T23:00:00Z',
+            special_needs: null,
+            distinguishing_marks: null,
+            weight: {
+                unit: 'KILOGRAMS',
+                value: 2.0,
             },
-            "youtube_video_url": null,
-            "gender": "MALE",
-            "siblings": null,
-            "images": [
+            youtube_video_url: null,
+            gender: 'MALE',
+            siblings: null,
+            images: [
                 {
-                    "url": "https://dbmt2d395muck.cloudfront.net/d71eb772-0752-433f-bcd4-94c8b5ed39ea"
-                }
-            ]
-        }
+                    url: 'https://dbmt2d395muck.cloudfront.net/d71eb772-0752-433f-bcd4-94c8b5ed39ea',
+                },
+            ],
+        },
     },
 ];

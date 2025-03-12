@@ -43,17 +43,24 @@ const CatCard = ({ cat }: { cat: Cat }) => {
     // }
 
     return (
-        <div className="mx-auto mb-8 flex flex-col rounded-sm border-2 pb-4 shadow-md bg-secondary hover:bg-accent">
+        <div className="mx-auto mb-8 flex flex-col rounded-sm border-2 bg-secondary pb-4 shadow-md hover:bg-accent">
             {/* TODO: allow to scroll through all images use onLoad and onError for stuff - and lazy loading have a cute cartoon cat as placeholder */}
             {/* TODO: maybe instead of ImageSlider just have a gallery of the images in the view when you click on a cat */}
             {/*<ImageSlider imageUrls={cat.pet.images} />*/}
 
             <div className="relative mb-2 h-64 w-full">
                 {cat.pet.images && (
-                // <Image src={cat.pet.images[0].url} alt={cat.pet.name} width={250} height={250} />
-                <img className="absolute object-cover" src={cat.pet.images[0].url} alt={cat.pet.name} fetchPriority="low" loading="lazy" height="264px" width="auto" />
-                )
-                }
+                    // <Image src={cat.pet.images[0].url} alt={cat.pet.name} width={250} height={250} />
+                    <img
+                        className="absolute object-cover"
+                        src={cat.pet.images[0].url}
+                        alt={cat.pet.name}
+                        fetchPriority="low"
+                        loading="lazy"
+                        height="264px"
+                        width="auto"
+                    />
+                )}
             </div>
             <div className="mt-auto flex flex-col gap-1 px-6 text-sm">
                 <p className="mb-1 text-center text-lg font-medium">{cat.pet.name}</p>

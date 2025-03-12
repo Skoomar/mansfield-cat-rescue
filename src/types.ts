@@ -2,7 +2,7 @@
 export type Cat = {
     id: string;
     status: string;
-    adoption_fee: { amount: number, currency: string } | null;
+    adoption_fee: { amount: number; currency: string } | null;
     pet: {
         name: string;
         status: string;
@@ -14,10 +14,10 @@ export type Cat = {
         estimated_birth_date: string | null;
         special_needs: string | null;
         distinguishing_marks: string | null;
-        weight: { unit: string, value: number } | null;
+        weight: { unit: string; value: number } | null;
         youtube_video_url: string | null;
         gender: string | null;
-        siblings: { id: string, name: string }[] | null;
+        siblings: { id: string; name: string }[] | null;
         images: { url: string }[] | null;
-    }
+    };
 };

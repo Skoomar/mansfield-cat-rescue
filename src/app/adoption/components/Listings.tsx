@@ -23,29 +23,28 @@ export const getLifeStage = (dateOfBirth: string | null): LIFE_STAGE | null => {
     return isKitten ? LIFE_STAGE.KITTEN : LIFE_STAGE.ADULT;
 };
 
-export const filterCats = (cats: Cat[], filter: LIFE_STAGE | ""): Cat[] => {
+export const filterCats = (cats: Cat[], filter: LIFE_STAGE | ''): Cat[] => {
     if (!filter || !(filter in LIFE_STAGE)) {
         return cats;
     }
-    return cats.filter(cat => getLifeStage(cat.pet.estimated_birth_date) === filter);
+    return cats.filter((cat) => getLifeStage(cat.pet.estimated_birth_date) === filter);
 };
 
 // TODO: Maybe change to use Checkbox instead of Radios if more filters get added
 // TODO: colour button when selected
-const FilterButton = ({ id, value, label }: { id: string, value: LIFE_STAGE | "", label: string }) => (
-        <Label className="flex cursor-pointer items-center gap-1 rounded-lg border p-1.5 hover:bg-accent" htmlFor={id}>
-            <RadioGroupItem value={value} id={id} />
-            {label}
-        </Label>
+const FilterButton = ({ id, value, label }: { id: string; value: LIFE_STAGE | ''; label: string }) => (
+    <Label className="flex cursor-pointer items-center gap-1 rounded-lg border p-1.5 hover:bg-accent" htmlFor={id}>
+        <RadioGroupItem value={value} id={id} />
+        {label}
+    </Label>
 );
 
-
 const Listings = ({ cats }: { cats: Cat[] }) => {
-    const [filter, setFilter] = useState<LIFE_STAGE | "">("");
+    const [filter, setFilter] = useState<LIFE_STAGE | ''>('');
     // TODO: is useCallback more appropriate in this situation?
     const visibleCats = useMemo(() => filterCats(cats, filter), [cats, filter]);
 
-    const updateFilter = (value: LIFE_STAGE | "") => setFilter(value);
+    const updateFilter = (value: LIFE_STAGE | '') => setFilter(value);
 
     let catCards;
     if (visibleCats) {
@@ -56,16 +55,17 @@ const Listings = ({ cats }: { cats: Cat[] }) => {
         <section className="px-2">
             <div className="mx-auto mb-4 font-medium">
                 <div className="mb-1">Filters</div>
-                <RadioGroup value={filter} onValueChange={updateFilter}
-                            className="flex flex-row flex-wrap justify-between gap-x-1 gap-y-2">
+                <RadioGroup
+                    value={filter}
+                    onValueChange={updateFilter}
+                    className="flex flex-row flex-wrap justify-between gap-x-1 gap-y-2"
+                >
                     <FilterButton id="all" value="" label="All" />
                     <FilterButton id="adults" value={LIFE_STAGE.ADULT} label="Adults" />
                     <FilterButton id="kittens" value={LIFE_STAGE.KITTEN} label="Kittens" />
                 </RadioGroup>
             </div>
-            <div className="flex flex-row flex-wrap justify-between text-center">
-                {catCards ?? 'No cats found!'}
-            </div>
+            <div className="flex flex-row flex-wrap justify-between text-center">{catCards ?? 'No cats found!'}</div>
         </section>
     );
 };

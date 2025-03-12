@@ -6,15 +6,15 @@ import Listings from '@/app/adoption/components/Listings';
 
 export const metadata = {
     title: 'Adoption - Mansfield Cat Rescue',
-    description: 'Listing of cats that are ready for adoption'
-}
+    description: 'Listing of cats that are ready for adoption',
+};
 
 const Adoption = async () => {
     const cats: Cat[] = await getAdoptableCats();
 
     return (
         <>
-            <header className="mb-3 py-6 bg-secondary lg:py-8">
+            <header className="mb-3 bg-secondary py-6 lg:py-8">
                 <H1>Adoption</H1>
             </header>
             <section className="px-4 py-2">
