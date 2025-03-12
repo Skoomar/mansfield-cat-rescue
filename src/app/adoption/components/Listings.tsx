@@ -24,19 +24,19 @@ export const getLifeStage = (dateOfBirth: string | null): LIFE_STAGE | null => {
 };
 
 export const filterCats = (cats: Cat[], filter: LIFE_STAGE | ""): Cat[] => {
-    console.log(filter);
     if (!filter || !(filter in LIFE_STAGE)) {
         return cats;
     }
     return cats.filter(cat => getLifeStage(cat.pet.estimated_birth_date) === filter);
 };
 
-// Maybe change to use Checkbox instead of Radios if more filters get added
+// TODO: Maybe change to use Checkbox instead of Radios if more filters get added
+// TODO: colour button when selected
 const FilterButton = ({ id, value, label }: { id: string, value: LIFE_STAGE | "", label: string }) => (
-    <div className="flex items-center gap-1 border p-1.5 rounded-lg">
-        <RadioGroupItem value={value} id={id} />
-        <Label htmlFor={id}>{label}</Label>
-    </div>
+        <Label className="flex items-center gap-1 border p-1.5 rounded-lg cursor-pointer hover:bg-accent" htmlFor={id}>
+            <RadioGroupItem value={value} id={id} />
+            {label}
+        </Label>
 );
 
 

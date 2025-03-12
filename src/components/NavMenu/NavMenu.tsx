@@ -28,10 +28,10 @@ const links = [
 ];
 
 const NavMenu = () => (
-    <nav className="sticky top-0 left-0 z-50 bg-background dark:bg-secondary w-full py-2 px-4 flex justify-between items-center shadow lg:px-[3%]">
+    <header className="sticky top-0 left-0 z-50 bg-background dark:bg-secondary w-full py-2 px-4 flex justify-between items-center shadow lg:px-[3%]">
         <MobileSidebar links={links} />
         <Link href="/"><Logo /></Link>
-        <div className="mx-auto hidden lg:flex items-center gap-14 font-bold">
+        <nav className="mx-auto hidden lg:flex items-center gap-14 font-bold">
             {
                 links.map(link => (
                         <Button key={link.label.toLowerCase()} asChild variant="ghost">
@@ -40,10 +40,10 @@ const NavMenu = () => (
                     )
                 )
             }
-        </div>
+        </nav>
         <div className="w-[1.2rem]" />
         {/*<LightDarkToggle />*/}
-    </nav>
+    </header>
 );
 
 export default NavMenu;

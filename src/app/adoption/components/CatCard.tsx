@@ -43,12 +43,20 @@ const CatCard = ({ cat }: { cat: Cat }) => {
     // }
 
     return (
-        <div className="bg-secondary border-2 rounded-2xl shadow-md px-6 pt-3 pb-4 mx-auto mb-8 hover:bg-green-200 md:w-1/2">
+        <div className="mx-auto mb-8 flex flex-col rounded-sm border-2 pb-4 shadow-md bg-secondary hover:bg-accent">
             {/* TODO: allow to scroll through all images use onLoad and onError for stuff - and lazy loading have a cute cartoon cat as placeholder */}
+            {/* TODO: maybe instead of ImageSlider just have a gallery of the images in the view when you click on a cat */}
             {/*<ImageSlider imageUrls={cat.pet.images} />*/}
-            <p className="font-medium text-lg text-center mb-1">{cat.pet.name}</p>
-            {cat.pet.images && (<Image src={cat.pet.images[0].url} alt={cat.pet.name} width={250} height={250} />)}
-            <div className="flex flex-col gap-1 text-sm mt-2">
+
+            <div className="relative mb-2 h-64 w-full">
+                {cat.pet.images && (
+                // <Image src={cat.pet.images[0].url} alt={cat.pet.name} width={250} height={250} />
+                <img className="absolute object-cover" src={cat.pet.images[0].url} alt={cat.pet.name} fetchPriority="low" loading="lazy" height="264px" width="auto" />
+                )
+                }
+            </div>
+            <div className="mt-auto flex flex-col gap-1 px-6 text-sm">
+                <p className="mb-1 text-center text-lg font-medium">{cat.pet.name}</p>
                 <p>{getAgeFromBirthdate(cat.pet.estimated_birth_date) ?? 'Age Unknown'}</p>
                 <p>{toTitleCase(cat.pet.gender) ?? 'Gender Unknown'}</p>
                 <p>{cat.pet.description}</p>

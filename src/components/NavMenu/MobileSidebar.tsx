@@ -21,14 +21,14 @@ const MobileSidebar = ({ links }: { links: { href: string, label: string }[] }) 
                     <SheetTitle>Menu</SheetTitle>
                     <SheetDescription>Select a page</SheetDescription>
                 </SheetHeader>
-                <div className="flex flex-col gap-2 py-5">
+                <nav className="flex flex-col gap-2 py-5">
                     {
                         links.map((link) => (
                             <Link key={link.label.toLowerCase()} href={link.href}
                                   className="text-lg" onClick={() => setOpen(false)}>{link.label}</Link>)
                         )
                     }
-                </div>
+                </nav>
             </SheetContent>
         </Sheet>
     );
