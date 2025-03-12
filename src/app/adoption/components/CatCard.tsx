@@ -1,6 +1,7 @@
 import { Cat } from '@/types';
 // import ImageSlider from '@/app/adoption/ImageSlider';
 import Image from 'next/image';
+import { Button } from '@/components/ui/button';
 
 export const getAgeFromBirthdate = (birthdate: string | null): string | null => {
     if (!birthdate) {
@@ -43,22 +44,21 @@ const CatCard = ({ cat }: { cat: Cat }) => {
     // }
 
     return (
-        <div className="mx-auto mb-8 flex flex-col rounded-sm border-2 bg-secondary pb-4 shadow-md hover:bg-accent">
+        <div className="flex flex-col max-md:mx-auto w-72 pb-4 rounded-sm border-2 bg-secondary shadow-md hover:bg-accent">
             {/* TODO: allow to scroll through all images use onLoad and onError for stuff - and lazy loading have a cute cartoon cat as placeholder */}
             {/* TODO: maybe instead of ImageSlider just have a gallery of the images in the view when you click on a cat */}
             {/*<ImageSlider imageUrls={cat.pet.images} />*/}
 
-            <div className="relative mb-2 h-64 w-full">
+            <div className="relative h-80 mb-2 overflow-hidden">
                 {cat.pet.images && (
                     // <Image src={cat.pet.images[0].url} alt={cat.pet.name} width={250} height={250} />
                     <img
-                        className="absolute object-cover"
+                        className="absolute object-cover w-full h-full"
                         src={cat.pet.images[0].url}
                         alt={cat.pet.name}
                         fetchPriority="low"
                         loading="lazy"
-                        height="264px"
-                        width="auto"
+
                     />
                 )}
             </div>
@@ -67,6 +67,7 @@ const CatCard = ({ cat }: { cat: Cat }) => {
                 <p>{getAgeFromBirthdate(cat.pet.estimated_birth_date) ?? 'Age Unknown'}</p>
                 <p>{toTitleCase(cat.pet.gender) ?? 'Gender Unknown'}</p>
                 <p>{cat.pet.description}</p>
+                <Button className="mt-1">More info</Button>
             </div>
         </div>
     );

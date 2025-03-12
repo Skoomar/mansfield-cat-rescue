@@ -58,14 +58,14 @@ const Listings = ({ cats }: { cats: Cat[] }) => {
                 <RadioGroup
                     value={filter}
                     onValueChange={updateFilter}
-                    className="flex flex-row flex-wrap justify-between gap-x-1 gap-y-2"
+                    className="flex flex-row flex-wrap justify-start gap-x-3 gap-y-2"
                 >
                     <FilterButton id="all" value="" label="All" />
                     <FilterButton id="adults" value={LIFE_STAGE.ADULT} label="Adults" />
                     <FilterButton id="kittens" value={LIFE_STAGE.KITTEN} label="Kittens" />
                 </RadioGroup>
             </div>
-            <div className="flex flex-row flex-wrap justify-between text-center">{catCards ?? 'No cats found!'}</div>
+            <div className="flex flex-row flex-wrap justify-between gap-5 text-center">{catCards ?? 'No cats found!'}</div>
         </section>
     );
 };
