@@ -14,10 +14,10 @@ const Adoption = async () => {
 
     return (
         <>
-            <header className="bg-secondary mb-3 py-6 lg:py-8">
+            <header className="mb-3 py-6 bg-secondary lg:py-8">
                 <H1>Adoption</H1>
             </header>
-            <section className="py-2 px-4">
+            <section className="px-4 py-2">
                 <Listings cats={cats} />
             </section>
         </>

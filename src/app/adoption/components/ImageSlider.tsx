@@ -47,7 +47,7 @@
 //                        alt={`${id} image ${currentImage}`}
 //                        layout="fill"
 //                        objectFit="cover"
-//                        className="transition-all duration-500 ease-in-out cursor-pointer"
+//                        className="cursor-pointer transition-all duration-500 ease-in-out"
 //                 />
 //                 <button onClick={showPrevImage}>Prev</button>
 //                 <button onClick={showNextImage}>Next</button>
