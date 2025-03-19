@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import NavMenu from '@/components/NavMenu/NavMenu';
+import { ApolloWrapper } from '@/app/ApolloWrapper';
 
 // TODO: figure out why Geist isn't actually being used
 const geistSans = localFont({
@@ -76,7 +77,7 @@ export default function RootLayout({
         <html lang="en">
             <body className={`${superclarendon.variable} font-serif antialiased`}>
                 <NavMenu />
-                {children}
+                <ApolloWrapper>{children}</ApolloWrapper>
             </body>
         </html>
     );

@@ -2,6 +2,7 @@ import { Cat } from '@/types';
 // import ImageSlider from '@/app/adoption/ImageSlider';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export const getAgeFromBirthdate = (birthdate: string | null): string | null => {
     if (!birthdate) {
@@ -44,7 +45,8 @@ const CatCard = ({ cat }: { cat: Cat }) => {
     // }
 
     return (
-        <div className="flex flex-col max-md:mx-auto w-72 pb-4 rounded-sm border-2 bg-secondary shadow-md hover:bg-accent">
+        <div
+            className="flex flex-col max-md:mx-auto w-72 pb-4 rounded-sm border-2 bg-secondary shadow-md hover:bg-accent">
             {/* TODO: allow to scroll through all images use onLoad and onError for stuff - and lazy loading have a cute cartoon cat as placeholder */}
             {/* TODO: maybe instead of ImageSlider just have a gallery of the images in the view when you click on a cat */}
             {/*<ImageSlider imageUrls={cat.pet.images} />*/}
@@ -63,11 +65,12 @@ const CatCard = ({ cat }: { cat: Cat }) => {
                 )}
             </div>
             <div className="mt-auto flex flex-col gap-1 px-6 text-sm">
-                <p className="mb-1 text-center text-lg font-medium">{cat.pet.name}</p>
-                <p>{getAgeFromBirthdate(cat.pet.estimated_birth_date) ?? 'Age Unknown'}</p>
-                <p>{toTitleCase(cat.pet.gender) ?? 'Gender Unknown'}</p>
+                <p className="mb-1 text-center text-lg font-black">{cat.pet.name}</p>
+                <p><strong>Age:</strong> {getAgeFromBirthdate(cat.pet.estimated_birth_date) ?? 'Age Unknown'}</p>
+                <p><strong>Gender:</strong> {toTitleCase(cat.pet.gender) ?? 'Gender Unknown'}</p>
                 <p>{cat.pet.description}</p>
-                <Button className="mt-1">More info</Button>
+                <Link href={`/adoption/${cat.id}`}>More info</Link>
+                {/*<Button variant="outline" className="mt-1">More info</Button>*/}
             </div>
         </div>
     );
