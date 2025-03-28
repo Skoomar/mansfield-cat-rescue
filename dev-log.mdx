@@ -24,3 +24,18 @@
 - probably should cache this (look at Nextjs docs for fetching & caching data from DB)
 - set bearer token in the DB if it's null or expired
 - get bearer token when needed for GraphQL request
+
+
+# Notes
+## 2025-03-27
+Ok I managed to set up WebStorm and the generated GQL types etc so that's all looking good now. Next need to figure out
+how I should actually set up the query - keep it in callPawlytics or move it into Listings.tsx and have a useQuery there,
+or do it in a server side component and pass the state down?
+
+## 2025-03-26
+Trying to integrate Apollo Client into this using the plugin to make it compatible with Next.js /app router. Have set
+up gql with the TypeScript codegen stuff but in the query in Listings.tsx it's still complaining that the attributes
+don't exist for some reason.
+
+Also wondering where it's best to put this query - should this be in the page.tsx and then passed down as props to
+<Listings />?

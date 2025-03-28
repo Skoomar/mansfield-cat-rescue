@@ -1,7 +1,6 @@
 // TODO: error message if there's an issue when authenticating or fetching cats (and if the fetch cats returns an empty object)
 import { getAdoptableCats } from '@/app/adoption/callPawlytics';
 import { Cat } from '@/types';
-import { H1 } from '@/components/Headings';
 import Listings from '@/app/adoption/components/Listings';
 
 export const metadata = {
@@ -10,15 +9,16 @@ export const metadata = {
 };
 
 const Adoption = async () => {
-    const cats: Cat[] = await getAdoptableCats();
+    // const cats: Cat[] = await getAdoptableCats();
 
     return (
         <>
             <header className="mb-3 bg-secondary py-6 lg:py-8">
-                <H1>Adoption</H1>
+                <h1>Adoption</h1>
             </header>
             <section className="px-4 py-2">
-                <Listings cats={cats} />
+                {/*<Listings cats={cats} />*/}
+                <Listings />
             </section>
         </>
     );

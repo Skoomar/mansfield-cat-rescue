@@ -1,0 +1,2 @@
+schema: https://api.pawlytics.com/api/graphql
+documents: '**/*.graphql'

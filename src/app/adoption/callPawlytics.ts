@@ -61,6 +61,7 @@ const getPawlyticsAuthToken = async () => {
 // TODO: is this a function that should be 'use server'?
 // ^ on second thoughts probably not
 export const getAdoptableCats = async (): Promise<Cat[]> => {
+    // TODO: replace this with proper stubs or something
     // set up local testing flag temporarily
     if (process.env.LOCAL) {
         return adoptableCatsStubResponse;
