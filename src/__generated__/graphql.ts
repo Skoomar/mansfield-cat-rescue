@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
+import { DocumentTypeDecoration } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -15978,10 +15978,68 @@ export type Permissionable = {
   id?: Maybe<Scalars['UUID']['output']>;
 };
 
-export type OrganizationPetsQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetCatsQueryVariables = Exact<{
+  orgId: Scalars['UUID']['input'];
+}>;
 
 
-export type OrganizationPetsQuery = { __typename?: 'Query', organization_pets2?: { __typename?: 'OrganizationPetsConnection', entities?: Array<{ __typename?: 'Organization_Pet', id?: any | null, status?: Organization_Pet_Status | null, adoption_fee?: { __typename?: 'Money', amount: number, currency: Currency } | null, pet?: { __typename?: 'Pet', name?: string | null, status?: Pet_Status | null, status_details?: string | null, description?: string | null, species?: Pet_Species | null, breed_cat?: Array<Pet_Breed_Cat | null> | null, mixed?: boolean | null, estimated_birth_date?: any | null, special_needs?: string | null, distinguishing_marks?: string | null, weight_lbs?: number | null, youtube_video_url?: string | null, gender?: Pet_Gender | null, siblings?: Array<{ __typename?: 'Pet', id?: any | null, name?: string | null } | null> | null, images?: Array<{ __typename?: 'File', url?: string | null } | null> | null } | null } | null> | null } | null };
+export type GetCatsQuery = { __typename?: 'Query', organization_pets2?: { __typename?: 'OrganizationPetsConnection', entities?: Array<{ __typename?: 'Organization_Pet', id?: any | null, status?: Organization_Pet_Status | null, adoption_fee?: { __typename?: 'Money', amount: number, currency: Currency } | null, pet?: { __typename?: 'Pet', name?: string | null, status?: Pet_Status | null, status_details?: string | null, description?: string | null, species?: Pet_Species | null, breed_cat?: Array<Pet_Breed_Cat | null> | null, mixed?: boolean | null, estimated_birth_date?: any | null, special_needs?: string | null, distinguishing_marks?: string | null, weight_lbs?: number | null, youtube_video_url?: string | null, gender?: Pet_Gender | null, siblings?: Array<{ __typename?: 'Pet', id?: any | null, name?: string | null } | null> | null, images?: Array<{ __typename?: 'File', url?: string | null } | null> | null } | null } | null> | null } | null };
 
+export class TypedDocumentString<TResult, TVariables>
+  extends String
+  implements DocumentTypeDecoration<TResult, TVariables>
+{
+  __apiType?: DocumentTypeDecoration<TResult, TVariables>['__apiType'];
+  private value: string;
+  public __meta__?: Record<string, any> | undefined;
 
-export const OrganizationPetsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"OrganizationPets"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"organization_pets2"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"organization_pet_status"},"value":{"kind":"EnumValue","value":"ADOPTABLE"}}]}},{"kind":"Argument","name":{"kind":"Name","value":"organization_id"},"value":{"kind":"StringValue","value":"","block":false}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"entities"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"adoption_fee"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}},{"kind":"Field","name":{"kind":"Name","value":"pet"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"status_details"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"species"}},{"kind":"Field","name":{"kind":"Name","value":"breed_cat"}},{"kind":"Field","name":{"kind":"Name","value":"mixed"}},{"kind":"Field","name":{"kind":"Name","value":"estimated_birth_date"}},{"kind":"Field","name":{"kind":"Name","value":"special_needs"}},{"kind":"Field","name":{"kind":"Name","value":"distinguishing_marks"}},{"kind":"Field","name":{"kind":"Name","value":"weight_lbs"}},{"kind":"Field","name":{"kind":"Name","value":"youtube_video_url"}},{"kind":"Field","name":{"kind":"Name","value":"gender"}},{"kind":"Field","name":{"kind":"Name","value":"siblings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"images"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<OrganizationPetsQuery, OrganizationPetsQueryVariables>;
+  constructor(value: string, __meta__?: Record<string, any> | undefined) {
+    super(value);
+    this.value = value;
+    this.__meta__ = __meta__;
+  }
+
+  toString(): string & DocumentTypeDecoration<TResult, TVariables> {
+    return this.value;
+  }
+}
+
+export const GetCatsDocument = new TypedDocumentString(`
+    query GetCats($orgId: UUID!) {
+  organization_pets2(
+    filter: {organization_pet_status: ADOPTABLE}
+    organization_id: $orgId
+  ) {
+    entities {
+      id
+      status
+      adoption_fee {
+        amount
+        currency
+      }
+      pet {
+        name
+        status
+        status_details
+        description
+        species
+        breed_cat
+        mixed
+        estimated_birth_date
+        special_needs
+        distinguishing_marks
+        weight_lbs
+        youtube_video_url
+        gender
+        siblings {
+          id
+          name
+        }
+        images {
+          url
+        }
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<GetCatsQuery, GetCatsQueryVariables>;

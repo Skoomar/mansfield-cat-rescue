@@ -17,7 +17,7 @@
 
 # Done
 
-- Set up request to Pawlytics API to get all adoptable cats _in a way that keeps the API call details server-side_
+- Set up request to Pawlytics API to get all adoptable cats _in a way that keeps the API call details server-side
 - to do this here are the steps:
 - need to get a bearer token to use the GraphQL API, so get the token and store it in Upstash Redis KV
   (Key-Vault) through Vercel
@@ -27,6 +27,13 @@
 
 
 # Notes
+## 2025-03-29
+Reading more in-depth about what Apollo Client offers specifically. I think it's way overkill for this use case. I
+thought I might need it for state management on the adoption/<cat-id> pages but I don't think it's necessary. This data
+would all be loaded server-side to be ready when the page loads - no client interaction that would need to make another
+query to the API. So I should just use `fetch` to query the data and then display it instead of using Apollo. Time
+to strip it out :facepalm:. At least all the GraphQL plugins and stuff I installed as part of this are useful though
+
 ## 2025-03-27
 Ok I managed to set up WebStorm and the generated GQL types etc so that's all looking good now. Next need to figure out
 how I should actually set up the query - keep it in callPawlytics or move it into Listings.tsx and have a useQuery there,

@@ -8,17 +8,18 @@ export const metadata = {
     description: 'Listing of cats that are ready for adoption',
 };
 
+export const revalidate = 43200; // refresh cat data every 12 hours
+
 const Adoption = async () => {
-    // const cats: Cat[] = await getAdoptableCats();
+    const cats: Cat[] = await getAdoptableCats();
 
     return (
         <>
             <header className="mb-3 bg-secondary py-6 lg:py-8">
                 <h1>Adoption</h1>
             </header>
-            <section className="px-4 py-2">
-                {/*<Listings cats={cats} />*/}
-                <Listings />
+            <section className="px-6 py-2">
+                <Listings cats={cats} />
             </section>
         </>
     );

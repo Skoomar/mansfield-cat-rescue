@@ -5,49 +5,6 @@ import CatCard from '@/app/adoption/components/CatCard';
 import { useMemo, useState } from 'react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-import { gql } from '@/__generated__/gql';
-
-const GET_CATS = gql(`
-    query GetCats {
-        organization_pets2(
-            filter: {
-                organization_pet_status: ADOPTABLE
-            }
-            organization_id: "${process.env.PAWLYTICS_ORG_ID}"
-        ) {
-            entities {
-                id
-                status
-                adoption_fee {
-                    amount
-                    currency
-                }
-                pet {
-                    name
-                    status
-                    status_details
-                    description
-                    species
-                    breed_cat
-                    mixed
-                    estimated_birth_date
-                    special_needs
-                    distinguishing_marks
-                    weight_lbs
-                    youtube_video_url
-                    gender
-                    siblings {
-                        id
-                        name
-                    }
-                    images {
-                        url
-                    }
-                }
-            }
-        }
-    }
-`);
 
 // TODO: probably best to move these enums & functions (and the ones from CatCard) and put them in some utils file
 export enum LIFE_STAGE {
@@ -55,11 +12,11 @@ export enum LIFE_STAGE {
     KITTEN = 'KITTEN',
 }
 
-export const getLifeStage = (dateOfBirth: string | null): LIFE_STAGE | null => {
-    if (!dateOfBirth) return null;
+export const getLifeStage = (dateOfBirth: string | null): LIFE_STAGE => {
+    if (!dateOfBirth) return LIFE_STAGE.ADULT;
 
     const birthdateObj = new Date(dateOfBirth);
-    if (!birthdateObj.valueOf()) return null;
+    if (!birthdateObj.valueOf()) return LIFE_STAGE.ADULT;
 
     const today = new Date();
     const isKitten = (today.valueOf() - birthdateObj.valueOf()) / (1000 * 3600 * 24 * 365) < 1;
@@ -85,7 +42,6 @@ const FilterButton = ({ id, value, label }: { id: string; value: LIFE_STAGE | ''
 const Listings = ({ cats }: { cats: Cat[] }) => {
     const [filter, setFilter] = useState<LIFE_STAGE | ''>('');
 
-
     // TODO: is useCallback more appropriate in this situation?
     const visibleCats = useMemo(() => filterCats(cats, filter), [cats, filter]);
 
@@ -97,7 +53,7 @@ const Listings = ({ cats }: { cats: Cat[] }) => {
     }
 
     return (
-        <section className="px-2">
+        <>
             <div className="mx-auto mb-4 font-medium">
                 <div className="mb-1">Filters</div>
                 <RadioGroup
@@ -110,8 +66,9 @@ const Listings = ({ cats }: { cats: Cat[] }) => {
                     <FilterButton id="kittens" value={LIFE_STAGE.KITTEN} label="Kittens" />
                 </RadioGroup>
             </div>
-            <div className="flex flex-row flex-wrap justify-start gap-8 text-center">{catCards ?? 'No cats found! Please check again later'}</div>
-        </section>
+            <div
+                className="flex flex-row flex-wrap justify-start gap-8 text-center">{catCards ?? 'No cats found! Please check again later'}</div>
+        </>
     );
 };
 

@@ -1,5 +1,6 @@
 import { Redis } from '@upstash/redis';
 import { Cat } from '@/types';
+import { gql } from '@/__generated__';
 
 const fetchPawlyticsAuthResponse = async () => {
     const options = {
@@ -35,7 +36,6 @@ const fetchPawlyticsAuthResponse = async () => {
 
 // TODO: try 'use cache' on these functions: https://nextjs.org/docs/app/api-reference/directives/use-cache
 // TODO: could use middleware to modify these these requests if needed? https://nextjs.org/docs/app/building-your-application/routing/middleware
-// TODO: also try Apollo or some other GraphQL client so the query isn't horrible
 const getPawlyticsAuthToken = async () => {
     const redis = Redis.fromEnv();
     const apiToken: Record<string, number> | null = await redis.hgetall('pawlytics_auth_token');
@@ -58,6 +58,48 @@ const getPawlyticsAuthToken = async () => {
     }
 };
 
+const GET_CATS = gql(`
+    query GetCats($orgId: UUID!) {
+        organization_pets2(
+            filter: {
+                organization_pet_status: ADOPTABLE
+            }
+            organization_id: $orgId
+        ) {
+            entities {
+                id
+                status
+                adoption_fee {
+                    amount
+                    currency
+                }
+                pet {
+                    name
+                    status
+                    status_details
+                    description
+                    species
+                    breed_cat
+                    mixed
+                    estimated_birth_date
+                    special_needs
+                    distinguishing_marks
+                    weight_lbs
+                    youtube_video_url
+                    gender
+                    siblings {
+                        id
+                        name
+                    }
+                    images {
+                        url
+                    }
+                }
+            }
+        }
+    }
+`);
+
 // TODO: is this a function that should be 'use server'?
 // ^ on second thoughts probably not
 export const getAdoptableCats = async (): Promise<Cat[]> => {
@@ -68,46 +110,6 @@ export const getAdoptableCats = async (): Promise<Cat[]> => {
     }
 
     const authToken = await getPawlyticsAuthToken();
-    const query = `query OrganizationPets {
-        organization_pets2(
-            filter: {
-                organization_pet_status: ADOPTABLE
-            }
-            organization_id: "${process.env.PAWLYTICS_ORG_ID}"
-        ) {
-        entities {
-            id
-            status
-            adoption_fee {
-                amount
-                currency
-            }
-            pet {
-                name
-                status
-                status_details
-                description
-                species
-                breed_cat
-                mixed
-                estimated_birth_date
-                special_needs
-                distinguishing_marks
-                weight_lbs
-                youtube_video_url
-                gender
-                siblings {
-                  id
-                  name
-                }
-                images {
-                  url
-                }
-              }
-            }
-          }
-        }
-    `;
 
     const options = {
         method: 'POST',
@@ -115,7 +117,12 @@ export const getAdoptableCats = async (): Promise<Cat[]> => {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${authToken}`,
         },
-        body: JSON.stringify({ query }),
+        body: JSON.stringify({
+            query: GET_CATS.toString(),
+            variables: {
+                orgId: process.env.PAWLYTICS_ORG_ID
+            }
+        }),
     };
 
     // TODO: make this error handling better to use the error response to display a message in UI
