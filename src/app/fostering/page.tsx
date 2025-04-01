@@ -1,6 +1,10 @@
+import { PageHeader } from '@/components/PageHeader';
+
 const Fostering = () => (
     <>
-        <h1>Fostering</h1>
+        <PageHeader>
+            <h1>Fostering</h1>
+        </PageHeader>
     </>
 );
 

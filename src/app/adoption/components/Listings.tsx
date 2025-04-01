@@ -54,7 +54,7 @@ const Listings = ({ cats }: { cats: Cat[] }) => {
 
     return (
         <>
-            <div className="mx-auto mb-4 font-medium">
+            <div className="mx-auto mb-4 font-medium lg:ml-8">
                 <div className="mb-1">Filters</div>
                 <RadioGroup
                     value={filter}
@@ -66,8 +66,9 @@ const Listings = ({ cats }: { cats: Cat[] }) => {
                     <FilterButton id="kittens" value={LIFE_STAGE.KITTEN} label="Kittens" />
                 </RadioGroup>
             </div>
-            <div
-                className="flex flex-row flex-wrap justify-start gap-8 text-center">{catCards ?? 'No cats found! Please check again later'}</div>
+            <div className="flex flex-row flex-wrap justify-center gap-8 text-center">
+                {catCards ?? 'No cats found! Please check again later'}
+            </div>
         </>
     );
 };

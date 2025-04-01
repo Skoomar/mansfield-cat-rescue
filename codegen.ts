@@ -11,9 +11,9 @@ const config: CodegenConfig = {
                 gqlTagName: 'gql',
             },
             config: {
-                documentMode: 'string'
-            }
-        }
+                documentMode: 'string',
+            },
+        },
     },
 };
 

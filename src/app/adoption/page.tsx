@@ -2,6 +2,7 @@
 import { getAdoptableCats } from '@/app/adoption/callPawlytics';
 import { Cat } from '@/types';
 import Listings from '@/app/adoption/components/Listings';
+import { PageHeader } from '@/components/PageHeader';
 
 export const metadata = {
     title: 'Adoption - Mansfield Cat Rescue',
@@ -15,10 +16,10 @@ const Adoption = async () => {
 
     return (
         <>
-            <header className="mb-3 bg-secondary py-6 lg:py-8">
+            <PageHeader>
                 <h1>Adoption</h1>
-            </header>
-            <section className="px-6 py-2">
+            </PageHeader>
+            <section className="px-6 py-5">
                 <Listings cats={cats} />
             </section>
         </>

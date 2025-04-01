@@ -120,8 +120,8 @@ export const getAdoptableCats = async (): Promise<Cat[]> => {
         body: JSON.stringify({
             query: GET_CATS.toString(),
             variables: {
-                orgId: process.env.PAWLYTICS_ORG_ID
-            }
+                orgId: process.env.PAWLYTICS_ORG_ID,
+            },
         }),
     };
 

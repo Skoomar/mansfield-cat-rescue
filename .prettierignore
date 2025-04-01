@@ -3,3 +3,4 @@
 .idea
 
 src/components/ui/*
+src/__generated__/*

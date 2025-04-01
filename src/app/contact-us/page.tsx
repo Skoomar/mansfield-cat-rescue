@@ -1,6 +1,10 @@
+import { PageHeader } from '@/components/PageHeader';
+
 const ContactUs = () => (
     <>
-        <h1>Contact Us</h1>
+        <PageHeader>
+            <h1>Contact Us</h1>
+        </PageHeader>
     </>
 );
 

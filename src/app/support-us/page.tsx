@@ -1,6 +1,10 @@
+import { PageHeader } from '@/components/PageHeader';
+
 const SupportUs = () => (
     <>
-        <h1>Support Us</h1>
+        <PageHeader>
+            <h1>Support Us</h1>
+        </PageHeader>
     </>
 );
 
