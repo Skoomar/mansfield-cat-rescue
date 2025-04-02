@@ -31,6 +31,16 @@ export type AddAdoptionDocInput = {
   organization_id: Scalars['UUID']['input'];
 };
 
+/** Input for adding a historical location entry */
+export type AddOrganizationPetLocationEntryInput = {
+  /** Optional date for this entry (defaults to current time) */
+  date?: InputMaybe<Scalars['Instant']['input']>;
+  /** The location data to add */
+  location: Input_Pet_Location;
+  /** The pet's ID */
+  organization_pet_id: Scalars['UUID']['input'];
+};
+
 /** Input for adding images to a pet. */
 export type AddPetImagesInput = {
   /** ID of the organization-pet to add images to. */
@@ -7773,6 +7783,14 @@ export type DeleteNoteInput = {
   note_id: Scalars['ID']['input'];
 };
 
+/** Input for deleting a specific location entry */
+export type DeleteOrganizationPetLocationEntryInput = {
+  /** The history entry ID to delete */
+  entry_id: Scalars['UUID']['input'];
+  /** The pet's ID */
+  organization_pet_id: Scalars['UUID']['input'];
+};
+
 /** Input for removing images from a pet. */
 export type DeletePetImagesInput = {
   /** IDs of the images to delete from the pet. */
@@ -7791,6 +7809,12 @@ export type DeleteTextTemplateInput = {
 export type DeleteTextTemplatePayload = {
   __typename?: 'DeleteTextTemplatePayload';
   text_template_id: Scalars['UUID']['output'];
+};
+
+export type DeletedLocationHistoryEntryPayload = {
+  __typename?: 'DeletedLocationHistoryEntryPayload';
+  /** ID of the deleted location history entry */
+  entry_id?: Maybe<Scalars['UUID']['output']>;
 };
 
 export type Diagnosis = {
@@ -9848,6 +9872,8 @@ export type Input_Organization_Settings_Update = {
   add_clinics?: InputMaybe<Array<InputMaybe<Input_Organization_Settings_Clinic_Create>>>;
   add_external_organizations?: InputMaybe<Array<InputMaybe<Input_Organization_Settings_ExternalOrganization_Create>>>;
   add_external_persons?: InputMaybe<Array<InputMaybe<Input_Organization_Settings_ExternalPerson_Create>>>;
+  /** Event locations to add or update. Items with no ID will be created, items with ID will be updated. */
+  add_update_event_locations?: InputMaybe<Array<InputMaybe<PetEventLocationInput>>>;
   address_style?: InputMaybe<Scalars['String']['input']>;
   adopt_a_pet_password?: InputMaybe<Scalars['String']['input']>;
   adopt_a_pet_shelter_id?: InputMaybe<Scalars['String']['input']>;
@@ -9869,6 +9895,8 @@ export type Input_Organization_Settings_Update = {
   delete_external_organizations?: InputMaybe<Array<Scalars['UUID']['input']>>;
   delete_external_persons?: InputMaybe<Array<Scalars['UUID']['input']>>;
   econtracts_enabled?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Whether event locations are enabled */
+  event_locations_enabled?: InputMaybe<Scalars['Boolean']['input']>;
   external_organizations?: InputMaybe<Array<InputMaybe<Input_Organization_Settings_ExternalOrganization_Update>>>;
   external_persons?: InputMaybe<Array<InputMaybe<Input_Organization_Settings_ExternalPerson_Update>>>;
   foster_application_code?: InputMaybe<Scalars['String']['input']>;
@@ -9883,6 +9911,8 @@ export type Input_Organization_Settings_Update = {
   petlink_shelter_id?: InputMaybe<Scalars['String']['input']>;
   petlink_upload_start_date?: InputMaybe<Scalars['Instant']['input']>;
   phone_country_code?: InputMaybe<Scalars['String']['input']>;
+  /** IDs of event locations to remove */
+  remove_event_locations?: InputMaybe<Array<InputMaybe<Scalars['UUID']['input']>>>;
   stripe_customer_id?: InputMaybe<Scalars['String']['input']>;
   stripe_subscription_id?: InputMaybe<Scalars['String']['input']>;
   surrender_application_code?: InputMaybe<Scalars['String']['input']>;
@@ -10004,6 +10034,8 @@ export type Input_Pet_Diet = {
 export type Input_Pet_Event_Adoption = {
   /** Date/time at which the event occurred or was initiated */
   date: Scalars['Instant']['input'];
+  /** Location where the event took place - either create a new location or reference an existing one */
+  event_location?: InputMaybe<PetEventLocationInput>;
   note?: InputMaybe<Scalars['String']['input']>;
   /** Organization id */
   organization_id: Scalars['UUID']['input'];
@@ -10021,6 +10053,8 @@ export type Input_Pet_Event_Delete = {
 export type Input_Pet_Event_DiedInCare = {
   /** Date/time at which the event occurred or was initiated */
   date: Scalars['Instant']['input'];
+  /** Location where the event took place - either create a new location or reference an existing one */
+  event_location?: InputMaybe<PetEventLocationInput>;
   note?: InputMaybe<Scalars['String']['input']>;
   /** Organization id */
   organization_id: Scalars['UUID']['input'];
@@ -10030,6 +10064,8 @@ export type Input_Pet_Event_DiedInCare = {
 export type Input_Pet_Event_Escaped_Lost = {
   /** Date/time at which the event occurred or was initiated */
   date: Scalars['Instant']['input'];
+  /** Location where the event took place - either create a new location or reference an existing one */
+  event_location?: InputMaybe<PetEventLocationInput>;
   /** Last known location of the pet */
   location?: InputMaybe<Scalars['String']['input']>;
   note?: InputMaybe<Scalars['String']['input']>;
@@ -10041,6 +10077,8 @@ export type Input_Pet_Event_Escaped_Lost = {
 export type Input_Pet_Event_Euthanized = {
   /** Date/time at which the event occurred or was initiated */
   date: Scalars['Instant']['input'];
+  /** Location where the event took place - either create a new location or reference an existing one */
+  event_location?: InputMaybe<PetEventLocationInput>;
   note?: InputMaybe<Scalars['String']['input']>;
   /** Organization id */
   organization_id: Scalars['UUID']['input'];
@@ -10055,6 +10093,8 @@ export type Input_Pet_Event_Intake = {
   condition: Pet_Event_Intake_Condition;
   /** Date/time at which the event occurred or was initiated */
   date: Scalars['Instant']['input'];
+  /** Location where the event took place - either create a new location or reference an existing one */
+  event_location?: InputMaybe<PetEventLocationInput>;
   from_id?: InputMaybe<Scalars['UUID']['input']>;
   /** Identifier identifying the pet for the organization */
   internal_id?: InputMaybe<Scalars['String']['input']>;
@@ -10120,6 +10160,8 @@ export type Input_Pet_Event_Intake_Update = {
   condition?: InputMaybe<Pet_Event_Intake_Condition>;
   /** Date/time at which the event occurred or was initiated */
   date?: InputMaybe<Scalars['Instant']['input']>;
+  /** Location where the event took place - either update an existing location or reference a different one */
+  event_location?: InputMaybe<PetEventLocationInput>;
   from_id?: InputMaybe<Scalars['UUID']['input']>;
   /** Pet event id */
   id: Scalars['UUID']['input'];
@@ -10145,6 +10187,8 @@ export type Input_Pet_Event_ReIntake = {
 export type Input_Pet_Event_Return = {
   /** Date/time at which the event occurred or was initiated */
   date: Scalars['Instant']['input'];
+  /** Location where the event took place - either create a new location or reference an existing one */
+  event_location?: InputMaybe<PetEventLocationInput>;
   note?: InputMaybe<Scalars['String']['input']>;
   /** Organization id */
   organization_id: Scalars['UUID']['input'];
@@ -10156,6 +10200,8 @@ export type Input_Pet_Event_Return = {
 export type Input_Pet_Event_Return_To_Field = {
   /** Date/time at which the event occurred or was initiated */
   date: Scalars['Instant']['input'];
+  /** Location where the event took place - either create a new location or reference an existing one */
+  event_location?: InputMaybe<PetEventLocationInput>;
   /** Location where the pet was returned to field */
   location?: InputMaybe<Scalars['String']['input']>;
   note?: InputMaybe<Scalars['String']['input']>;
@@ -10165,6 +10211,8 @@ export type Input_Pet_Event_Return_To_Field = {
 };
 
 export type Input_Pet_Event_Return_Update = {
+  /** Location where the event took place - either update an existing location or reference a different one */
+  event_location?: InputMaybe<PetEventLocationInput>;
   /** Pet event id */
   id: Scalars['UUID']['input'];
   note?: InputMaybe<Scalars['String']['input']>;
@@ -10177,6 +10225,8 @@ export type Input_Pet_Event_Return_Update = {
 export type Input_Pet_Event_Transfer = {
   /** Date/time at which the event occurred or was initiated */
   date: Scalars['Instant']['input'];
+  /** Location where the event took place - either create a new location or reference an existing one */
+  event_location?: InputMaybe<PetEventLocationInput>;
   note?: InputMaybe<Scalars['String']['input']>;
   /** Organization id */
   organization_id: Scalars['UUID']['input'];
@@ -10674,6 +10724,8 @@ export type MoneyInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  /** Add a historical pet location entry */
+  addOrganizationPetLocationEntry?: Maybe<OrganizationPetLocationHistoryEntry>;
   /** Add adoption doc to org */
   add_adoption_doc: File;
   /** Add images to a pet. Images are added to the end of the set of images. Returns the updated list of images. */
@@ -10708,6 +10760,8 @@ export type Mutation = {
   /** Creates a user for the current auth */
   create_update_user_for_auth?: Maybe<User>;
   deleteMedicalEvent?: Maybe<DeleteMedicalEventResult>;
+  /** Delete a specific pet location history entry */
+  deleteOrganizationPetLocationEntry?: Maybe<DeletedLocationHistoryEntryPayload>;
   /** Delete a text template */
   deleteTextTemplate: DeleteTextTemplatePayload;
   /** Delete adoption doc from org */
@@ -10849,6 +10903,11 @@ export type Mutation = {
 };
 
 
+export type MutationAddOrganizationPetLocationEntryArgs = {
+  input: AddOrganizationPetLocationEntryInput;
+};
+
+
 export type MutationAdd_Adoption_DocArgs = {
   input: AddAdoptionDocInput;
 };
@@ -10941,6 +11000,11 @@ export type MutationCreate_Update_User_For_AuthArgs = {
 
 export type MutationDeleteMedicalEventArgs = {
   input?: InputMaybe<DeleteMedicalEventInput>;
+};
+
+
+export type MutationDeleteOrganizationPetLocationEntryArgs = {
+  input: DeleteOrganizationPetLocationEntryInput;
 };
 
 
@@ -11601,6 +11665,19 @@ export type OrganizationIntakesFilterInput = {
   period?: InputMaybe<PeriodInput>;
 };
 
+/** A historical record of a pet's location change */
+export type OrganizationPetLocationHistoryEntry = {
+  __typename?: 'OrganizationPetLocationHistoryEntry';
+  /** The user who created this location entry */
+  author?: Maybe<User>;
+  /** When this location was recorded */
+  date: Scalars['Instant']['output'];
+  /** Unique identifier for this history entry */
+  id: Scalars['UUID']['output'];
+  /** The location at this point in time */
+  location?: Maybe<Pet_Location>;
+};
+
 /** Organization Pets connection */
 export type OrganizationPetsConnection = {
   __typename?: 'OrganizationPetsConnection';
@@ -11666,6 +11743,8 @@ export type Organization_Pet = {
   /** Internal identifier for pet at organization */
   internal_id?: Maybe<Scalars['String']['output']>;
   location?: Maybe<Pet_Location>;
+  /** Historical record of all location changes */
+  location_history?: Maybe<Array<Maybe<OrganizationPetLocationHistoryEntry>>>;
   /** Does the pet currently need foster */
   needs_foster?: Maybe<Scalars['Boolean']['output']>;
   /** Pawlytics pet record */
@@ -11775,6 +11854,10 @@ export type Organization_Settings = {
   default_currency?: Maybe<Currency>;
   default_vet_clinic?: Maybe<VetClinic>;
   econtracts_enabled: Scalars['Boolean']['output'];
+  /** Available event locations for organization */
+  event_locations?: Maybe<Array<Maybe<PetEventLocation>>>;
+  /** Whether event locations are enabled */
+  event_locations_enabled: Scalars['Boolean']['output'];
   external_organizations?: Maybe<Array<Maybe<ExternalOrganization>>>;
   external_persons?: Maybe<Array<Maybe<Person>>>;
   foster_application_code?: Maybe<Scalars['String']['output']>;
@@ -12479,6 +12562,55 @@ export enum PetApplicationType {
   Surrender = 'SURRENDER',
   Volunteer = 'VOLUNTEER'
 }
+
+/** Specific location details for pet intake/outcome events */
+export type PetEventLocation = {
+  __typename?: 'PetEventLocation';
+  /** County */
+  county?: Maybe<Scalars['String']['output']>;
+  /** Cross street 1 */
+  cross_street_1?: Maybe<Scalars['String']['output']>;
+  /** Cross street 2 */
+  cross_street_2?: Maybe<Scalars['String']['output']>;
+  /** Unique identifier for the location */
+  id: Scalars['UUID']['output'];
+  /** Line 1, e.g. House and street number */
+  line_1?: Maybe<Scalars['String']['output']>;
+  /** Line 2, e.g. Suite or apartment number */
+  line_2?: Maybe<Scalars['String']['output']>;
+  line_3?: Maybe<Scalars['String']['output']>;
+  line_4?: Maybe<Scalars['String']['output']>;
+  locality?: Maybe<Scalars['String']['output']>;
+  /** Location name */
+  name: Scalars['String']['output'];
+  /** Zip code */
+  postal_code?: Maybe<Scalars['String']['output']>;
+  subdivision_code?: Maybe<Country_Subdivision>;
+};
+
+/** Input type for pet event locations. Use either id to reference an existing location, or name + other fields to create a new location. */
+export type PetEventLocationInput = {
+  /** County */
+  county?: InputMaybe<Scalars['String']['input']>;
+  /** Cross street 1 */
+  cross_street_1?: InputMaybe<Scalars['String']['input']>;
+  /** Cross street 2 */
+  cross_street_2?: InputMaybe<Scalars['String']['input']>;
+  /** Unique identifier for an existing location. If provided, only this field is used and all others are ignored. */
+  id?: InputMaybe<Scalars['UUID']['input']>;
+  /** Line 1, e.g. House and street number */
+  line_1?: InputMaybe<Scalars['String']['input']>;
+  /** Line 2, e.g. Suite or apartment number */
+  line_2?: InputMaybe<Scalars['String']['input']>;
+  line_3?: InputMaybe<Scalars['String']['input']>;
+  line_4?: InputMaybe<Scalars['String']['input']>;
+  locality?: InputMaybe<Scalars['String']['input']>;
+  /** Location name (required when creating a new location) */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** Zip code */
+  postal_code?: InputMaybe<Scalars['String']['input']>;
+  subdivision_code?: InputMaybe<Country_Subdivision>;
+};
 
 export type PetNameTimeseriesEvent = {
   __typename?: 'PetNameTimeseriesEvent';
@@ -14282,6 +14414,8 @@ export type Pet_Event = {
   date?: Maybe<Scalars['Instant']['output']>;
   event_type?: Maybe<Pet_Event_Type>;
   id?: Maybe<Scalars['UUID']['output']>;
+  location?: Maybe<PetEventLocation>;
+  note?: Maybe<Note>;
   organization?: Maybe<Organization>;
   pet?: Maybe<Pet>;
 };
@@ -14292,6 +14426,7 @@ export type Pet_Event_Adoption = Pet_Event & {
   date?: Maybe<Scalars['Instant']['output']>;
   event_type?: Maybe<Pet_Event_Type>;
   id?: Maybe<Scalars['UUID']['output']>;
+  location?: Maybe<PetEventLocation>;
   note?: Maybe<Note>;
   organization?: Maybe<Organization>;
   pet?: Maybe<Pet>;
@@ -14304,6 +14439,7 @@ export type Pet_Event_DiedInCare = Pet_Event & {
   date?: Maybe<Scalars['Instant']['output']>;
   event_type?: Maybe<Pet_Event_Type>;
   id?: Maybe<Scalars['UUID']['output']>;
+  location?: Maybe<PetEventLocation>;
   note?: Maybe<Note>;
   organization?: Maybe<Organization>;
   pet?: Maybe<Pet>;
@@ -14315,8 +14451,9 @@ export type Pet_Event_Escaped_Lost = Pet_Event & {
   date?: Maybe<Scalars['Instant']['output']>;
   event_type?: Maybe<Pet_Event_Type>;
   id?: Maybe<Scalars['UUID']['output']>;
-  location?: Maybe<Scalars['String']['output']>;
+  location?: Maybe<PetEventLocation>;
   note?: Maybe<Note>;
+  old_location?: Maybe<Scalars['String']['output']>;
   organization?: Maybe<Organization>;
   pet?: Maybe<Pet>;
 };
@@ -14328,6 +14465,7 @@ export type Pet_Event_Euthanized = Pet_Event & {
   euthanized_type?: Maybe<Pet_Event_Euthanized_Type>;
   event_type?: Maybe<Pet_Event_Type>;
   id?: Maybe<Scalars['UUID']['output']>;
+  location?: Maybe<PetEventLocation>;
   note?: Maybe<Note>;
   organization?: Maybe<Organization>;
   pet?: Maybe<Pet>;
@@ -14354,6 +14492,8 @@ export type Pet_Event_Intake = Pet_Event & {
   from?: Maybe<IntakeFromEntity>;
   id?: Maybe<Scalars['UUID']['output']>;
   intake_type?: Maybe<Pet_Event_Intake_Type>;
+  location?: Maybe<PetEventLocation>;
+  note?: Maybe<Note>;
   organization?: Maybe<Organization>;
   pet?: Maybe<Pet>;
 };
@@ -14402,6 +14542,7 @@ export type Pet_Event_Return = Pet_Event & {
   date?: Maybe<Scalars['Instant']['output']>;
   event_type?: Maybe<Pet_Event_Type>;
   id?: Maybe<Scalars['UUID']['output']>;
+  location?: Maybe<PetEventLocation>;
   note?: Maybe<Note>;
   organization?: Maybe<Organization>;
   pet?: Maybe<Pet>;
@@ -14414,8 +14555,9 @@ export type Pet_Event_Return_To_Field = Pet_Event & {
   date?: Maybe<Scalars['Instant']['output']>;
   event_type?: Maybe<Pet_Event_Type>;
   id?: Maybe<Scalars['UUID']['output']>;
-  location?: Maybe<Scalars['String']['output']>;
+  location?: Maybe<PetEventLocation>;
   note?: Maybe<Note>;
+  old_location?: Maybe<Scalars['String']['output']>;
   organization?: Maybe<Organization>;
   pet?: Maybe<Pet>;
 };
@@ -14439,6 +14581,7 @@ export type Pet_Event_Transfer = Pet_Event & {
   event_type?: Maybe<Pet_Event_Type>;
   id?: Maybe<Scalars['UUID']['output']>;
   is_external_transfer?: Maybe<Scalars['Boolean']['output']>;
+  location?: Maybe<PetEventLocation>;
   note?: Maybe<Note>;
   organization?: Maybe<Organization>;
   pet?: Maybe<Pet>;
@@ -15978,6 +16121,14 @@ export type Permissionable = {
   id?: Maybe<Scalars['UUID']['output']>;
 };
 
+export type GetCatInfoQueryVariables = Exact<{
+  petId: Scalars['UUID']['input'];
+  orgId: Scalars['UUID']['input'];
+}>;
+
+
+export type GetCatInfoQuery = { __typename?: 'Query', organization_pet_by_id?: { __typename?: 'Organization_Pet', id?: any | null, adoption_fee?: { __typename?: 'Money', amount: number, currency: Currency } | null, pet?: { __typename?: 'Pet', name?: string | null } | null } | null };
+
 export type GetCatsQueryVariables = Exact<{
   orgId: Scalars['UUID']['input'];
 }>;
@@ -16004,6 +16155,20 @@ export class TypedDocumentString<TResult, TVariables>
   }
 }
 
+export const GetCatInfoDocument = new TypedDocumentString(`
+    query GetCatInfo($petId: UUID!, $orgId: UUID!) {
+  organization_pet_by_id(id: $petId, organization_id: $orgId) {
+    id
+    adoption_fee {
+      amount
+      currency
+    }
+    pet {
+      name
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<GetCatInfoQuery, GetCatInfoQueryVariables>;
 export const GetCatsDocument = new TypedDocumentString(`
     query GetCats($orgId: UUID!) {
   organization_pets2(

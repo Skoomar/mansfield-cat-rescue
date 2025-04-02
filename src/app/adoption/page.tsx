@@ -19,7 +19,7 @@ const Adoption = async () => {
             <PageHeader>
                 <h1>Adoption</h1>
             </PageHeader>
-            <section className="px-6 md:px-[5%] py-5">
+            <section className="px-6 py-5 md:px-[5%]">
                 <Listings cats={cats} />
             </section>
         </>

@@ -33,6 +33,7 @@ loadEnvConfig('.');
 //     });
 // });
 
+// TODO: write actual unit tests ya dingus
 describe('getAdoptableCats', () => {
     it('should get all adoptable cats', async () => {
         const cats = await getAdoptableCats();

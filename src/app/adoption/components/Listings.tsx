@@ -54,12 +54,12 @@ const Listings = ({ cats }: { cats: Cat[] }) => {
 
     return (
         <>
-            <div className="mx-auto max-sm:w-72 mb-4 font-medium">
+            <div className="mx-auto mb-4 font-medium max-sm:w-72">
                 <div className="mb-1">Filters</div>
                 <RadioGroup
                     value={filter}
                     onValueChange={updateFilter}
-                    className="flex flex-row flex-wrap justify-start sm gap-x-3 gap-y-2"
+                    className="sm flex flex-row flex-wrap justify-start gap-x-3 gap-y-2"
                 >
                     <FilterButton id="all" value="" label="All" />
                     <FilterButton id="adults" value={LIFE_STAGE.ADULT} label="Adults" />

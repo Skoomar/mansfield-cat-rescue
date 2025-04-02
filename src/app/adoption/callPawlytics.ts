@@ -58,6 +58,55 @@ const getPawlyticsAuthToken = async () => {
     }
 };
 
+const GET_CAT_INFO = gql(`
+    query GetCatInfo($petId: UUID!, $orgId: UUID!) {
+        organization_pet_by_id(id: $petId, organization_id: $orgId) {
+            id
+            adoption_fee {
+                amount
+                currency
+            }
+            pet {
+                name
+            }
+        }
+    }
+`);
+
+export const getCatInfo = async (petId: string) => {
+    const authToken = await getPawlyticsAuthToken();
+
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${authToken}`,
+        },
+        body: JSON.stringify({
+            query: GET_CAT_INFO.toString(),
+            variables: {
+                petId: petId,
+                orgId: process.env.PAWLYTICS_ORG_ID,
+            },
+        }),
+    };
+
+    // TODO: refactor this so we're not repeating this try-catch call in multiple functions
+    try {
+        const response = await fetch('https://api.pawlytics.com/api/graphql', options);
+        if (!response.ok) {
+            throw new Error(
+                `HTTP error in getAdoptableCats! Status: ${response.status}; Error message: ${response.statusText}`,
+            );
+        }
+        const responseJson = await response.json();
+        return responseJson['data']['organization_pet_by_id'];
+    } catch (error) {
+        // console.error('Error in getAdoptableCats:', error);
+        throw new Error(`Error when fetching adoptable cats from Pawlytics: ${error}`);
+    }
+};
+
 const GET_CATS = gql(`
     query GetCats($orgId: UUID!) {
         organization_pets2(

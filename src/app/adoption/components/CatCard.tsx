@@ -45,8 +45,7 @@ const CatCard = ({ cat }: { cat: Cat }) => {
     // }
 
     return (
-        <div
-            className="flex w-72 flex-col rounded-sm border-2 pb-4 shadow-md hover:bg-accent hover:shadow-xl max-md:mx-auto">
+        <div className="flex w-72 flex-col rounded-sm border-2 pb-4 shadow-md hover:bg-accent hover:shadow-xl max-md:mx-auto">
             {/* TODO: allow to scroll through all images use onLoad and onError for stuff - and lazy loading have a cute cartoon cat as placeholder */}
             {/* TODO: maybe instead of ImageSlider just have a gallery of the images in the view when you click on a cat */}
             <Link href={`/adoption/${cat.id}`}>
@@ -63,7 +62,9 @@ const CatCard = ({ cat }: { cat: Cat }) => {
                 </div>
             </Link>
             <div className="mt-auto flex flex-col gap-1 px-6 text-sm">
-                <Link href={`/adoption/${cat.id}`} className="mb-1 text-center text-lg font-black">{cat.pet.name}</Link>
+                <Link href={`/adoption/${cat.id}`} className="mb-1 text-center text-lg font-black">
+                    {cat.pet.name}
+                </Link>
                 <p>
                     <strong>Age:</strong> {getAgeFromBirthdate(cat.pet.estimated_birth_date) ?? 'Unknown'}
                 </p>

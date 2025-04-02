@@ -2,7 +2,7 @@ import FacebookIconLink from '@/components/Footer/FacebookIconLink';
 import InstagramIconLink from '@/components/Footer/InstagramIconLink';
 
 const Footer = () => (
-    <footer className="border-t py-5 px-4 flex justify-evenly">
+    <footer className="flex justify-evenly border-t px-4 py-5">
         <FacebookIconLink />
         <InstagramIconLink />
     </footer>
