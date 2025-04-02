@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import NavMenu from '@/components/NavMenu/NavMenu';
+import Footer from '@/components/Footer/Footer';
 
 // TODO: figure out why Geist isn't actually being used
 const geistSans = localFont({
@@ -74,9 +75,12 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${superclarendon.variable} font-serif antialiased`}>
+            <body className={`${superclarendon.variable} font-serif antialiased flex flex-col min-h-screen`}>
                 <NavMenu />
-                {children}
+                <main id="content" className="flex-auto">
+                    {children}
+                </main>
+                <Footer />
             </body>
         </html>
     );

@@ -54,19 +54,19 @@ const Listings = ({ cats }: { cats: Cat[] }) => {
 
     return (
         <>
-            <div className="mx-auto mb-4 font-medium lg:ml-8">
+            <div className="mx-auto max-sm:w-72 mb-4 font-medium">
                 <div className="mb-1">Filters</div>
                 <RadioGroup
                     value={filter}
                     onValueChange={updateFilter}
-                    className="flex flex-row flex-wrap justify-start gap-x-3 gap-y-2"
+                    className="flex flex-row flex-wrap justify-start sm gap-x-3 gap-y-2"
                 >
                     <FilterButton id="all" value="" label="All" />
                     <FilterButton id="adults" value={LIFE_STAGE.ADULT} label="Adults" />
                     <FilterButton id="kittens" value={LIFE_STAGE.KITTEN} label="Kittens" />
                 </RadioGroup>
             </div>
-            <div className="flex flex-row flex-wrap justify-center gap-8 text-center">
+            <div className="flex flex-row flex-wrap justify-start gap-8 text-center">
                 {catCards ?? 'No cats found! Please check again later'}
             </div>
         </>
