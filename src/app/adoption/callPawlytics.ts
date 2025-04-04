@@ -2,111 +2,7 @@ import { Redis } from '@upstash/redis';
 import { Cat } from '@/types';
 import { gql } from '@/__generated__';
 
-const fetchPawlyticsAuthResponse = async () => {
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            audience: 'https://api.pawlytics.com',
-            client_id: process.env.PAWLYTICS_CLIENT_ID,
-            username: process.env.PAWLYTICS_USER,
-            password: process.env.PAWLYTICS_PASSWORD,
-            grant_type: 'password',
-            scope: 'openid',
-            responseType: 'token id_token',
-        }),
-    };
-
-    try {
-        const response = await fetch('https://pawlytics.auth0.com/oauth/token', options);
-        if (!response.ok) {
-            throw new Error(
-                `HTTP error when authenticating Pawlytics API! Status: ${response.status}; Error message: ${response.statusText}`,
-            );
-        }
-        return await response.json();
-    } catch (error) {
-        // TODO: maybe set up some kind of logging instead of using console.error - don't want to potentially leak data out to users - could just throw logs into a free DB instead of paying for logz.io or whatever
-        // console.error('Error when authenticating Pawlytics API:', error);
-        throw error;
-    }
-};
-
-// TODO: try 'use cache' on these functions: https://nextjs.org/docs/app/api-reference/directives/use-cache
-// TODO: could use middleware to modify these these requests if needed? https://nextjs.org/docs/app/building-your-application/routing/middleware
-const getPawlyticsAuthToken = async () => {
-    const redis = Redis.fromEnv();
-    const apiToken: Record<string, number> | null = await redis.hgetall('pawlytics_auth_token');
-
-    if (apiToken && Date.now() < apiToken.expiry) {
-        return apiToken.access_token;
-    }
-
-    // TODO: make this error handling better to use the error response to display a message in UI
-    try {
-        const authResponse = await fetchPawlyticsAuthResponse();
-        await redis.hset('pawlytics_auth_token', {
-            access_token: authResponse['access_token'],
-            expiry: Date.now() + authResponse['expires_in'],
-        });
-        return authResponse['access_token'];
-    } catch (error) {
-        // console.error('Error in fetchPawlyticsAuthResponse:', error);
-        throw new Error(`Error when fetching Pawlytics API authentication token: ${error}`);
-    }
-};
-
-const GET_CAT_INFO = gql(`
-    query GetCatInfo($petId: UUID!, $orgId: UUID!) {
-        organization_pet_by_id(id: $petId, organization_id: $orgId) {
-            id
-            adoption_fee {
-                amount
-                currency
-            }
-            pet {
-                name
-            }
-        }
-    }
-`);
-
-export const getCatInfo = async (petId: string) => {
-    const authToken = await getPawlyticsAuthToken();
-
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${authToken}`,
-        },
-        body: JSON.stringify({
-            query: GET_CAT_INFO.toString(),
-            variables: {
-                petId: petId,
-                orgId: process.env.PAWLYTICS_ORG_ID,
-            },
-        }),
-    };
-
-    // TODO: refactor this so we're not repeating this try-catch call in multiple functions
-    try {
-        const response = await fetch('https://api.pawlytics.com/api/graphql', options);
-        if (!response.ok) {
-            throw new Error(
-                `HTTP error in getAdoptableCats! Status: ${response.status}; Error message: ${response.statusText}`,
-            );
-        }
-        const responseJson = await response.json();
-        return responseJson['data']['organization_pet_by_id'];
-    } catch (error) {
-        // console.error('Error in getAdoptableCats:', error);
-        throw new Error(`Error when fetching adoptable cats from Pawlytics: ${error}`);
-    }
-};
-
+// TODO: strip out entities from here after seeing which ones are really needed on Adoption page
 const GET_CATS = gql(`
     query GetCats($orgId: UUID!) {
         organization_pets2(
@@ -187,6 +83,126 @@ export const getAdoptableCats = async (): Promise<Cat[]> => {
     } catch (error) {
         // console.error('Error in getAdoptableCats:', error);
         throw new Error(`Error when fetching adoptable cats from Pawlytics: ${error}`);
+    }
+};
+
+const GET_CAT_INFO = gql(`
+    query GetCatInfo($petId: UUID!, $orgId: UUID!) {
+        organization_pet_by_id(id: $petId, organization_id: $orgId) {
+            id
+            adoption_fee {
+                amount
+                currency
+            }
+            pet {
+                name
+                description
+                breed_cat
+                estimated_birth_date
+                special_needs
+                distinguishing_marks
+                weight_lbs
+                youtube_video_url
+                gender
+                siblings {
+                    id
+                    name
+                }
+                images {
+                    url
+                }
+            }
+        }
+    }
+`);
+
+export const getCatInfo = async (petId: string) => {
+    const authToken = await getPawlyticsAuthToken();
+
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${authToken}`,
+        },
+        body: JSON.stringify({
+            query: GET_CAT_INFO.toString(),
+            variables: {
+                petId: petId,
+                orgId: process.env.PAWLYTICS_ORG_ID,
+            },
+        }),
+    };
+
+    // TODO: refactor this so we're not repeating this try-catch call in multiple functions
+    try {
+        const response = await fetch('https://api.pawlytics.com/api/graphql', options);
+        if (!response.ok) {
+            throw new Error(
+                `HTTP error in getAdoptableCats! Status: ${response.status}; Error message: ${response.statusText}`,
+            );
+        }
+        const responseJson = await response.json();
+        return responseJson['data']['organization_pet_by_id'];
+    } catch (error) {
+        // console.error('Error in getAdoptableCats:', error);
+        throw new Error(`Error when fetching adoptable cats from Pawlytics: ${error}`);
+    }
+};
+
+// TODO: try 'use cache' on these functions: https://nextjs.org/docs/app/api-reference/directives/use-cache
+// TODO: could use middleware to modify these these requests if needed? https://nextjs.org/docs/app/building-your-application/routing/middleware
+const getPawlyticsAuthToken = async () => {
+    const redis = Redis.fromEnv();
+    const apiToken: Record<string, number> | null = await redis.hgetall('pawlytics_auth_token');
+
+    if (apiToken && Date.now() < apiToken.expiry) {
+        return apiToken.access_token;
+    }
+
+    // TODO: make this error handling better to use the error response to display a message in UI
+    try {
+        const authResponse = await fetchPawlyticsAuthResponse();
+        await redis.hset('pawlytics_auth_token', {
+            access_token: authResponse['access_token'],
+            expiry: Date.now() + authResponse['expires_in'],
+        });
+        return authResponse['access_token'];
+    } catch (error) {
+        // console.error('Error in fetchPawlyticsAuthResponse:', error);
+        throw new Error(`Error when fetching Pawlytics API authentication token: ${error}`);
+    }
+};
+
+const fetchPawlyticsAuthResponse = async () => {
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            audience: 'https://api.pawlytics.com',
+            client_id: process.env.PAWLYTICS_CLIENT_ID,
+            username: process.env.PAWLYTICS_USER,
+            password: process.env.PAWLYTICS_PASSWORD,
+            grant_type: 'password',
+            scope: 'openid',
+            responseType: 'token id_token',
+        }),
+    };
+
+    try {
+        const response = await fetch('https://pawlytics.auth0.com/oauth/token', options);
+        if (!response.ok) {
+            throw new Error(
+                `HTTP error when authenticating Pawlytics API! Status: ${response.status}; Error message: ${response.statusText}`,
+            );
+        }
+        return await response.json();
+    } catch (error) {
+        // TODO: maybe set up some kind of logging instead of using console.error - don't want to potentially leak data out to users - could just throw logs into a free DB instead of paying for logz.io or whatever
+        // console.error('Error when authenticating Pawlytics API:', error);
+        throw error;
     }
 };
 

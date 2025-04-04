@@ -5,23 +5,7 @@ import CatCard from '@/app/adoption/components/CatCard';
 import { useMemo, useState } from 'react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
-
-// TODO: probably best to move these enums & functions (and the ones from CatCard) and put them in some utils file
-export enum LIFE_STAGE {
-    ADULT = 'ADULT',
-    KITTEN = 'KITTEN',
-}
-
-export const getLifeStage = (dateOfBirth: string | null): LIFE_STAGE => {
-    if (!dateOfBirth) return LIFE_STAGE.ADULT;
-
-    const birthdateObj = new Date(dateOfBirth);
-    if (!birthdateObj.valueOf()) return LIFE_STAGE.ADULT;
-
-    const today = new Date();
-    const isKitten = (today.valueOf() - birthdateObj.valueOf()) / (1000 * 3600 * 24 * 365) < 1;
-    return isKitten ? LIFE_STAGE.KITTEN : LIFE_STAGE.ADULT;
-};
+import { getLifeStage, LIFE_STAGE } from '@/app/adoption/utils';
 
 export const filterCats = (cats: Cat[], filter: LIFE_STAGE | ''): Cat[] => {
     if (!filter || !(filter in LIFE_STAGE)) {

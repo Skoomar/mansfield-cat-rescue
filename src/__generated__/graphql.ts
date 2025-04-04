@@ -16121,20 +16121,20 @@ export type Permissionable = {
   id?: Maybe<Scalars['UUID']['output']>;
 };
 
-export type GetCatInfoQueryVariables = Exact<{
-  petId: Scalars['UUID']['input'];
-  orgId: Scalars['UUID']['input'];
-}>;
-
-
-export type GetCatInfoQuery = { __typename?: 'Query', organization_pet_by_id?: { __typename?: 'Organization_Pet', id?: any | null, adoption_fee?: { __typename?: 'Money', amount: number, currency: Currency } | null, pet?: { __typename?: 'Pet', name?: string | null } | null } | null };
-
 export type GetCatsQueryVariables = Exact<{
   orgId: Scalars['UUID']['input'];
 }>;
 
 
 export type GetCatsQuery = { __typename?: 'Query', organization_pets2?: { __typename?: 'OrganizationPetsConnection', entities?: Array<{ __typename?: 'Organization_Pet', id?: any | null, status?: Organization_Pet_Status | null, adoption_fee?: { __typename?: 'Money', amount: number, currency: Currency } | null, pet?: { __typename?: 'Pet', name?: string | null, status?: Pet_Status | null, status_details?: string | null, description?: string | null, species?: Pet_Species | null, breed_cat?: Array<Pet_Breed_Cat | null> | null, mixed?: boolean | null, estimated_birth_date?: any | null, special_needs?: string | null, distinguishing_marks?: string | null, weight_lbs?: number | null, youtube_video_url?: string | null, gender?: Pet_Gender | null, siblings?: Array<{ __typename?: 'Pet', id?: any | null, name?: string | null } | null> | null, images?: Array<{ __typename?: 'File', url?: string | null } | null> | null } | null } | null> | null } | null };
+
+export type GetCatInfoQueryVariables = Exact<{
+  petId: Scalars['UUID']['input'];
+  orgId: Scalars['UUID']['input'];
+}>;
+
+
+export type GetCatInfoQuery = { __typename?: 'Query', organization_pet_by_id?: { __typename?: 'Organization_Pet', id?: any | null, adoption_fee?: { __typename?: 'Money', amount: number, currency: Currency } | null, pet?: { __typename?: 'Pet', name?: string | null, description?: string | null, breed_cat?: Array<Pet_Breed_Cat | null> | null, estimated_birth_date?: any | null, special_needs?: string | null, distinguishing_marks?: string | null, weight_lbs?: number | null, youtube_video_url?: string | null, gender?: Pet_Gender | null, siblings?: Array<{ __typename?: 'Pet', id?: any | null, name?: string | null } | null> | null, images?: Array<{ __typename?: 'File', url?: string | null } | null> | null } | null } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -16155,20 +16155,6 @@ export class TypedDocumentString<TResult, TVariables>
   }
 }
 
-export const GetCatInfoDocument = new TypedDocumentString(`
-    query GetCatInfo($petId: UUID!, $orgId: UUID!) {
-  organization_pet_by_id(id: $petId, organization_id: $orgId) {
-    id
-    adoption_fee {
-      amount
-      currency
-    }
-    pet {
-      name
-    }
-  }
-}
-    `) as unknown as TypedDocumentString<GetCatInfoQuery, GetCatInfoQueryVariables>;
 export const GetCatsDocument = new TypedDocumentString(`
     query GetCats($orgId: UUID!) {
   organization_pets2(
@@ -16208,3 +16194,32 @@ export const GetCatsDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<GetCatsQuery, GetCatsQueryVariables>;
+export const GetCatInfoDocument = new TypedDocumentString(`
+    query GetCatInfo($petId: UUID!, $orgId: UUID!) {
+  organization_pet_by_id(id: $petId, organization_id: $orgId) {
+    id
+    adoption_fee {
+      amount
+      currency
+    }
+    pet {
+      name
+      description
+      breed_cat
+      estimated_birth_date
+      special_needs
+      distinguishing_marks
+      weight_lbs
+      youtube_video_url
+      gender
+      siblings {
+        id
+        name
+      }
+      images {
+        url
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<GetCatInfoQuery, GetCatInfoQueryVariables>;
