@@ -1,4 +1,5 @@
 import { getCatInfo } from '@/app/adoption/callPawlytics';
+import ImageGallery from '@/app/adoption/[catId]/ImageGallery';
 
 export const revalidate = 43200;
 
@@ -18,6 +19,7 @@ const CatPage = async ({ params }: { params: Promise<{ catId: string }> }) => {
     return (
         <div className="py-5">
             <h1>{catInfo.pet.name}</h1>
+            <ImageGallery images={catInfo.pet.images} />
         </div>
     );
 };

@@ -1,6 +1,6 @@
-const ImageGallery = ({ imageUrls }: { imageUrls: string[] }) => (
+const ImageGallery = ({ images }: { images: string[] }) => (
     <div>
-
+        {images.map(image => <p>{image.url}</p>)}
     </div>
 );
 
