@@ -12,7 +12,7 @@
         "prettier:write": "npx prettier . --write",
         "gql:compile": "graphql-codegen",
         "gql:watch": "graphql-codegen -w",
-        "prepare": "husky install"
+        "prepare": "husky"
     },
     "dependencies": {
         "@next/env": "^15.1.3",
