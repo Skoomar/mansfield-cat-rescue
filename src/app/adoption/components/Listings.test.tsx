@@ -67,5 +67,4 @@ describe('Listings', () => {
     });
 });
 
-describe('filterCats', () => {
-});
+describe('filterCats', () => {});
