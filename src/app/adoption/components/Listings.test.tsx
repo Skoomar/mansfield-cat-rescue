@@ -1,27 +1,34 @@
 import { describe, it } from 'vitest';
 import { render } from '@testing-library/react';
 import Listings from '@/app/adoption/components/Listings';
-import { Cat } from '@/types';
+import {
+    Organization_Pet,
+    Organization_Pet_Status,
+    Pet_Breed_Cat,
+    Pet_Gender,
+    Pet_Species,
+    Pet_Status, WeightUnit
+} from '@/__generated__/resolvers-types';
 
-const catsDetails: Cat[] = [
+const catsDetails: Organization_Pet[] = [
     {
         id: '316fffca-8ea5-46bd-9f2d-8f7d7cce806f',
-        status: 'ADOPTABLE',
+        status: Organization_Pet_Status.Adoptable,
         adoption_fee: null,
         pet: {
             name: 'Alf',
-            status: 'ORGANIZATION',
+            status: Pet_Status.Organization,
             status_details: null,
             description: null,
-            species: 'CAT',
-            breed_cat: ['DOMESTIC_SHORT_HAIR'],
+            species: Pet_Species.Cat,
+            breed_cat: [Pet_Breed_Cat.DomesticShortHair],
             mixed: null,
             estimated_birth_date: '2022-11-01T00:00:00Z',
             special_needs: null,
             distinguishing_marks: null,
             weight: null,
             youtube_video_url: null,
-            gender: 'MALE',
+            gender: Pet_Gender.Male,
             siblings: null,
             images: [
                 {
@@ -32,25 +39,25 @@ const catsDetails: Cat[] = [
     },
     {
         id: 'b8fef0ac-9506-4630-9ed3-4b1fb0c2eef0',
-        status: 'ADOPTABLE',
+        status: Organization_Pet_Status.Adoptable,
         adoption_fee: null,
         pet: {
             name: 'Tyson',
-            status: 'ORGANIZATION',
+            status: Pet_Status.Organization,
             status_details: null,
             description: null,
-            species: 'CAT',
-            breed_cat: ['DOMESTIC_SHORT_HAIR'],
+            species: Pet_Species.Cat,
+            breed_cat: [Pet_Breed_Cat.DomesticShortHair],
             mixed: null,
             estimated_birth_date: '2020-08-31T23:00:00Z',
             special_needs: null,
             distinguishing_marks: null,
             weight: {
-                unit: 'KILOGRAMS',
+                unit: WeightUnit.Kilograms,
                 value: 6.0,
             },
             youtube_video_url: null,
-            gender: 'MALE',
+            gender: Pet_Gender.Male,
             siblings: null,
             images: [
                 {

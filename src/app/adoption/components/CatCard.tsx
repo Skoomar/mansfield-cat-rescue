@@ -1,9 +1,9 @@
-import { Cat } from '@/types';
 import Link from 'next/link';
 import { getAgeFromBirthdate, toTitleCase } from '@/app/adoption/utils';
+import { Organization_Pet } from '@/__generated__/resolvers-types';
 
 // TODO: Add link to siblings
-const CatCard = ({ cat }: { cat: Cat }) => {
+const CatCard = ({ cat }: { cat: Organization_Pet }) => {
     // TODO: can these images be cached
     // if (cat.pet.images) {
     //     cat.pet.images.map((image) => )
@@ -14,11 +14,11 @@ const CatCard = ({ cat }: { cat: Cat }) => {
             {/* TODO: allow to scroll through all images use onLoad and onError for stuff - and lazy loading have a cute cartoon cat as placeholder */}
             <Link href={`/adoption/${cat.id}`}>
                 <div className="relative mb-2 h-80 overflow-hidden">
-                    {cat.pet.images && (
+                    {cat.pet?.images && (
                         <img
                             className="absolute h-full w-full object-cover"
-                            src={cat.pet.images[0].url}
-                            alt={cat.pet.name}
+                            src={cat.pet?.images[0]?.url as string}
+                            alt={cat.pet?.name as string}
                             fetchPriority="low"
                             loading="lazy"
                         />
@@ -27,15 +27,15 @@ const CatCard = ({ cat }: { cat: Cat }) => {
             </Link>
             <div className="mt-auto flex flex-col gap-1 px-6 text-sm">
                 <Link href={`/adoption/${cat.id}`} className="mb-1 text-center text-lg font-black">
-                    {cat.pet.name}
+                    {cat.pet?.name}
                 </Link>
                 <p>
-                    <strong>Age:</strong> {getAgeFromBirthdate(cat.pet.estimated_birth_date) ?? 'Unknown'}
+                    <strong>Age:</strong> {getAgeFromBirthdate(cat.pet?.estimated_birth_date) ?? 'Unknown'}
                 </p>
                 <p>
-                    <strong>Gender:</strong> {toTitleCase(cat.pet.gender) ?? 'Unknown'}
+                    <strong>Gender:</strong> {toTitleCase(cat.pet?.gender as string) ?? 'Unknown'}
                 </p>
-                <p>{cat.pet.description}</p>
+                <p>{cat.pet?.description}</p>
             </div>
         </div>
     );

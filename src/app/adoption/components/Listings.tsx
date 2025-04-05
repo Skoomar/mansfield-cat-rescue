@@ -1,17 +1,17 @@
 'use client';
 
-import { Cat } from '@/types';
 import CatCard from '@/app/adoption/components/CatCard';
 import { useMemo, useState } from 'react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { getLifeStage, LIFE_STAGE } from '@/app/adoption/utils';
+import { Organization_Pet } from '@/__generated__/resolvers-types';
 
-export const filterCats = (cats: Cat[], filter: LIFE_STAGE | ''): Cat[] => {
+export const filterCats = (cats: Organization_Pet[], filter: LIFE_STAGE | ''): Organization_Pet[] => {
     if (!filter || !(filter in LIFE_STAGE)) {
         return cats;
     }
-    return cats.filter((cat) => getLifeStage(cat.pet.estimated_birth_date) === filter);
+    return cats.filter((cat) => getLifeStage(cat.pet?.estimated_birth_date) === filter);
 };
 
 // TODO: Maybe change to use Checkbox instead of Radios if more filters get added
@@ -23,7 +23,7 @@ const FilterButton = ({ id, value, label }: { id: string; value: LIFE_STAGE | ''
     </Label>
 );
 
-const Listings = ({ cats }: { cats: Cat[] }) => {
+const Listings = ({ cats }: { cats: Organization_Pet[] }) => {
     const [filter, setFilter] = useState<LIFE_STAGE | ''>('');
 
     // TODO: is useCallback more appropriate in this situation?

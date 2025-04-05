@@ -10,7 +10,7 @@
         "lint": "next lint",
         "prettier:check": "npx prettier . --check",
         "prettier:write": "npx prettier . --write",
-        "gql:compile": "graphql-codegen",
+        "gql:compile": "graphql-codegen && tsc",
         "gql:watch": "graphql-codegen -w",
         "prepare": "husky"
     },
@@ -40,6 +40,8 @@
     "devDependencies": {
         "@graphql-codegen/cli": "^5.0.5",
         "@graphql-codegen/client-preset": "^4.7.0",
+        "@graphql-codegen/typescript": "^4.1.6",
+        "@graphql-codegen/typescript-resolvers": "^4.5.0",
         "@graphql-typed-document-node/core": "^3.2.0",
         "@testing-library/dom": "^10.4.0",
         "@testing-library/react": "^16.3.0",

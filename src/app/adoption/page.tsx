@@ -1,8 +1,8 @@
 // TODO: error message if there's an issue when authenticating or fetching cats (and if the fetch cats returns an empty object)
 import { getAdoptableCats } from '@/app/adoption/callPawlytics';
-import { Cat } from '@/types';
 import Listings from '@/app/adoption/components/Listings';
 import { PageHeader } from '@/components/PageHeader';
+import { Organization_Pet } from '@/__generated__/resolvers-types';
 
 export const metadata = {
     title: 'Adoption - Mansfield Cat Rescue',
@@ -12,7 +12,7 @@ export const metadata = {
 export const revalidate = 43200; // refresh cat data every 12 hours
 
 const Adoption = async () => {
-    const cats: Cat[] = await getAdoptableCats();
+    const cats: Organization_Pet[] = await getAdoptableCats();
 
     return (
         <>

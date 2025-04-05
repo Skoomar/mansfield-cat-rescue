@@ -1,6 +1,14 @@
 import { Redis } from '@upstash/redis';
-import { Cat } from '@/types';
 import { gql } from '@/__generated__';
+import {
+    Organization_Pet,
+    Organization_Pet_Status,
+    Pet_Breed_Cat,
+    Pet_Gender,
+    Pet_Species,
+    Pet_Status,
+    WeightUnit
+} from '@/__generated__/resolvers-types';
 
 // TODO: strip out entities from here after seeing which ones are really needed on Adoption page
 const GET_CATS = gql(`
@@ -47,7 +55,7 @@ const GET_CATS = gql(`
 
 // TODO: is this a function that should be 'use server'?
 // ^ on second thoughts probably not
-export const getAdoptableCats = async (): Promise<Cat[]> => {
+export const getAdoptableCats = async (): Promise<Organization_Pet[]> => {
     // TODO: replace this with proper stubs or something
     // set up local testing flag temporarily
     if (process.env.LOCAL) {
@@ -206,25 +214,25 @@ const fetchPawlyticsAuthResponse = async () => {
     }
 };
 
-const adoptableCatsStubResponse = [
+const adoptableCatsStubResponse: Organization_Pet[] = [
     {
         id: '2de96ecd-8389-4817-b32c-32d2af1641e8',
-        status: 'ADOPTABLE',
+        status: Organization_Pet_Status.Adoptable,
         adoption_fee: null,
         pet: {
             name: 'Mo',
-            status: 'ORGANIZATION',
+            status: Pet_Status.Organization,
             status_details: null,
             description: null,
-            species: 'CAT',
-            breed_cat: ['DOMESTIC_SHORT_HAIR'],
+            species: Pet_Species.Cat,
+            breed_cat: [Pet_Breed_Cat.DomesticShortHair],
             mixed: null,
             estimated_birth_date: '2022-11-01T00:00:00Z',
             special_needs: null,
             distinguishing_marks: null,
             weight: null,
             youtube_video_url: null,
-            gender: 'FEMALE',
+            gender: Pet_Gender.Female,
             siblings: null,
             images: [
                 {
@@ -235,22 +243,22 @@ const adoptableCatsStubResponse = [
     },
     {
         id: '316fffca-8ea5-46bd-9f2d-8f7d7cce806f',
-        status: 'ADOPTABLE',
+        status: Organization_Pet_Status.Adoptable,
         adoption_fee: null,
         pet: {
             name: 'Alf',
-            status: 'ORGANIZATION',
+            status: Pet_Status.Organization,
             status_details: null,
             description: null,
-            species: 'CAT',
-            breed_cat: ['DOMESTIC_SHORT_HAIR'],
+            species: Pet_Species.Cat,
+            breed_cat: [Pet_Breed_Cat.DomesticShortHair],
             mixed: null,
             estimated_birth_date: '2022-11-01T00:00:00Z',
             special_needs: null,
             distinguishing_marks: null,
             weight: null,
             youtube_video_url: null,
-            gender: 'MALE',
+            gender: Pet_Gender.Male,
             siblings: null,
             images: [
                 {
@@ -261,25 +269,25 @@ const adoptableCatsStubResponse = [
     },
     {
         id: 'b8fef0ac-9506-4630-9ed3-4b1fb0c2eef0',
-        status: 'ADOPTABLE',
+        status: Organization_Pet_Status.Adoptable,
         adoption_fee: null,
         pet: {
             name: 'Tyson',
-            status: 'ORGANIZATION',
+            status: Pet_Status.Organization,
             status_details: null,
             description: null,
-            species: 'CAT',
-            breed_cat: ['DOMESTIC_SHORT_HAIR'],
+            species: Pet_Species.Cat,
+            breed_cat: [Pet_Breed_Cat.DomesticShortHair],
             mixed: null,
             estimated_birth_date: '2020-08-31T23:00:00Z',
             special_needs: null,
             distinguishing_marks: null,
             weight: {
-                unit: 'KILOGRAMS',
+                unit: WeightUnit.Kilograms,
                 value: 6.0,
             },
             youtube_video_url: null,
-            gender: 'MALE',
+            gender: Pet_Gender.Male,
             siblings: null,
             images: [
                 {
@@ -290,25 +298,25 @@ const adoptableCatsStubResponse = [
     },
     {
         id: 'b8fea0ac-9506-4630-9ed3-4b1fb0c2eef0',
-        status: 'ADOPTABLE',
+        status: Organization_Pet_Status.Adoptable,
         adoption_fee: null,
         pet: {
             name: 'Kitto',
-            status: 'ORGANIZATION',
+            status: Pet_Status.Organization,
             status_details: null,
             description: null,
-            species: 'CAT',
-            breed_cat: ['DOMESTIC_SHORT_HAIR'],
+            species: Pet_Species.Cat,
+            breed_cat: [Pet_Breed_Cat.DomesticShortHair],
             mixed: null,
             estimated_birth_date: '2025-01-31T23:00:00Z',
             special_needs: null,
             distinguishing_marks: null,
             weight: {
-                unit: 'KILOGRAMS',
+                unit: WeightUnit.Kilograms,
                 value: 2.0,
             },
             youtube_video_url: null,
-            gender: 'MALE',
+            gender: Pet_Gender.Male,
             siblings: null,
             images: [
                 {
