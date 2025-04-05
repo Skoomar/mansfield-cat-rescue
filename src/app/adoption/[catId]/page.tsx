@@ -16,10 +16,10 @@ const CatPage = async ({ params }: { params: Promise<{ catId: string }> }) => {
     const catInfo = await getCatInfo(catId);
 
     return (
-        <div>
-            <p>Name: {catInfo.pet.name}</p>
-            <p>stuff: {catInfo.pet.estimated_birth_date}</p>
-        </div>);
+        <div className="py-5">
+            <h1>{catInfo.pet.name}</h1>
+        </div>
+    );
 };
 
 export default CatPage;
