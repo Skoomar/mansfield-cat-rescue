@@ -26,6 +26,14 @@
 - get bearer token when needed for GraphQL request
 
 # Notes
+## 2025-04-06
+Working on the image display on the individual cat page. Could just get some code off the internet but wanted to try and
+build it myself as a stubborn challenge. Need to have a key for each image so that I can run a map on them without React
+complaining (and also so I can select them properly with state, variables etc).
+
+Currently doing that by getting the
+filename of the image from its URL. But some URLs don't have a filename, they just end with some kind of UID. I'm
+guessing this is for the 'default' or 'main' image so that's what I'm classifying it as for now.
 
 ## 2025-03-29
 

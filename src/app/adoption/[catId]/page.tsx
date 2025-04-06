@@ -1,6 +1,6 @@
 import { getCatInfo } from '@/app/adoption/callPawlytics';
-import ImageGallery from '@/app/adoption/[catId]/ImageGallery';
-import { getAgeFromBirthdate, toTitleCase } from '@/app/adoption/utils';
+import ImageDisplay from '@/app/adoption/[catId]/ImageDisplay';
+import { getAgeFromBirthdate, getPrettyDate, toTitleCase } from '@/app/adoption/utils';
 
 export const revalidate = 43200;
 
@@ -18,11 +18,18 @@ const CatPage = async ({ params }: { params: Promise<{ catId: string }> }) => {
     const catInfo = await getCatInfo(catId);
 
     return (
-        <div className="py-5">
+        <div className="py-5 px-5">
             <h1>{catInfo.pet.name}</h1>
-            <ImageGallery images={catInfo.pet.images} />
+            {
+                catInfo.pet.images ?
+                <ImageDisplay images={catInfo.pet.images} />:
+                'No images for this cat'
+            }
             <p>
-                <strong>Age:</strong> {getAgeFromBirthdate(catInfo.pet.estimated_birth_date) ?? 'Unknown'}
+                <strong>Age: </strong>{getAgeFromBirthdate(catInfo.pet.estimated_birth_date) ?? 'Unknown'}
+            </p>
+            <p>
+                <strong>Date of Birth: </strong>{getPrettyDate(catInfo.pet.estimated_birth_date) ?? 'Unknown'}
             </p>
             <p>
                 <strong>Gender:</strong> {toTitleCase(catInfo.pet.gender) ?? 'Unknown'}

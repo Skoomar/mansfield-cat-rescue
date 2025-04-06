@@ -44,6 +44,16 @@ export const getAgeFromBirthdate = (birthdate: string | null): string | null => 
     return years === 1 ? `1 year ${monthsStr}` : `${years} years ${monthsStr}`;
 };
 
+export const getPrettyDate = (date: string | null): string | null => {
+    if (!date) return null;
+
+    const dateObj = new Date(date);
+    if (!dateObj.valueOf()) return null;
+
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric'}
+    return dateObj.toLocaleDateString('en-GB', options)
+}
+
 export const toTitleCase = (inputString: string | null): string | null => {
     return !inputString ? null : inputString.charAt(0).toUpperCase() + inputString.slice(1).toLowerCase();
 };

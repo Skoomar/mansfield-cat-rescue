@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, describe, expect, test, vi } from 'vitest';
-import { getAgeFromBirthdate, getLifeStage, LIFE_STAGE, toTitleCase } from '@/app/adoption/utils';
+import { getAgeFromBirthdate, getLifeStage, getPrettyDate, LIFE_STAGE, toTitleCase } from '@/app/adoption/utils';
 
 describe('getLifeStage', (): void => {
     beforeAll((): void => {
@@ -75,6 +75,15 @@ describe('getAgeFromBirthdate', (): void => {
         },
     );
 });
+
+describe('getPrettyDate', () => {
+    test.each([
+        ['2024-01-15T00:00:00Z', '15 January 2024'],
+        ['2010-05-30T00:00:00Z', '30 May 2010'],
+    ])('should return the correct prettified date', (date: string, prettyDate: string) => {
+        expect(getPrettyDate(date)).toBe(prettyDate);
+    })
+})
 
 describe('toTitleCase', () => {
     test.each([

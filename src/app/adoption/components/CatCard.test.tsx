@@ -1,26 +1,32 @@
 import { describe, it } from 'vitest';
 import { render } from '@testing-library/react';
 import CatCard from '@/app/adoption/components/CatCard';
-import { Cat } from '@/types';
+import {
+    Organization_Pet,
+    Organization_Pet_Status,
+    Pet_Breed_Cat, Pet_Gender,
+    Pet_Species,
+    Pet_Status
+} from '@/__generated__/resolvers-types';
 
-const catDetails: Cat = {
+const catDetails: Organization_Pet = {
     id: '2de96ecd-8389-4817-b32c-32d2af1641e8',
-    status: 'ADOPTABLE',
+    status: Organization_Pet_Status.Adoptable,
     adoption_fee: null,
     pet: {
         name: 'Mo',
-        status: 'ORGANIZATION',
+        status: Pet_Status.Organization,
         status_details: null,
         description: null,
-        species: 'CAT',
-        breed_cat: ['DOMESTIC_SHORT_HAIR'],
+        species: Pet_Species.Cat,
+        breed_cat: [Pet_Breed_Cat.DomesticShortHair],
         mixed: null,
         estimated_birth_date: '2022-11-01T00:00:00Z',
         special_needs: null,
         distinguishing_marks: null,
         weight: null,
         youtube_video_url: null,
-        gender: 'FEMALE',
+        gender: Pet_Gender.Female,
         siblings: null,
         images: [
             {
