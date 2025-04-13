@@ -19,9 +19,14 @@ const Adoption = async () => {
             <PageHeader>
                 <h1>Adoption</h1>
             </PageHeader>
-            <section className="px-6 py-5 md:px-[5%]">
+            <main className="px-6 py-5 md:px-[5%]">
+                <div className="mb-4 text-sm flex flex-col gap-2">
+                    <p>Cats are loosely split into 3 age categories: Kitten, Adult, Senior.</p>
+                    <p>Our adoption fees for <strong>kittens</strong> and <strong>adults</strong> cover vaccinations, neutering, microchipping,
+                        up-to-date parasite control, and 5 weeks pet insurance through Agria.</p>
+                </div>
                 <Listings cats={cats} />
-            </section>
+            </main>
         </>
     );
 };

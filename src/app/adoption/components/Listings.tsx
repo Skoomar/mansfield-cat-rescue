@@ -35,7 +35,7 @@ const Listings = ({ cats }: { cats: Organization_Pet[] }) => {
     if (visibleCats) {
         catCards = visibleCats.map((cat) => <CatCard key={cat.id} cat={cat} />);
     }
-
+    // TODO: maybe put a max of 4/5 cats on each row to be help to avoid the large gap at the right if the viewport is in a weird in-between width
     return (
         <>
             <div className="mx-auto mb-4 font-medium max-sm:w-72">
@@ -48,6 +48,7 @@ const Listings = ({ cats }: { cats: Organization_Pet[] }) => {
                     <FilterButton id="all" value="" label="All" />
                     <FilterButton id="adults" value={LIFE_STAGE.ADULT} label="Adults" />
                     <FilterButton id="kittens" value={LIFE_STAGE.KITTEN} label="Kittens" />
+                {/*    TODO: Add Senior filter*/}
                 </RadioGroup>
             </div>
             <div className="flex flex-row flex-wrap justify-start gap-8 text-center">

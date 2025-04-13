@@ -1,6 +1,7 @@
 export enum LIFE_STAGE {
-    ADULT = 'ADULT',
     KITTEN = 'KITTEN',
+    ADULT = 'ADULT',
+    SENIOR = 'SENIOR',
 }
 
 export const getLifeStage = (dateOfBirth: string | null): LIFE_STAGE => {
@@ -9,6 +10,7 @@ export const getLifeStage = (dateOfBirth: string | null): LIFE_STAGE => {
     const birthdateObj = new Date(dateOfBirth);
     if (!birthdateObj.valueOf()) return LIFE_STAGE.ADULT;
 
+    // TODO: handle senior stage
     const today = new Date();
     const isKitten = (today.valueOf() - birthdateObj.valueOf()) / (1000 * 3600 * 24 * 365) < 1;
     return isKitten ? LIFE_STAGE.KITTEN : LIFE_STAGE.ADULT;
@@ -50,10 +52,23 @@ export const getPrettyDate = (date: string | null): string | null => {
     const dateObj = new Date(date);
     if (!dateObj.valueOf()) return null;
 
-    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric'}
-    return dateObj.toLocaleDateString('en-GB', options)
-}
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    return dateObj.toLocaleDateString('en-GB', options);
+};
 
 export const toTitleCase = (inputString: string | null): string | null => {
     return !inputString ? null : inputString.charAt(0).toUpperCase() + inputString.slice(1).toLowerCase();
+};
+
+/*
+    For some reason the Pawlytics API uses Int as the scalar for the Money type used for adoption_fee and represents the
+    currency in most atomic unit. So it's actually pence instead of pounds.
+    Also It seems like if no value has been entered then it'll just be 0 by default. But if you enter a value then it has to
+    be at least 0.30 and you can't change it back to 0. So just return anything under 100 pence as null for now.
+
+    TODO: Reach out to Pawlytics to see why this is and see if it can be float instead. And if 0 can be reset as value
+    after being modified
+ */
+export const normaliseAdoptionFee = (adoptionFee: number): string | null => {
+    return adoptionFee >= 100 ? '£' + (adoptionFee / 100) : null;
 };

@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, describe, expect, test, vi } from 'vitest';
-import { getAgeFromBirthdate, getLifeStage, getPrettyDate, LIFE_STAGE, toTitleCase } from '@/app/adoption/utils';
+import { getAgeFromBirthdate, getLifeStage, getPrettyDate, LIFE_STAGE, toTitleCase, normaliseAdoptionFee } from '@/app/adoption/utils';
 
 describe('getLifeStage', (): void => {
     beforeAll((): void => {
@@ -27,9 +27,9 @@ describe('getLifeStage', (): void => {
     );
 
     test.each(['blah', '2024-13-30T00:00:00Z', '2024-0530T00:00:00Z'])(
-        'should return Unknown if the birthday is invalid',
+        'should return Adult if the birthday is invalid',
         (birthday: string) => {
-            expect(getLifeStage(birthday)).toBeNull();
+            expect(getLifeStage(birthday)).toBe(LIFE_STAGE.ADULT);
         },
     );
 });
@@ -98,4 +98,18 @@ describe('toTitleCase', () => {
     test.each([null, ''])('should return null if input has no value', (inputString) => {
         expect(toTitleCase(inputString)).toBeNull();
     });
+});
+
+describe('normaliseAdoptionFee', () => {
+    test.each([
+        [100, '£1'],
+        [8000, '£80'],
+        [12000, '£120']
+    ])('should correctly normalise value to be pounds instead of pence', (adoptionFee: number, expectedFee: string) => {
+        expect(normaliseAdoptionFee(adoptionFee)).toBe(expectedFee);
+    });
+
+    test.each([0, 1, 10, 30, 80, 99])('should return null for adoption fee below 100 pence', (adoptionFee: number) => {
+        expect(normaliseAdoptionFee(adoptionFee)).toBeNull();
+    })
 });

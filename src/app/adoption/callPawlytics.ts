@@ -1,6 +1,7 @@
 import { Redis } from '@upstash/redis';
 import { gql } from '@/__generated__';
 import {
+    Currency,
     Organization_Pet,
     Organization_Pet_Status,
     Pet_Breed_Cat,
@@ -125,6 +126,10 @@ const GET_CAT_INFO = gql(`
 `);
 
 export const getCatInfo = async (petId: string) => {
+    if (process.env.LOCAL) {
+        return adoptableCatsStubResponse.find(cat => cat.id === petId);
+    }
+
     const authToken = await getPawlyticsAuthToken();
 
     const options = {
@@ -218,7 +223,10 @@ const adoptableCatsStubResponse: Organization_Pet[] = [
     {
         id: '2de96ecd-8389-4817-b32c-32d2af1641e8',
         status: Organization_Pet_Status.Adoptable,
-        adoption_fee: null,
+        adoption_fee: {
+            currency: Currency.Gbp,
+            amount: 20000
+        },
         pet: {
             name: 'Mo',
             status: Pet_Status.Organization,
@@ -260,11 +268,11 @@ const adoptableCatsStubResponse: Organization_Pet[] = [
             youtube_video_url: null,
             gender: Pet_Gender.Male,
             siblings: null,
-            images: [
-                {
-                    url: 'https://dbmt2d395muck.cloudfront.net/1e775003-7345-4618-af0d-7a0e2a9f7013',
-                },
-            ],
+            // images: [
+            //     {
+            //         url: 'https://dbmt2d395muck.cloudfront.net/1e775003-7345-4618-af0d-7a0e2a9f7013',
+            //     },
+            // ],
         },
     },
     {

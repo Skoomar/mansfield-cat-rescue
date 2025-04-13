@@ -103,6 +103,10 @@ body {
         @apply text-center font-serif text-3xl font-bold;
     }
 
+    h2 {
+        @apply font-serif text-2xl font-bold;
+    }
+
     .CollapsibleContent[data-state='open'] {
         animation: slideDown 400ms ease-out;
     }
