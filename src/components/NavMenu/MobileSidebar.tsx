@@ -21,7 +21,7 @@ const MobileSidebar = ({ links }: { links: { href: string; label: string }[] }) 
                     <SheetTitle>Menu</SheetTitle>
                     <SheetDescription>Select a page</SheetDescription>
                 </SheetHeader>
-                <nav className="flex flex-col gap-2 py-5">
+                <nav className="flex flex-col gap-4 py-5">
                     {links.map((link) => (
                         <Link
                             key={link.label.toLowerCase()}

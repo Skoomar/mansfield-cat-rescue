@@ -241,7 +241,12 @@ const adoptableCatsStubResponse: Organization_Pet[] = [
             weight: null,
             youtube_video_url: null,
             gender: Pet_Gender.Female,
-            siblings: null,
+            siblings: [
+                {
+                    id: '316fffca-8ea5-46bd-9f2d-8f7d7cce806f',
+                    name: 'Alf',
+                }
+            ],
             images: [
                 {
                     url: 'https://dbmt2d395muck.cloudfront.net/235bf8b2-5e0a-44ac-a68f-77d15571b276/Mo.jpg',
