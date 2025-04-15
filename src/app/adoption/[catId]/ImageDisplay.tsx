@@ -13,11 +13,12 @@ const SelectedImageContainer = ({src, key}: { src: string, key?: string }) => (
 
 /* TODO
 - scroll functionality on mobile?
+- modal to show full image
 - all images displayed under currently selected image
  */
 const ImageDisplay = ({ images }: { images: { url: string }[] }) => {
     return (
-        <img className="max-lg:mx-auto my-4 shadow-xl rounded-xl" src={images[0].url} alt="" width="288px" height="auto" />
+        <img className="max-lg:mx-auto my-4 shadow-xl rounded-xl" src={images[0].url} alt="" width="384px" height="auto" />
     );
 
     // if (images.length === 1) {

@@ -1,4 +1,4 @@
-const Logo = () => (
+const MiniLogo = () => (
     <div>
         <svg
             width="45"
@@ -31,4 +31,4 @@ const Logo = () => (
     </div>
 );
 
-export default Logo;
+export default MiniLogo;

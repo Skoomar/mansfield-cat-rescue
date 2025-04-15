@@ -1,7 +1,7 @@
 // import LightDarkToggle from "@/components/NavMenu/LightDarkToggle";
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import Logo from '@/components/NavMenu/Logo';
+import MiniLogo from '@/components/NavMenu/MiniLogo';
 import MobileSidebar from '@/components/NavMenu/MobileSidebar';
 
 const links = [
@@ -31,7 +31,7 @@ const NavMenu = () => (
     <header className="sticky left-0 top-0 z-50 flex w-full items-center justify-between bg-background px-4 py-2 shadow dark:bg-secondary lg:px-[3%]">
         <MobileSidebar links={links} />
         <Link href="/">
-            <Logo />
+            <MiniLogo />
         </Link>
         <nav className="mx-auto hidden items-center gap-14 font-bold lg:flex">
             {links.map((link) => (
