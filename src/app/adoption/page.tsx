@@ -19,7 +19,7 @@ const Adoption = async () => {
             <PageHeader>
                 <h1>Adoption</h1>
             </PageHeader>
-            <main className="px-6 py-5 md:px-[5%]">
+            <main className="px-6 py-5 md:px-[10%]">
                 <div className="mb-4 text-sm flex flex-col gap-2">
                     <p>Cats are loosely split into 3 age categories: Kitten, Adult, Senior.</p>
                     <p>Our adoption fees for <strong>kittens</strong> and <strong>adults</strong> cover vaccinations, neutering, microchipping,

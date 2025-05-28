@@ -18,7 +18,7 @@ const SelectedImageContainer = ({src, key}: { src: string, key?: string }) => (
  */
 const ImageDisplay = ({ images }: { images: { url: string }[] }) => {
     return (
-        <img className="max-lg:mx-auto my-4 shadow-xl rounded-xl" src={images[0].url} alt="" width="384px" height="auto" />
+        <img className="max-lg:mx-auto my-4 shadow-xl rounded-xl" src={images[0].url} alt="" width="360px" height="auto" />
     );
 
     // if (images.length === 1) {

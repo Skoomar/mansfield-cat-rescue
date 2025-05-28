@@ -51,7 +51,7 @@ const CatPage = async ({ params }: { params: Promise<{ catId: string }> }) => {
                     catInfo.pet.images ?
                         <ImageDisplay images={catInfo.pet.images} /> :
                         <div
-                            className="text-center text-gray-700 content-center my-4 max-lg:mx-auto min-w-72 lg:w-96 h-96 border rounded border-gray-400 bg-gray-100">No
+                            className="text-center text-gray-800 bg-gray-100 content-center my-4 max-lg:mx-auto min-w-72 lg:w-96 h-96 border rounded border-gray-400">No
                             images for this cat!</div>
                 }
                 <div className="lg:mt-5">

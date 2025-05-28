@@ -36,6 +36,7 @@ const Listings = ({ cats }: { cats: Organization_Pet[] }) => {
         catCards = visibleCats.map((cat) => <CatCard key={cat.id} cat={cat} />);
     }
     // TODO: maybe put a max of 4/5 cats on each row to be help to avoid the large gap at the right if the viewport is in a weird in-between width
+    // TODO: add loading on click of cat to show progress
     return (
         <>
             <div className="mx-auto mb-4 font-medium max-sm:w-72">
@@ -51,7 +52,7 @@ const Listings = ({ cats }: { cats: Organization_Pet[] }) => {
                 {/*    TODO: Add Senior filter*/}
                 </RadioGroup>
             </div>
-            <div className="flex flex-row flex-wrap justify-start gap-8 text-center">
+            <div className="flex flex-row flex-wrap justify-center gap-8 text-center">
                 {catCards ?? 'No cats found! Please check again later'}
             </div>
         </>
