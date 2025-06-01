@@ -3,6 +3,7 @@ import { getAdoptableCats } from '@/app/adoption/callPawlytics';
 import Listings from '@/app/adoption/components/Listings';
 import { PageHeader } from '@/components/PageHeader';
 import { Organization_Pet } from '@/__generated__/resolvers-types';
+import Logo from '@/components/Logo';
 
 // temporarily use Adoption page as home page
 export const metadata = {
@@ -17,8 +18,10 @@ const Adoption = async () => {
 
     return (
         <>
+            <div className="py-1 flex justify-center">
+                <Logo width="100" height="75" />
+            </div>
             <PageHeader>
-                <h1>Mansfield Cat Rescue</h1>
                 <h2 className="text-center mt-2">Cats for adoption</h2>
             </PageHeader>
             <main className="px-6 py-5 md:px-[10%]">
