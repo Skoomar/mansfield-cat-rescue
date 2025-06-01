@@ -77,7 +77,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${superclarendon.variable} flex min-h-screen flex-col font-serif antialiased`}>
-                <NavMenu />
+                {/*<NavMenu />*/}
                 <div className="flex-auto">
                     {children}
                 </div>

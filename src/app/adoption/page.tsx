@@ -17,7 +17,8 @@ const Adoption = async () => {
     return (
         <>
             <PageHeader>
-                <h1>Adoption</h1>
+                <h1>Mansfield Cat Rescue</h1>
+                <h2 className="text-center mt-2">Cats for adoption</h2>
             </PageHeader>
             <main className="px-6 py-5 md:px-[10%]">
                 <div className="mb-4 text-sm flex flex-col gap-2">
