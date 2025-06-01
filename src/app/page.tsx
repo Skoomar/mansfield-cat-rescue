@@ -4,6 +4,7 @@ import Listings from '@/app/adoption/components/Listings';
 import { PageHeader } from '@/components/PageHeader';
 import { Organization_Pet } from '@/__generated__/resolvers-types';
 
+// temporarily use Adoption page as home page
 export const metadata = {
     title: 'Adoption - Mansfield Cat Rescue',
     description: 'Listing of cats that are ready for adoption',
