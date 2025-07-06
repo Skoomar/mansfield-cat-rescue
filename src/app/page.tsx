@@ -8,13 +8,15 @@ const Home = () => (
         <section className="flex flex-col items-center bg-gradient-to-b from-teal-400 to-green-400 px-6 py-36 text-center md:px-[20%]">
             {/* TODO: fade-in animation on logo? */}
             {/* TODO: other loading animations? loading spinner */}
-            <div className="mb-9">
+            <div className="mb-10">
                 {/*<Logo />*/}
                 <img src="/logo_black.png" alt="Mansfield Cat Rescue Logo" />
             </div>
-            <p className="max-w-[28rem] text-xs">
-                Mansfield Cat Rescue is a volunteer-only, UK-registered charity (charity number: 1193319) operating in
-                Mansfield, Nottinghamshire
+            <p className="max-w-[28rem] text-sm">
+                Mansfield Cat Rescue is a volunteer-only, UK-registered charity operating in Mansfield, Nottinghamshire
+            </p>
+            <p className="text-xs">
+                <strong>(Charity Number: 1193319)</strong>
             </p>
         </section>
         <div className="flex justify-center">
