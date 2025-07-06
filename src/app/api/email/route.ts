@@ -6,18 +6,18 @@ export const POST = async (request: NextRequest) => {
     const { name, email, message } = await request.json();
 
     const transport = nodemailer.createTransport({
-        service: 'Hotmail',
+        service: 'Gmail',
         auth: {
-            user: process.env.CONTACT_FORM_EMAIL,
-            pass: process.env.CONTACT_FORM_PASSWORD,
+            user: process.env.CONTACT_FORM_VENDOR_EMAIL,
+            pass: process.env.CONTACT_FORM_VENDOR_PASSWORD,
         },
     });
 
     const mailOptions: Mail.Options = {
-        from: process.env.CONTACT_FORM_EMAIL,
-        to: process.env.CONTACT_FORM_EMAIL,
+        from: process.env.CONTACT_FORM_VENDOR_EMAIL,
+        to: process.env.CONTACT_FORM_TARGET_EMAIL,
         cc: email,
-        subject: `Message from ${name} (${email}`,
+        subject: `MCR Website Contact Form: Message from ${name} (${email})`,
         text: message,
     };
 
@@ -35,7 +35,7 @@ export const POST = async (request: NextRequest) => {
 
     try {
         sendMailPromise();
-        return NextResponse.json({ message: 'Email sent successfully' });
+        return NextResponse.json({ message: 'Email sent successfully! Check your email for a copy of your message.' });
     } catch (error) {
         return NextResponse.json({ error: error }, { status: 500 });
     }

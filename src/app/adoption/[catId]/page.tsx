@@ -78,7 +78,11 @@ const CatPage = async ({ params }: { params: Promise<{ catId: string }> }) => {
                             asChild
                             className="h-10 w-full max-w-72 bg-secondary text-secondary-foreground shadow-2xl hover:bg-accent hover:text-accent-foreground"
                         >
-                            <Link href="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAANAAShwW7pUM1BHVEtFOVJBUTNPRklWQTZQWE82Nk81US4u">
+                            <Link
+                                href="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAANAAShwW7pUM1BHVEtFOVJBUTNPRklWQTZQWE82Nk81US4u"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
                                 Apply for adoption
                             </Link>
                         </Button>
