@@ -1,6 +1,6 @@
 import { PageHeader } from '@/components/PageHeader';
 import { Button } from '@/components/ui/button';
-import { StyledLink } from '@/components/UtilComponents/StyledLink';
+import { StyledExternalLink, StyledLink } from '@/components/UtilComponents/StyledLink';
 
 const SupportUs = () => (
     <>
@@ -14,7 +14,7 @@ const SupportUs = () => (
             </p>
             <br />
             <p>Ways you can help us are:</p>
-            <ul className="mb-3 list-disc pl-10">
+            <ul className="mb-3 list-disc space-y-1 pl-10">
                 {/* TODO: make this link styling a global */}
                 <li>
                     Fostering for us - see our <StyledLink href="/fostering">fostering page</StyledLink>
@@ -23,12 +23,18 @@ const SupportUs = () => (
                 <li>Food and cash donations </li>
                 <li>Sharing our Facebook posts</li>
                 <li>Volunteering at our events</li>
+                <li>
+                    Visit our{' '}
+                    <StyledExternalLink href="https://www.svgrepo.com/svg/275561/pet-shop">
+                        SumUp Shop
+                    </StyledExternalLink>
+                </li>
             </ul>
         </section>
-        <section className="px-6">
-            <h2>Our Shop</h2>
-            <p>Visit our SumUp shop</p>
-        </section>
+        {/*<section className="px-6">*/}
+        {/*    <h2>Our Shop</h2>*/}
+        {/*    <p>Visit our SumUp shop</p>*/}
+        {/*</section>*/}
     </>
 );
 
