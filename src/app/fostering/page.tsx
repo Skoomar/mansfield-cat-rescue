@@ -8,7 +8,6 @@ const Fostering = () => (
             <h1>Fostering</h1>
         </PageHeader>
         <section className="px-6 py-8">
-            <h2>Fostering for MCR</h2>
             <div>
                 <p>
                     Here at MCR, we are always looking for new foster carers for our cats. We have cats and kittens of
@@ -26,13 +25,13 @@ const Fostering = () => (
                     share fun photos and stories with your fellow fosterers.
                 </p>
                 <br />
-                <p>If fostering sounds like something you would enjoy, please complete the form linked below.</p>
+                <p>If fostering sounds like something you would enjoy, please complete an application!</p>
             </div>
-            <div className="mt-5 flex max-lg:justify-center">
+            <div className="mt-5 flex justify-center">
                 {/* TODO: see if there's a short link for this form that doesn't go through Facebook*/}
                 <Button
                     asChild
-                    className="h-10 w-full max-w-72 bg-secondary text-secondary-foreground shadow-2xl hover:bg-accent hover:text-accent-foreground"
+                    className="h-10 bg-secondary text-secondary-foreground shadow-md hover:bg-accent hover:text-accent-foreground"
                 >
                     <Link href="https://airtable.com/appxlbpsyoahJocVA/shrQnwZyQlO04xlKF">Apply to foster</Link>
                 </Button>

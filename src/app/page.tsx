@@ -1,6 +1,7 @@
 // TODO: sliding banner of cats
 import Logo from '@/components/Logo';
 import Link from 'next/link';
+import { StyledExternalLink, StyledLink } from '@/components/UtilComponents/StyledLink';
 
 const Home = () => (
     <main>
@@ -9,10 +10,10 @@ const Home = () => (
             {/* TODO: other loading animations? loading spinner */}
             <div className="mb-9">
                 {/*<Logo />*/}
-                <img src="/Black%20Logo.png" alt="Mansfield Cat Rescue Logo" />
+                <img src="/logo_black.png" alt="Mansfield Cat Rescue Logo" />
             </div>
             <p className="text-xs">
-                Mansfield Cat Rescue is a volunteer only, UK-registered charity (charity number: 1193319) operating in
+                Mansfield Cat Rescue is a volunteer-only, UK-registered charity (charity number: 1193319) operating in
                 Mansfield, Nottinghamshire
             </p>
         </section>
@@ -26,6 +27,7 @@ const Home = () => (
                     Mansfield Cat Rescue rescues, rehabilitates and rehomes stray, abandoned, and feral cats. All of our
                     cats and kittens are fostered and looked after in a home environment by our volunteers.
                 </p>
+                <br />
                 <p>
                     We have accounts with a number of vet practices that provide veterinary care to our cats and kittens
                     including; spay/neuter, flea and worm medicines, and treatment for abscesses and other large wounds
@@ -33,24 +35,27 @@ const Home = () => (
                     or ear removal as recommended. Any cats or kittens that are not suitable for adoption due to ongoing
                     health issues, will be looked after by special long-term foster carers.
                 </p>
+                <br />
                 <p>
                     All those involved in Mansfield Cat Rescue’s mission do so on a volunteer basis with no
                     renumeration. Our vet bills are paid for by donations and fundraising activities.{' '}
                 </p>
+                <br />
                 <p>
                     If you would like to enquire about adopting a cat or kitten from Mansfield Cat Rescue, please{' '}
-                    <Link href="https://bit.ly/3ucplsL" target="_blank" rel="noopener noreferrer">
-                        click here
-                    </Link>
+                    <StyledExternalLink href="https://bit.ly/3ucplsL">click here</StyledExternalLink>
                 </p>
+                <br />
                 <p>
                     If you would like to view the cats and kittens that Mansfield Cat Rescue have available to adopt,
-                    see our <Link href="/adoption">Adoption page</Link>
+                    see our <StyledLink href="/adoption">Adoption page</StyledLink>
                 </p>
+                <br />
                 <p>
                     If you would like to donate to Mansfield Cat Rescue, you can do so via any of the methods provided
                     below:
                 </p>
+                <br />
                 <ul className="list-none">
                     <li>
                         <p className="font-semibold">Bank Transfer</p>
@@ -64,6 +69,7 @@ const Home = () => (
                             Account number: 19376804
                         </p>
                     </li>
+                    <br />
                     <li>
                         <p className="font-semibold">Paypal</p>
                         <p>
@@ -72,15 +78,12 @@ const Home = () => (
                         </p>
                     </li>
                 </ul>
+                <br />
                 <p>
                     If you would like to purchase items for the cats and kittens in our care, please see our{' '}
-                    <Link
-                        href="https://www.amazon.co.uk/hz/wishlist/ls/1UDC50S3D85VY?ref_=wl_share"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
+                    <StyledExternalLink href="https://www.amazon.co.uk/hz/wishlist/ls/1UDC50S3D85VY?ref_=wl_share">
                         Amazon Wishlist
-                    </Link>
+                    </StyledExternalLink>
                 </p>
             </div>
         </section>
