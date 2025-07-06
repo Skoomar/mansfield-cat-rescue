@@ -76,11 +76,10 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
+            {/* TODO: on tablet there seems to be big empty space after the footer? */}
             <body className={`${superclarendon.variable} flex min-h-screen flex-col font-serif antialiased`}>
                 <NavMenu />
-                <div className="flex-auto">
-                    {children}
-                </div>
+                <div className="flex-auto">{children}</div>
                 <Footer />
             </body>
         </html>

@@ -7,7 +7,7 @@ const Fostering = () => (
         <PageHeader>
             <h1>Fostering</h1>
         </PageHeader>
-        <section className="px-6 py-8">
+        <section className="px-6 py-8 md:px-[10%] lg:px-[15%]">
             <div>
                 <p>
                     Here at MCR, we are always looking for new foster carers for our cats. We have cats and kittens of

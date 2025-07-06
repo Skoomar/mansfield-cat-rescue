@@ -10,7 +10,7 @@ const ContactUs = () => (
         <PageHeader>
             <h1>Contact Us</h1>
         </PageHeader>
-        <section className="px-6 py-8">
+        <section className="px-6 py-8 md:px-[10%] lg:px-[15%]">
             <div className="mb-5">
                 <p>
                     Please remember the rescue is 100% volunteer-led and our admin team all run the rescue around

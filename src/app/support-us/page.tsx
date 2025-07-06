@@ -7,7 +7,7 @@ const SupportUs = () => (
         <PageHeader>
             <h1>Support Us</h1>
         </PageHeader>
-        <section className="px-6 py-8">
+        <section className="px-6 py-8 md:px-[10%] lg:px-[15%]">
             <p>
                 There are lots of ways that you can support us at MCR. As we are a volunteer-based charity, your time is
                 what is most valuable to us!
@@ -29,6 +29,7 @@ const SupportUs = () => (
                         SumUp Shop
                     </StyledExternalLink>
                 </li>
+                {/* TODO: Amazon Wishlist?   */}
             </ul>
         </section>
         {/*<section className="px-6">*/}

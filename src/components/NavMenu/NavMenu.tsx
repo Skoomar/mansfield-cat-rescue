@@ -4,6 +4,7 @@ import Link from 'next/link';
 import MiniLogo from '@/components/NavMenu/MiniLogo';
 import MobileSidebar from '@/components/NavMenu/MobileSidebar';
 
+// TODO: Shop link?
 const links = [
     {
         href: '/',

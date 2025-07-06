@@ -5,22 +5,25 @@ import { StyledExternalLink, StyledLink } from '@/components/UtilComponents/Styl
 
 const Home = () => (
     <main>
-        <section className="flex flex-col items-center bg-gradient-to-b from-teal-400 to-green-400 px-6 py-36 text-center">
+        <section className="flex flex-col items-center bg-gradient-to-b from-teal-400 to-green-400 px-6 py-36 text-center md:px-[20%]">
             {/* TODO: fade-in animation on logo? */}
             {/* TODO: other loading animations? loading spinner */}
             <div className="mb-9">
                 {/*<Logo />*/}
                 <img src="/logo_black.png" alt="Mansfield Cat Rescue Logo" />
             </div>
-            <p className="text-xs">
+            <p className="max-w-[28rem] text-xs">
                 Mansfield Cat Rescue is a volunteer-only, UK-registered charity (charity number: 1193319) operating in
                 Mansfield, Nottinghamshire
             </p>
         </section>
         <div className="flex justify-center">
+            {/* TODO: this is a fucking horrible solution: please implement scrolly image as soon as possible before I scratch my eyes out*/}
+            <img src="/banner_extra.webp" />
             <img src="/banner.webp" alt="Our mission is to rescue, the dream is that one day we don't have to" />
+            <img src="/banner_extra.webp" />
         </div>
-        <section className="px-6 py-8">
+        <section className="px-6 py-8 md:px-[10%] lg:px-[15%]">
             <h2 className="text-center">About Us</h2>
             <div className="text-sm">
                 <p>
@@ -43,12 +46,12 @@ const Home = () => (
                 <br />
                 <p>
                     If you would like to enquire about adopting a cat or kitten from Mansfield Cat Rescue, please{' '}
-                    <StyledExternalLink href="https://bit.ly/3ucplsL">click here</StyledExternalLink>
+                    <StyledExternalLink href="https://bit.ly/3ucplsL">click here</StyledExternalLink>.
                 </p>
                 <br />
                 <p>
                     If you would like to view the cats and kittens that Mansfield Cat Rescue have available to adopt,
-                    see our <StyledLink href="/adoption">Adoption page</StyledLink>
+                    see our <StyledLink href="/adoption">Adoption page</StyledLink>.
                 </p>
                 <br />
                 <p>
@@ -56,35 +59,40 @@ const Home = () => (
                     below:
                 </p>
                 <br />
-                <ul className="list-none">
-                    <li>
-                        <p className="font-semibold">Bank Transfer</p>
-                        <p>
-                            Nat West
-                            <br />
-                            Mansfield Cat Rescue
-                            <br />
-                            Sort code: 54-10-23
-                            <br />
-                            Account number: 19376804
-                        </p>
-                    </li>
-                    <br />
-                    <li>
-                        <p className="font-semibold">Paypal</p>
-                        <p>
-                            admin@mansfieldcatrescue.co.uk - (please select family and friends when making the donation
-                            so that PayPal don't take a % of your donation before it reaches us)
-                        </p>
-                    </li>
-                </ul>
+                <div>
+                    <p className="font-semibold">Bank Transfer</p>
+                    <p>
+                        Nat West
+                        <br />
+                        Mansfield Cat Rescue
+                        <br />
+                        Sort code: 54-10-23
+                        <br />
+                        Account number: 19376804
+                    </p>
+                </div>
                 <br />
-                <p>
-                    If you would like to purchase items for the cats and kittens in our care, please see our{' '}
-                    <StyledExternalLink href="https://www.amazon.co.uk/hz/wishlist/ls/1UDC50S3D85VY?ref_=wl_share">
-                        Amazon Wishlist
-                    </StyledExternalLink>
-                </p>
+                <div>
+                    <p className="font-semibold">Paypal</p>
+                    <p>
+                        <em>admin@mansfieldcatrescue.co.uk</em>
+                    </p>
+                    <p className="text-xs">
+                        (please select family and friends when making the donation so that PayPal don't take a % of your
+                        donation before it reaches us)
+                    </p>
+                </div>
+                <br />
+                <div>
+                    <p className="font-semibold">Amazon Wishlist</p>
+                    <p>
+                        If you would like to purchase items for the cats and kittens in our care, please see our{' '}
+                        <StyledExternalLink href="https://www.amazon.co.uk/hz/wishlist/ls/1UDC50S3D85VY?ref_=wl_share">
+                            Amazon Wishlist
+                        </StyledExternalLink>
+                        .
+                    </p>
+                </div>
             </div>
         </section>
     </main>
