@@ -19,7 +19,7 @@ const Home = () => (
                 <strong>(Charity Number: 1193319)</strong>
             </p>
         </section>
-        <div className="flex justify-center">
+        <div className="flex justify-center overflow-hidden">
             {/* TODO: this is a fucking horrible solution: please implement scrolly image as soon as possible before I scratch my eyes out*/}
             <img src="/banner_extra.webp" />
             <img src="/banner.webp" alt="Our mission is to rescue, the dream is that one day we don't have to" />

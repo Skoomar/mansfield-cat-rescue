@@ -76,7 +76,7 @@ const CatPage = async ({ params }: { params: Promise<{ catId: string }> }) => {
                         {/* TODO: see if there's a short link for this form that doesn't go through Facebook*/}
                         <Button
                             asChild
-                            className="h-10 w-full max-w-72 bg-secondary text-secondary-foreground shadow-2xl hover:bg-accent hover:text-accent-foreground"
+                            className="h-10 w-full max-w-72 bg-secondary text-secondary-foreground shadow-md hover:bg-accent hover:text-accent-foreground"
                         >
                             <Link
                                 href="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAANAAShwW7pUM1BHVEtFOVJBUTNPRklWQTZQWE82Nk81US4u"
