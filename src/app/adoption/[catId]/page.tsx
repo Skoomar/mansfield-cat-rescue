@@ -67,6 +67,29 @@ const CatPage = async ({ params }: { params: Promise<{ catId: string }> }) => {
                             <Attribute label="Description">{catInfo.pet.description}</Attribute>
                         )}
                         {catInfo.pet.siblings && <SiblingDisplay siblingsInfo={catInfo.pet.siblings} />}
+                        {catInfo.pet.good_with_cats !== null && (
+                            <Attribute label="Gets along with cats?">
+                                {catInfo.pet.good_with_cats ? 'Yes' : 'No'}
+                            </Attribute>
+                        )}
+                        {catInfo.pet.good_with_dogs !== null && (
+                            <Attribute label="Gets along with dogs?">
+                                {catInfo.pet.good_with_dogs ? 'Yes' : 'No'}
+                            </Attribute>
+                        )}
+                        {catInfo.pet.good_with_children !== null && (
+                            <Attribute label="Gets along with children?">
+                                {catInfo.pet.good_with_children ? 'Yes' : 'No'}
+                            </Attribute>
+                        )}
+                        {catInfo.pet.housetrained !== null && (
+                            <Attribute label="Is housetrained?">{catInfo.pet.housetrained ? 'Yes' : 'No'}</Attribute>
+                        )}
+                        {catInfo.pet.needs_experienced_adopter !== null && (
+                            <Attribute label="Needs experienced adopter?">
+                                {catInfo.pet.needs_experienced_adopter ? 'Yes' : 'No'}
+                            </Attribute>
+                        )}
                         <Attribute label="Adoption Fee">
                             {normaliseAdoptionFee(catInfo.adoption_fee?.amount) ??
                                 'Please contact us for this information'}

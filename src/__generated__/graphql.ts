@@ -35,8 +35,8 @@ export type AddAdoptionDocInput = {
 export type AddOrganizationPetLocationEntryInput = {
   /** Optional date for this entry (defaults to current time) */
   date?: InputMaybe<Scalars['Instant']['input']>;
-  /** The location data to add */
-  location: Input_Pet_Location;
+  /** The location data to add, if omitted it means the pet had no location as of the provided date */
+  location?: InputMaybe<Input_Pet_Location>;
   /** The pet's ID */
   organization_pet_id: Scalars['UUID']['input'];
 };
@@ -7013,165 +7013,9 @@ export enum Country_Subdivision {
   ZwMw = 'ZW_MW'
 }
 
-export type CreateDiagnosisAggressionInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<CreateNoteInput>>>;
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type CreateDiagnosisAllergyInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<CreateNoteInput>>>;
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-  type?: InputMaybe<DiagnosisAllergyType>;
-  type_other?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type CreateDiagnosisAnxietyInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<CreateNoteInput>>>;
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type CreateDiagnosisCoccidiaInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<CreateNoteInput>>>;
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type CreateDiagnosisDemodexInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<CreateNoteInput>>>;
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type CreateDiagnosisDentalDiseaseInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<CreateNoteInput>>>;
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type CreateDiagnosisDermatophytosisRingwormInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<CreateNoteInput>>>;
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type CreateDiagnosisDiarrheaCauseUnknownInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<CreateNoteInput>>>;
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type CreateDiagnosisEarMitesInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<CreateNoteInput>>>;
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type CreateDiagnosisFelineImmunodeficiencyVirusFivInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<CreateNoteInput>>>;
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type CreateDiagnosisFelineInfectiousPeritonitisFipInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<CreateNoteInput>>>;
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type CreateDiagnosisFelineLeukemiaVirusFelvInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<CreateNoteInput>>>;
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type CreateDiagnosisFelineLowerUrinaryTractDiseaseFlutdInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<CreateNoteInput>>>;
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type CreateDiagnosisGiardiaInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<CreateNoteInput>>>;
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type CreateDiagnosisHeartwormInfectionInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<CreateNoteInput>>>;
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type CreateDiagnosisOtitisEarInfectionInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<CreateNoteInput>>>;
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type CreateDiagnosisPanleukopeniaVirusFelineInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<CreateNoteInput>>>;
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type CreateDiagnosisParvovirusCanineInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<CreateNoteInput>>>;
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type CreateDiagnosisResolutionInput = {
-  date?: InputMaybe<Scalars['Instant']['input']>;
-  type?: InputMaybe<DiagnosisResolutionType>;
-};
-
-export type CreateDiagnosisResourceGuardingInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<CreateNoteInput>>>;
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type CreateDiagnosisUpperRespiratoryTractInfectionUriInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<CreateNoteInput>>>;
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type CreateDiagnosisUrinaryTractInfectionUtiInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<CreateNoteInput>>>;
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type CreateDiagnosisUrolithiasisBladderStonesInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<CreateNoteInput>>>;
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
+export type CreateDiscountInput = {
+  money?: InputMaybe<CreateMoneyInput>;
+  percentage?: InputMaybe<CreatePercentageInput>;
 };
 
 export type CreateEcontractInput = {
@@ -7199,49 +7043,56 @@ export type CreateEcontractTemplateInput = {
   template_title: Scalars['String']['input'];
 };
 
+export type CreateExpenseSubtypeInput = {
+  name: Scalars['String']['input'];
+};
+
 export type CreateFileUploadInput = {
   token?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type CreateMedicalEventInput = {
-  date?: InputMaybe<Scalars['Instant']['input']>;
-  line_items?: InputMaybe<Array<InputMaybe<CreateMedicalEventLineItemInput>>>;
-  organization_id: Scalars['UUID']['input'];
-  pet_id: Scalars['UUID']['input'];
+export type CreateInvoiceDiscountOptionInput = {
+  amount?: InputMaybe<CreateDiscountInput>;
+  name: Scalars['String']['input'];
 };
 
-export type CreateMedicalEventLineItemInput = {
-  diagnosis_aggression?: InputMaybe<CreateDiagnosisAggressionInput>;
-  diagnosis_allergy?: InputMaybe<CreateDiagnosisAllergyInput>;
-  diagnosis_anxiety?: InputMaybe<CreateDiagnosisAnxietyInput>;
-  diagnosis_coccidia?: InputMaybe<CreateDiagnosisCoccidiaInput>;
-  diagnosis_demodex?: InputMaybe<CreateDiagnosisDemodexInput>;
-  diagnosis_dental_disease?: InputMaybe<CreateDiagnosisDentalDiseaseInput>;
-  diagnosis_dermatophytosis_ringworm?: InputMaybe<CreateDiagnosisDermatophytosisRingwormInput>;
-  diagnosis_diarrhea_cause_unknown?: InputMaybe<CreateDiagnosisDiarrheaCauseUnknownInput>;
-  diagnosis_ear_mites?: InputMaybe<CreateDiagnosisEarMitesInput>;
-  diagnosis_feline_immunodeficiency_virus_fiv?: InputMaybe<CreateDiagnosisFelineImmunodeficiencyVirusFivInput>;
-  diagnosis_feline_infectious_peritonitis_fip?: InputMaybe<CreateDiagnosisFelineInfectiousPeritonitisFipInput>;
-  diagnosis_feline_leukemia_virus_felv?: InputMaybe<CreateDiagnosisFelineLeukemiaVirusFelvInput>;
-  diagnosis_feline_lower_urinary_tract_disease_flutd?: InputMaybe<CreateDiagnosisFelineLowerUrinaryTractDiseaseFlutdInput>;
-  diagnosis_giardia?: InputMaybe<CreateDiagnosisGiardiaInput>;
-  diagnosis_heartworm_infection?: InputMaybe<CreateDiagnosisHeartwormInfectionInput>;
-  diagnosis_otitis_ear_infection?: InputMaybe<CreateDiagnosisOtitisEarInfectionInput>;
-  diagnosis_panleukopenia_virus_feline?: InputMaybe<CreateDiagnosisPanleukopeniaVirusFelineInput>;
-  diagnosis_parvovirus_canine?: InputMaybe<CreateDiagnosisParvovirusCanineInput>;
-  diagnosis_resource_guarding?: InputMaybe<CreateDiagnosisResourceGuardingInput>;
-  diagnosis_upper_respiratory_tract_infection_uri?: InputMaybe<CreateDiagnosisUpperRespiratoryTractInfectionUriInput>;
-  diagnosis_urinary_tract_infection_uti?: InputMaybe<CreateDiagnosisUrinaryTractInfectionUtiInput>;
-  diagnosis_urolithiasis_bladder_stones?: InputMaybe<CreateDiagnosisUrolithiasisBladderStonesInput>;
+export type CreateInvoiceLineItemInput = {
+  amount?: InputMaybe<CreateMoneyInput>;
+  name: Scalars['String']['input'];
 };
 
-export type CreateMedicalEventResult = {
-  __typename?: 'CreateMedicalEventResult';
-  medical_event: MedicalEvent;
+export type CreateInvoiceTemplateInput = {
+  add_option_for_additional_donation?: InputMaybe<Scalars['Boolean']['input']>;
+  add_tax_percent_to_final_amount?: InputMaybe<Scalars['Boolean']['input']>;
+  discounts?: InputMaybe<Array<InputMaybe<DiscountOptionRefInput>>>;
+  line_items?: InputMaybe<Array<InputMaybe<LineItemRefInput>>>;
+  name: Scalars['String']['input'];
+  revenue_subtype?: InputMaybe<RevenueSubtypeRefInput>;
+};
+
+export type CreateMoneyInput = {
+  amount: Scalars['Int']['input'];
+  currency: MoneyCurrency;
 };
 
 export type CreateNoteInput = {
   text: Scalars['String']['input'];
+};
+
+export type CreateOfflinePaymentMethodInput = {
+  name: Scalars['String']['input'];
+};
+
+export type CreatePaymentWidgetInput = {
+  name: Scalars['String']['input'];
+};
+
+export type CreatePercentageInput = {
+  percent: Scalars['Float']['input'];
+};
+
+export type CreateRevenueSubtypeInput = {
+  name: Scalars['String']['input'];
 };
 
 /** createTextTemplate input */
@@ -7651,136 +7502,33 @@ export type DeleteAdoptionDocResult = {
   file_id: Scalars['UUID']['output'];
 };
 
-export type DeleteDiagnosisAggressionInput = {
-  diagnosis_id: Scalars['UUID']['input'];
-};
-
-export type DeleteDiagnosisAllergyInput = {
-  diagnosis_id: Scalars['UUID']['input'];
-};
-
-export type DeleteDiagnosisAnxietyInput = {
-  diagnosis_id: Scalars['UUID']['input'];
-};
-
-export type DeleteDiagnosisCoccidiaInput = {
-  diagnosis_id: Scalars['UUID']['input'];
-};
-
-export type DeleteDiagnosisDemodexInput = {
-  diagnosis_id: Scalars['UUID']['input'];
-};
-
-export type DeleteDiagnosisDentalDiseaseInput = {
-  diagnosis_id: Scalars['UUID']['input'];
-};
-
-export type DeleteDiagnosisDermatophytosisRingwormInput = {
-  diagnosis_id: Scalars['UUID']['input'];
-};
-
-export type DeleteDiagnosisDiarrheaCauseUnknownInput = {
-  diagnosis_id: Scalars['UUID']['input'];
-};
-
-export type DeleteDiagnosisEarMitesInput = {
-  diagnosis_id: Scalars['UUID']['input'];
-};
-
-export type DeleteDiagnosisFelineImmunodeficiencyVirusFivInput = {
-  diagnosis_id: Scalars['UUID']['input'];
-};
-
-export type DeleteDiagnosisFelineInfectiousPeritonitisFipInput = {
-  diagnosis_id: Scalars['UUID']['input'];
-};
-
-export type DeleteDiagnosisFelineLeukemiaVirusFelvInput = {
-  diagnosis_id: Scalars['UUID']['input'];
-};
-
-export type DeleteDiagnosisFelineLowerUrinaryTractDiseaseFlutdInput = {
-  diagnosis_id: Scalars['UUID']['input'];
-};
-
-export type DeleteDiagnosisGiardiaInput = {
-  diagnosis_id: Scalars['UUID']['input'];
-};
-
-export type DeleteDiagnosisHeartwormInfectionInput = {
-  diagnosis_id: Scalars['UUID']['input'];
-};
-
-export type DeleteDiagnosisOtitisEarInfectionInput = {
-  diagnosis_id: Scalars['UUID']['input'];
-};
-
-export type DeleteDiagnosisPanleukopeniaVirusFelineInput = {
-  diagnosis_id: Scalars['UUID']['input'];
-};
-
-export type DeleteDiagnosisParvovirusCanineInput = {
-  diagnosis_id: Scalars['UUID']['input'];
-};
-
-export type DeleteDiagnosisResourceGuardingInput = {
-  diagnosis_id: Scalars['UUID']['input'];
-};
-
-export type DeleteDiagnosisUpperRespiratoryTractInfectionUriInput = {
-  diagnosis_id: Scalars['UUID']['input'];
-};
-
-export type DeleteDiagnosisUrinaryTractInfectionUtiInput = {
-  diagnosis_id: Scalars['UUID']['input'];
-};
-
-export type DeleteDiagnosisUrolithiasisBladderStonesInput = {
-  diagnosis_id: Scalars['UUID']['input'];
-};
-
 export type DeleteEcontractTemplateInput = {
   econtract_template_id: Scalars['UUID']['input'];
   organization_id: Scalars['UUID']['input'];
 };
 
-export type DeleteMedicalEventInput = {
-  medical_event_id: Scalars['UUID']['input'];
-  organization_id: Scalars['UUID']['input'];
+export type DeleteExpenseSubtypeInput = {
+  id?: InputMaybe<Scalars['UUID']['input']>;
 };
 
-export type DeleteMedicalEventLineItemInput = {
-  diagnosis_aggression?: InputMaybe<DeleteDiagnosisAggressionInput>;
-  diagnosis_allergy?: InputMaybe<DeleteDiagnosisAllergyInput>;
-  diagnosis_anxiety?: InputMaybe<DeleteDiagnosisAnxietyInput>;
-  diagnosis_coccidia?: InputMaybe<DeleteDiagnosisCoccidiaInput>;
-  diagnosis_demodex?: InputMaybe<DeleteDiagnosisDemodexInput>;
-  diagnosis_dental_disease?: InputMaybe<DeleteDiagnosisDentalDiseaseInput>;
-  diagnosis_dermatophytosis_ringworm?: InputMaybe<DeleteDiagnosisDermatophytosisRingwormInput>;
-  diagnosis_diarrhea_cause_unknown?: InputMaybe<DeleteDiagnosisDiarrheaCauseUnknownInput>;
-  diagnosis_ear_mites?: InputMaybe<DeleteDiagnosisEarMitesInput>;
-  diagnosis_feline_immunodeficiency_virus_fiv?: InputMaybe<DeleteDiagnosisFelineImmunodeficiencyVirusFivInput>;
-  diagnosis_feline_infectious_peritonitis_fip?: InputMaybe<DeleteDiagnosisFelineInfectiousPeritonitisFipInput>;
-  diagnosis_feline_leukemia_virus_felv?: InputMaybe<DeleteDiagnosisFelineLeukemiaVirusFelvInput>;
-  diagnosis_feline_lower_urinary_tract_disease_flutd?: InputMaybe<DeleteDiagnosisFelineLowerUrinaryTractDiseaseFlutdInput>;
-  diagnosis_giardia?: InputMaybe<DeleteDiagnosisGiardiaInput>;
-  diagnosis_heartworm_infection?: InputMaybe<DeleteDiagnosisHeartwormInfectionInput>;
-  diagnosis_otitis_ear_infection?: InputMaybe<DeleteDiagnosisOtitisEarInfectionInput>;
-  diagnosis_panleukopenia_virus_feline?: InputMaybe<DeleteDiagnosisPanleukopeniaVirusFelineInput>;
-  diagnosis_parvovirus_canine?: InputMaybe<DeleteDiagnosisParvovirusCanineInput>;
-  diagnosis_resource_guarding?: InputMaybe<DeleteDiagnosisResourceGuardingInput>;
-  diagnosis_upper_respiratory_tract_infection_uri?: InputMaybe<DeleteDiagnosisUpperRespiratoryTractInfectionUriInput>;
-  diagnosis_urinary_tract_infection_uti?: InputMaybe<DeleteDiagnosisUrinaryTractInfectionUtiInput>;
-  diagnosis_urolithiasis_bladder_stones?: InputMaybe<DeleteDiagnosisUrolithiasisBladderStonesInput>;
+export type DeleteInvoiceDiscountOptionInput = {
+  id?: InputMaybe<Scalars['UUID']['input']>;
 };
 
-export type DeleteMedicalEventResult = {
-  __typename?: 'DeleteMedicalEventResult';
-  medical_event_id: Scalars['UUID']['output'];
+export type DeleteInvoiceLineItemInput = {
+  id?: InputMaybe<Scalars['UUID']['input']>;
+};
+
+export type DeleteInvoiceTemplateInput = {
+  id?: InputMaybe<Scalars['UUID']['input']>;
 };
 
 export type DeleteNoteInput = {
   note_id: Scalars['ID']['input'];
+};
+
+export type DeleteOfflinePaymentMethodInput = {
+  id?: InputMaybe<Scalars['UUID']['input']>;
 };
 
 /** Input for deleting a specific location entry */
@@ -7791,12 +7539,20 @@ export type DeleteOrganizationPetLocationEntryInput = {
   organization_pet_id: Scalars['UUID']['input'];
 };
 
+export type DeletePaymentWidgetInput = {
+  id?: InputMaybe<Scalars['UUID']['input']>;
+};
+
 /** Input for removing images from a pet. */
 export type DeletePetImagesInput = {
   /** IDs of the images to delete from the pet. */
   file_ids?: InputMaybe<Array<Scalars['UUID']['input']>>;
   /** ID of the organization-pet to delete images from. */
   organization_pet_id: Scalars['UUID']['input'];
+};
+
+export type DeleteRevenueSubtypeInput = {
+  id?: InputMaybe<Scalars['UUID']['input']>;
 };
 
 /** deleteTextTemplate input */
@@ -7817,440 +7573,33 @@ export type DeletedLocationHistoryEntryPayload = {
   entry_id?: Maybe<Scalars['UUID']['output']>;
 };
 
-export type Diagnosis = {
-  datetime?: Maybe<Scalars['Instant']['output']>;
-  description?: Maybe<Array<Maybe<Note>>>;
+export type Discount = Money | Percentage;
+
+export type DiscountOperationInput = {
+  create?: InputMaybe<CreateDiscountInput>;
+};
+
+export type DiscountOption = {
+  __typename?: 'DiscountOption';
+  amount?: Maybe<Discount>;
   id?: Maybe<Scalars['UUID']['output']>;
-  resolution?: Maybe<DiagnosisResolution>;
-  share_with_adopters?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<DiagnosisType>;
+  is_global?: Maybe<Scalars['Boolean']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
 };
 
-export type DiagnosisAggression = Diagnosis & {
-  __typename?: 'DiagnosisAggression';
-  datetime?: Maybe<Scalars['Instant']['output']>;
-  description?: Maybe<Array<Maybe<Note>>>;
-  id?: Maybe<Scalars['UUID']['output']>;
-  resolution?: Maybe<DiagnosisResolution>;
-  share_with_adopters?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<DiagnosisType>;
+export type DiscountOptionOperationInput = {
+  create?: InputMaybe<CreateInvoiceDiscountOptionInput>;
+  delete?: InputMaybe<DeleteInvoiceDiscountOptionInput>;
+  update?: InputMaybe<UpdateInvoiceDiscountOptionInput>;
 };
 
-export type DiagnosisAggressionOperationInput = {
-  create?: InputMaybe<CreateDiagnosisAggressionInput>;
-  delete?: InputMaybe<DeleteDiagnosisAggressionInput>;
-  update?: InputMaybe<UpdateDiagnosisAggressionInput>;
+export type DiscountOptionRefInput = {
+  id: Scalars['UUID']['input'];
 };
 
-export type DiagnosisAllergy = Diagnosis & {
-  __typename?: 'DiagnosisAllergy';
-  allergy_type?: Maybe<DiagnosisAllergyType>;
-  allergy_type_other?: Maybe<Scalars['String']['output']>;
-  datetime?: Maybe<Scalars['Instant']['output']>;
-  description?: Maybe<Array<Maybe<Note>>>;
-  id?: Maybe<Scalars['UUID']['output']>;
-  resolution?: Maybe<DiagnosisResolution>;
-  share_with_adopters?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<DiagnosisType>;
-};
-
-export type DiagnosisAllergyOperationInput = {
-  create?: InputMaybe<CreateDiagnosisAllergyInput>;
-  delete?: InputMaybe<DeleteDiagnosisAllergyInput>;
-  update?: InputMaybe<UpdateDiagnosisAllergyInput>;
-};
-
-export enum DiagnosisAllergyType {
-  /** Other */
-  Other = 'OTHER'
-}
-
-export type DiagnosisAnxiety = Diagnosis & {
-  __typename?: 'DiagnosisAnxiety';
-  datetime?: Maybe<Scalars['Instant']['output']>;
-  description?: Maybe<Array<Maybe<Note>>>;
-  id?: Maybe<Scalars['UUID']['output']>;
-  resolution?: Maybe<DiagnosisResolution>;
-  share_with_adopters?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<DiagnosisType>;
-};
-
-export type DiagnosisAnxietyOperationInput = {
-  create?: InputMaybe<CreateDiagnosisAnxietyInput>;
-  delete?: InputMaybe<DeleteDiagnosisAnxietyInput>;
-  update?: InputMaybe<UpdateDiagnosisAnxietyInput>;
-};
-
-export type DiagnosisCoccidia = Diagnosis & {
-  __typename?: 'DiagnosisCoccidia';
-  datetime?: Maybe<Scalars['Instant']['output']>;
-  description?: Maybe<Array<Maybe<Note>>>;
-  id?: Maybe<Scalars['UUID']['output']>;
-  resolution?: Maybe<DiagnosisResolution>;
-  share_with_adopters?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<DiagnosisType>;
-};
-
-export type DiagnosisCoccidiaOperationInput = {
-  create?: InputMaybe<CreateDiagnosisCoccidiaInput>;
-  delete?: InputMaybe<DeleteDiagnosisCoccidiaInput>;
-  update?: InputMaybe<UpdateDiagnosisCoccidiaInput>;
-};
-
-export type DiagnosisDemodex = Diagnosis & {
-  __typename?: 'DiagnosisDemodex';
-  datetime?: Maybe<Scalars['Instant']['output']>;
-  description?: Maybe<Array<Maybe<Note>>>;
-  id?: Maybe<Scalars['UUID']['output']>;
-  resolution?: Maybe<DiagnosisResolution>;
-  share_with_adopters?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<DiagnosisType>;
-};
-
-export type DiagnosisDemodexOperationInput = {
-  create?: InputMaybe<CreateDiagnosisDemodexInput>;
-  delete?: InputMaybe<DeleteDiagnosisDemodexInput>;
-  update?: InputMaybe<UpdateDiagnosisDemodexInput>;
-};
-
-export type DiagnosisDentalDisease = Diagnosis & {
-  __typename?: 'DiagnosisDentalDisease';
-  datetime?: Maybe<Scalars['Instant']['output']>;
-  description?: Maybe<Array<Maybe<Note>>>;
-  id?: Maybe<Scalars['UUID']['output']>;
-  resolution?: Maybe<DiagnosisResolution>;
-  share_with_adopters?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<DiagnosisType>;
-};
-
-export type DiagnosisDentalDiseaseOperationInput = {
-  create?: InputMaybe<CreateDiagnosisDentalDiseaseInput>;
-  delete?: InputMaybe<DeleteDiagnosisDentalDiseaseInput>;
-  update?: InputMaybe<UpdateDiagnosisDentalDiseaseInput>;
-};
-
-export type DiagnosisDermatophytosisRingworm = Diagnosis & {
-  __typename?: 'DiagnosisDermatophytosisRingworm';
-  datetime?: Maybe<Scalars['Instant']['output']>;
-  description?: Maybe<Array<Maybe<Note>>>;
-  id?: Maybe<Scalars['UUID']['output']>;
-  resolution?: Maybe<DiagnosisResolution>;
-  share_with_adopters?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<DiagnosisType>;
-};
-
-export type DiagnosisDermatophytosisRingwormOperationInput = {
-  create?: InputMaybe<CreateDiagnosisDermatophytosisRingwormInput>;
-  delete?: InputMaybe<DeleteDiagnosisDermatophytosisRingwormInput>;
-  update?: InputMaybe<UpdateDiagnosisDermatophytosisRingwormInput>;
-};
-
-export type DiagnosisDiarrheaCauseUnknown = Diagnosis & {
-  __typename?: 'DiagnosisDiarrheaCauseUnknown';
-  datetime?: Maybe<Scalars['Instant']['output']>;
-  description?: Maybe<Array<Maybe<Note>>>;
-  id?: Maybe<Scalars['UUID']['output']>;
-  resolution?: Maybe<DiagnosisResolution>;
-  share_with_adopters?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<DiagnosisType>;
-};
-
-export type DiagnosisDiarrheaCauseUnknownOperationInput = {
-  create?: InputMaybe<CreateDiagnosisDiarrheaCauseUnknownInput>;
-  delete?: InputMaybe<DeleteDiagnosisDiarrheaCauseUnknownInput>;
-  update?: InputMaybe<UpdateDiagnosisDiarrheaCauseUnknownInput>;
-};
-
-export type DiagnosisEarMites = Diagnosis & {
-  __typename?: 'DiagnosisEarMites';
-  datetime?: Maybe<Scalars['Instant']['output']>;
-  description?: Maybe<Array<Maybe<Note>>>;
-  id?: Maybe<Scalars['UUID']['output']>;
-  resolution?: Maybe<DiagnosisResolution>;
-  share_with_adopters?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<DiagnosisType>;
-};
-
-export type DiagnosisEarMitesOperationInput = {
-  create?: InputMaybe<CreateDiagnosisEarMitesInput>;
-  delete?: InputMaybe<DeleteDiagnosisEarMitesInput>;
-  update?: InputMaybe<UpdateDiagnosisEarMitesInput>;
-};
-
-export type DiagnosisFelineImmunodeficiencyVirusFiv = Diagnosis & {
-  __typename?: 'DiagnosisFelineImmunodeficiencyVirusFiv';
-  datetime?: Maybe<Scalars['Instant']['output']>;
-  description?: Maybe<Array<Maybe<Note>>>;
-  id?: Maybe<Scalars['UUID']['output']>;
-  resolution?: Maybe<DiagnosisResolution>;
-  share_with_adopters?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<DiagnosisType>;
-};
-
-export type DiagnosisFelineImmunodeficiencyVirusFivOperationInput = {
-  create?: InputMaybe<CreateDiagnosisFelineImmunodeficiencyVirusFivInput>;
-  delete?: InputMaybe<DeleteDiagnosisFelineImmunodeficiencyVirusFivInput>;
-  update?: InputMaybe<UpdateDiagnosisFelineImmunodeficiencyVirusFivInput>;
-};
-
-export type DiagnosisFelineInfectiousPeritonitisFip = Diagnosis & {
-  __typename?: 'DiagnosisFelineInfectiousPeritonitisFip';
-  datetime?: Maybe<Scalars['Instant']['output']>;
-  description?: Maybe<Array<Maybe<Note>>>;
-  id?: Maybe<Scalars['UUID']['output']>;
-  resolution?: Maybe<DiagnosisResolution>;
-  share_with_adopters?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<DiagnosisType>;
-};
-
-export type DiagnosisFelineInfectiousPeritonitisFipOperationInput = {
-  create?: InputMaybe<CreateDiagnosisFelineInfectiousPeritonitisFipInput>;
-  delete?: InputMaybe<DeleteDiagnosisFelineInfectiousPeritonitisFipInput>;
-  update?: InputMaybe<UpdateDiagnosisFelineInfectiousPeritonitisFipInput>;
-};
-
-export type DiagnosisFelineLeukemiaVirusFelv = Diagnosis & {
-  __typename?: 'DiagnosisFelineLeukemiaVirusFelv';
-  datetime?: Maybe<Scalars['Instant']['output']>;
-  description?: Maybe<Array<Maybe<Note>>>;
-  id?: Maybe<Scalars['UUID']['output']>;
-  resolution?: Maybe<DiagnosisResolution>;
-  share_with_adopters?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<DiagnosisType>;
-};
-
-export type DiagnosisFelineLeukemiaVirusFelvOperationInput = {
-  create?: InputMaybe<CreateDiagnosisFelineLeukemiaVirusFelvInput>;
-  delete?: InputMaybe<DeleteDiagnosisFelineLeukemiaVirusFelvInput>;
-  update?: InputMaybe<UpdateDiagnosisFelineLeukemiaVirusFelvInput>;
-};
-
-export type DiagnosisFelineLowerUrinaryTractDiseaseFlutd = Diagnosis & {
-  __typename?: 'DiagnosisFelineLowerUrinaryTractDiseaseFlutd';
-  datetime?: Maybe<Scalars['Instant']['output']>;
-  description?: Maybe<Array<Maybe<Note>>>;
-  id?: Maybe<Scalars['UUID']['output']>;
-  resolution?: Maybe<DiagnosisResolution>;
-  share_with_adopters?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<DiagnosisType>;
-};
-
-export type DiagnosisFelineLowerUrinaryTractDiseaseFlutdOperationInput = {
-  create?: InputMaybe<CreateDiagnosisFelineLowerUrinaryTractDiseaseFlutdInput>;
-  delete?: InputMaybe<DeleteDiagnosisFelineLowerUrinaryTractDiseaseFlutdInput>;
-  update?: InputMaybe<UpdateDiagnosisFelineLowerUrinaryTractDiseaseFlutdInput>;
-};
-
-export type DiagnosisGiardia = Diagnosis & {
-  __typename?: 'DiagnosisGiardia';
-  datetime?: Maybe<Scalars['Instant']['output']>;
-  description?: Maybe<Array<Maybe<Note>>>;
-  id?: Maybe<Scalars['UUID']['output']>;
-  resolution?: Maybe<DiagnosisResolution>;
-  share_with_adopters?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<DiagnosisType>;
-};
-
-export type DiagnosisGiardiaOperationInput = {
-  create?: InputMaybe<CreateDiagnosisGiardiaInput>;
-  delete?: InputMaybe<DeleteDiagnosisGiardiaInput>;
-  update?: InputMaybe<UpdateDiagnosisGiardiaInput>;
-};
-
-export type DiagnosisHeartwormInfection = Diagnosis & {
-  __typename?: 'DiagnosisHeartwormInfection';
-  datetime?: Maybe<Scalars['Instant']['output']>;
-  description?: Maybe<Array<Maybe<Note>>>;
-  id?: Maybe<Scalars['UUID']['output']>;
-  resolution?: Maybe<DiagnosisResolution>;
-  share_with_adopters?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<DiagnosisType>;
-};
-
-export type DiagnosisHeartwormInfectionOperationInput = {
-  create?: InputMaybe<CreateDiagnosisHeartwormInfectionInput>;
-  delete?: InputMaybe<DeleteDiagnosisHeartwormInfectionInput>;
-  update?: InputMaybe<UpdateDiagnosisHeartwormInfectionInput>;
-};
-
-export type DiagnosisOtitisEarInfection = Diagnosis & {
-  __typename?: 'DiagnosisOtitisEarInfection';
-  datetime?: Maybe<Scalars['Instant']['output']>;
-  description?: Maybe<Array<Maybe<Note>>>;
-  id?: Maybe<Scalars['UUID']['output']>;
-  resolution?: Maybe<DiagnosisResolution>;
-  share_with_adopters?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<DiagnosisType>;
-};
-
-export type DiagnosisOtitisEarInfectionOperationInput = {
-  create?: InputMaybe<CreateDiagnosisOtitisEarInfectionInput>;
-  delete?: InputMaybe<DeleteDiagnosisOtitisEarInfectionInput>;
-  update?: InputMaybe<UpdateDiagnosisOtitisEarInfectionInput>;
-};
-
-export type DiagnosisPanleukopeniaVirusFeline = Diagnosis & {
-  __typename?: 'DiagnosisPanleukopeniaVirusFeline';
-  datetime?: Maybe<Scalars['Instant']['output']>;
-  description?: Maybe<Array<Maybe<Note>>>;
-  id?: Maybe<Scalars['UUID']['output']>;
-  resolution?: Maybe<DiagnosisResolution>;
-  share_with_adopters?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<DiagnosisType>;
-};
-
-export type DiagnosisPanleukopeniaVirusFelineOperationInput = {
-  create?: InputMaybe<CreateDiagnosisPanleukopeniaVirusFelineInput>;
-  delete?: InputMaybe<DeleteDiagnosisPanleukopeniaVirusFelineInput>;
-  update?: InputMaybe<UpdateDiagnosisPanleukopeniaVirusFelineInput>;
-};
-
-export type DiagnosisParvovirusCanine = Diagnosis & {
-  __typename?: 'DiagnosisParvovirusCanine';
-  datetime?: Maybe<Scalars['Instant']['output']>;
-  description?: Maybe<Array<Maybe<Note>>>;
-  id?: Maybe<Scalars['UUID']['output']>;
-  resolution?: Maybe<DiagnosisResolution>;
-  share_with_adopters?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<DiagnosisType>;
-};
-
-export type DiagnosisParvovirusCanineOperationInput = {
-  create?: InputMaybe<CreateDiagnosisParvovirusCanineInput>;
-  delete?: InputMaybe<DeleteDiagnosisParvovirusCanineInput>;
-  update?: InputMaybe<UpdateDiagnosisParvovirusCanineInput>;
-};
-
-export type DiagnosisResolution = {
-  __typename?: 'DiagnosisResolution';
-  date?: Maybe<Scalars['Instant']['output']>;
-  type?: Maybe<DiagnosisResolutionType>;
-};
-
-export type DiagnosisResolutionOperationInput = {
-  create?: InputMaybe<CreateDiagnosisResolutionInput>;
-};
-
-export enum DiagnosisResolutionType {
-  /** Misdiagnosed */
-  Misdiagnosed = 'MISDIAGNOSED',
-  /** Retested Negative */
-  RetestedNegative = 'RETESTED_NEGATIVE',
-  /** Self Resolved */
-  SelfResolved = 'SELF_RESOLVED',
-  /** Treated */
-  Treated = 'TREATED'
-}
-
-export type DiagnosisResourceGuarding = Diagnosis & {
-  __typename?: 'DiagnosisResourceGuarding';
-  datetime?: Maybe<Scalars['Instant']['output']>;
-  description?: Maybe<Array<Maybe<Note>>>;
-  id?: Maybe<Scalars['UUID']['output']>;
-  resolution?: Maybe<DiagnosisResolution>;
-  share_with_adopters?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<DiagnosisType>;
-};
-
-export type DiagnosisResourceGuardingOperationInput = {
-  create?: InputMaybe<CreateDiagnosisResourceGuardingInput>;
-  delete?: InputMaybe<DeleteDiagnosisResourceGuardingInput>;
-  update?: InputMaybe<UpdateDiagnosisResourceGuardingInput>;
-};
-
-export enum DiagnosisType {
-  /** Aggression */
-  Aggression = 'AGGRESSION',
-  /** Allergy */
-  Allergy = 'ALLERGY',
-  /** Anxiety */
-  Anxiety = 'ANXIETY',
-  /** Coccidia */
-  Coccidia = 'COCCIDIA',
-  /** Demodex */
-  Demodex = 'DEMODEX',
-  /** Dental Disease */
-  DentalDisease = 'DENTAL_DISEASE',
-  /** Dermatophytosis Ringworm */
-  DermatophytosisRingworm = 'DERMATOPHYTOSIS_RINGWORM',
-  /** Diarrhea Cause Unknown */
-  DiarrheaCauseUnknown = 'DIARRHEA_CAUSE_UNKNOWN',
-  /** Ear Mites */
-  EarMites = 'EAR_MITES',
-  /** Feline Immunodeficiency Virus Fiv */
-  FelineImmunodeficiencyVirusFiv = 'FELINE_IMMUNODEFICIENCY_VIRUS_FIV',
-  /** Feline Infectious Peritonitis Fip */
-  FelineInfectiousPeritonitisFip = 'FELINE_INFECTIOUS_PERITONITIS_FIP',
-  /** Feline Leukemia Virus Felv */
-  FelineLeukemiaVirusFelv = 'FELINE_LEUKEMIA_VIRUS_FELV',
-  /** Feline Lower Urinary Tract Disease Flutd */
-  FelineLowerUrinaryTractDiseaseFlutd = 'FELINE_LOWER_URINARY_TRACT_DISEASE_FLUTD',
-  /** Giardia */
-  Giardia = 'GIARDIA',
-  /** Heartworm Infection */
-  HeartwormInfection = 'HEARTWORM_INFECTION',
-  /** Otitis Ear Infection */
-  OtitisEarInfection = 'OTITIS_EAR_INFECTION',
-  /** Panleukopenia Virus Feline */
-  PanleukopeniaVirusFeline = 'PANLEUKOPENIA_VIRUS_FELINE',
-  /** Parvovirus Canine */
-  ParvovirusCanine = 'PARVOVIRUS_CANINE',
-  /** Resource Guarding */
-  ResourceGuarding = 'RESOURCE_GUARDING',
-  /** Upper Respiratory Tract Infection Uri */
-  UpperRespiratoryTractInfectionUri = 'UPPER_RESPIRATORY_TRACT_INFECTION_URI',
-  /** Urinary Tract Infection Uti */
-  UrinaryTractInfectionUti = 'URINARY_TRACT_INFECTION_UTI',
-  /** Urolithiasis Bladder Stones */
-  UrolithiasisBladderStones = 'UROLITHIASIS_BLADDER_STONES'
-}
-
-export type DiagnosisUpperRespiratoryTractInfectionUri = Diagnosis & {
-  __typename?: 'DiagnosisUpperRespiratoryTractInfectionUri';
-  datetime?: Maybe<Scalars['Instant']['output']>;
-  description?: Maybe<Array<Maybe<Note>>>;
-  id?: Maybe<Scalars['UUID']['output']>;
-  resolution?: Maybe<DiagnosisResolution>;
-  share_with_adopters?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<DiagnosisType>;
-};
-
-export type DiagnosisUpperRespiratoryTractInfectionUriOperationInput = {
-  create?: InputMaybe<CreateDiagnosisUpperRespiratoryTractInfectionUriInput>;
-  delete?: InputMaybe<DeleteDiagnosisUpperRespiratoryTractInfectionUriInput>;
-  update?: InputMaybe<UpdateDiagnosisUpperRespiratoryTractInfectionUriInput>;
-};
-
-export type DiagnosisUrinaryTractInfectionUti = Diagnosis & {
-  __typename?: 'DiagnosisUrinaryTractInfectionUti';
-  datetime?: Maybe<Scalars['Instant']['output']>;
-  description?: Maybe<Array<Maybe<Note>>>;
-  id?: Maybe<Scalars['UUID']['output']>;
-  resolution?: Maybe<DiagnosisResolution>;
-  share_with_adopters?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<DiagnosisType>;
-};
-
-export type DiagnosisUrinaryTractInfectionUtiOperationInput = {
-  create?: InputMaybe<CreateDiagnosisUrinaryTractInfectionUtiInput>;
-  delete?: InputMaybe<DeleteDiagnosisUrinaryTractInfectionUtiInput>;
-  update?: InputMaybe<UpdateDiagnosisUrinaryTractInfectionUtiInput>;
-};
-
-export type DiagnosisUrolithiasisBladderStones = Diagnosis & {
-  __typename?: 'DiagnosisUrolithiasisBladderStones';
-  datetime?: Maybe<Scalars['Instant']['output']>;
-  description?: Maybe<Array<Maybe<Note>>>;
-  id?: Maybe<Scalars['UUID']['output']>;
-  resolution?: Maybe<DiagnosisResolution>;
-  share_with_adopters?: Maybe<Scalars['Boolean']['output']>;
-  type?: Maybe<DiagnosisType>;
-};
-
-export type DiagnosisUrolithiasisBladderStonesOperationInput = {
-  create?: InputMaybe<CreateDiagnosisUrolithiasisBladderStonesInput>;
-  delete?: InputMaybe<DeleteDiagnosisUrolithiasisBladderStonesInput>;
-  update?: InputMaybe<UpdateDiagnosisUrolithiasisBladderStonesInput>;
+export type DiscountOptionRefOperationInput = {
+  add?: InputMaybe<DiscountOptionRefInput>;
+  remove?: InputMaybe<DiscountOptionRefInput>;
 };
 
 export type Document = {
@@ -9372,6 +8721,28 @@ export type EcontractTemplateConnection = {
   entities?: Maybe<Array<EcontractTemplate>>;
 };
 
+export type ExpenseSubtype = {
+  __typename?: 'ExpenseSubtype';
+  id?: Maybe<Scalars['UUID']['output']>;
+  is_global?: Maybe<Scalars['Boolean']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+export type ExpenseSubtypeOperationInput = {
+  create?: InputMaybe<CreateExpenseSubtypeInput>;
+  delete?: InputMaybe<DeleteExpenseSubtypeInput>;
+  update?: InputMaybe<UpdateExpenseSubtypeInput>;
+};
+
+export type ExpenseSubtypeRefInput = {
+  id: Scalars['UUID']['input'];
+};
+
+export type ExpenseSubtypeRefOperationInput = {
+  add?: InputMaybe<ExpenseSubtypeRefInput>;
+  remove?: InputMaybe<ExpenseSubtypeRefInput>;
+};
+
 export type Exported_Organization_Pet = {
   __typename?: 'Exported_Organization_Pet';
   /** A pre-signed download URL */
@@ -9414,6 +8785,16 @@ export type FileUploadDescriptor = {
   file_id?: Maybe<Scalars['UUID']['output']>;
   /** A URL to PUT a file for upload */
   upload_url?: Maybe<Scalars['String']['output']>;
+};
+
+export type FinancialsSettings = {
+  __typename?: 'FinancialsSettings';
+  expense_subtypes?: Maybe<Array<Maybe<ExpenseSubtype>>>;
+  invoice_settings?: Maybe<InvoiceSettings>;
+  offline_payment_methods?: Maybe<Array<Maybe<OfflinePaymentMethod>>>;
+  payment_widgets?: Maybe<Array<Maybe<PaymentWidget>>>;
+  receipt_settings?: Maybe<ReceiptSettings>;
+  revenue_subtypes?: Maybe<Array<Maybe<RevenueSubtype>>>;
 };
 
 export type FosterRecord = {
@@ -10611,6 +9992,39 @@ export type Input_WeightRange = {
 
 export type IntakeFromEntity = ExternalOrganization | Organization | Person;
 
+export type InvoiceSettings = {
+  __typename?: 'InvoiceSettings';
+  discount_options?: Maybe<Array<Maybe<DiscountOption>>>;
+  invoice_templates?: Maybe<Array<Maybe<InvoiceTemplate>>>;
+  line_items?: Maybe<Array<Maybe<LineItem>>>;
+};
+
+export type InvoiceTemplate = {
+  __typename?: 'InvoiceTemplate';
+  add_option_for_additional_donation?: Maybe<Scalars['Boolean']['output']>;
+  add_tax_percent_to_final_amount?: Maybe<Scalars['Boolean']['output']>;
+  discounts?: Maybe<Array<Maybe<DiscountOption>>>;
+  id?: Maybe<Scalars['UUID']['output']>;
+  line_items?: Maybe<Array<Maybe<LineItem>>>;
+  name?: Maybe<Scalars['String']['output']>;
+  revenue_subtype?: Maybe<RevenueSubtype>;
+};
+
+export type InvoiceTemplateOperationInput = {
+  create?: InputMaybe<CreateInvoiceTemplateInput>;
+  delete?: InputMaybe<DeleteInvoiceTemplateInput>;
+  update?: InputMaybe<UpdateInvoiceTemplateInput>;
+};
+
+export type InvoiceTemplateRefInput = {
+  id: Scalars['UUID']['input'];
+};
+
+export type InvoiceTemplateRefOperationInput = {
+  add?: InputMaybe<InvoiceTemplateRefInput>;
+  remove?: InputMaybe<InvoiceTemplateRefInput>;
+};
+
 export type Job = {
   __typename?: 'Job';
   id: Scalars['UUID']['output'];
@@ -10634,6 +10048,30 @@ export enum LengthOfStayType {
   OutcomeBased = 'OUTCOME_BASED'
 }
 
+export type LineItem = {
+  __typename?: 'LineItem';
+  amount?: Maybe<Money>;
+  created_at?: Maybe<Scalars['Instant']['output']>;
+  id?: Maybe<Scalars['UUID']['output']>;
+  is_global?: Maybe<Scalars['Boolean']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+export type LineItemOperationInput = {
+  create?: InputMaybe<CreateInvoiceLineItemInput>;
+  delete?: InputMaybe<DeleteInvoiceLineItemInput>;
+  update?: InputMaybe<UpdateInvoiceLineItemInput>;
+};
+
+export type LineItemRefInput = {
+  id: Scalars['UUID']['input'];
+};
+
+export type LineItemRefOperationInput = {
+  add?: InputMaybe<LineItemRefInput>;
+  remove?: InputMaybe<LineItemRefInput>;
+};
+
 export enum Measurement_System {
   Imperial = 'IMPERIAL',
   Metric = 'METRIC'
@@ -10654,32 +10092,6 @@ export type MedicalDocument = Document & {
   tags?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   /** File URL */
   url?: Maybe<Scalars['String']['output']>;
-};
-
-export type MedicalEvent = {
-  __typename?: 'MedicalEvent';
-  date?: Maybe<Scalars['Instant']['output']>;
-  id?: Maybe<Scalars['UUID']['output']>;
-  line_items: MedicalEventLineItemsConnection;
-  notes?: Maybe<Array<Maybe<Note>>>;
-};
-
-export type MedicalEventLineItem = DiagnosisAggression | DiagnosisAllergy | DiagnosisAnxiety | DiagnosisCoccidia | DiagnosisDemodex | DiagnosisDentalDisease | DiagnosisDermatophytosisRingworm | DiagnosisDiarrheaCauseUnknown | DiagnosisEarMites | DiagnosisFelineImmunodeficiencyVirusFiv | DiagnosisFelineInfectiousPeritonitisFip | DiagnosisFelineLeukemiaVirusFelv | DiagnosisFelineLowerUrinaryTractDiseaseFlutd | DiagnosisGiardia | DiagnosisHeartwormInfection | DiagnosisOtitisEarInfection | DiagnosisPanleukopeniaVirusFeline | DiagnosisParvovirusCanine | DiagnosisResourceGuarding | DiagnosisUpperRespiratoryTractInfectionUri | DiagnosisUrinaryTractInfectionUti | DiagnosisUrolithiasisBladderStones;
-
-export type MedicalEventLineItemOperationInput = {
-  create?: InputMaybe<CreateMedicalEventLineItemInput>;
-  delete?: InputMaybe<DeleteMedicalEventLineItemInput>;
-  update?: InputMaybe<UpdateMedicalEventLineItemInput>;
-};
-
-export type MedicalEventLineItemsConnection = {
-  __typename?: 'MedicalEventLineItemsConnection';
-  entities?: Maybe<Array<MedicalEventLineItem>>;
-};
-
-export type MedicalEventsConnection = {
-  __typename?: 'MedicalEventsConnection';
-  entities?: Maybe<Array<MedicalEvent>>;
 };
 
 export type MetricUserOrganization = {
@@ -10717,9 +10129,18 @@ export type Money = {
   currency: Currency;
 };
 
+export enum MoneyCurrency {
+  /** Usd */
+  Usd = 'USD'
+}
+
 export type MoneyInput = {
   amount?: InputMaybe<Scalars['Int']['input']>;
   currency?: InputMaybe<Currency>;
+};
+
+export type MoneyOperationInput = {
+  create?: InputMaybe<CreateMoneyInput>;
 };
 
 export type Mutation = {
@@ -10736,7 +10157,6 @@ export type Mutation = {
   archive_partner_person?: Maybe<PartnerPersonDeleted>;
   /** Soft-delete a pet application. Does not affect airtable record */
   archive_pet_application?: Maybe<Payload_Application_Archived>;
-  createMedicalEvent?: Maybe<CreateMedicalEventResult>;
   /** Create a text template */
   createTextTemplate: CreateTextTemplatePayload;
   /** Create a custom report. Stores JSON representing a pet report by name. */
@@ -10759,7 +10179,6 @@ export type Mutation = {
   create_partner_person?: Maybe<PartnerPerson>;
   /** Creates a user for the current auth */
   create_update_user_for_auth?: Maybe<User>;
-  deleteMedicalEvent?: Maybe<DeleteMedicalEventResult>;
   /** Delete a specific pet location history entry */
   deleteOrganizationPetLocationEntry?: Maybe<DeletedLocationHistoryEntryPayload>;
   /** Delete a text template */
@@ -10870,7 +10289,7 @@ export type Mutation = {
   sign_econtract: Econtract;
   /** Restore a soft-deleted pet application. */
   unarchive_pet_application?: Maybe<Payload_Application_Unarchived>;
-  updateMedicalEvent?: Maybe<UpdateMedicalEventResult>;
+  updateFinancialsSettings?: Maybe<UpdateFinancialsSettingsResult>;
   /** Update a text template */
   updateTextTemplate: UpdateTextTemplatePayload;
   /** Update a custom report. Stores JSON representing a pet report by name. */
@@ -10933,11 +10352,6 @@ export type MutationArchive_Pet_ApplicationArgs = {
 };
 
 
-export type MutationCreateMedicalEventArgs = {
-  input?: InputMaybe<CreateMedicalEventInput>;
-};
-
-
 export type MutationCreateTextTemplateArgs = {
   input: CreateTextTemplateInput;
 };
@@ -10995,11 +10409,6 @@ export type MutationCreate_Partner_PersonArgs = {
 
 export type MutationCreate_Update_User_For_AuthArgs = {
   invite_token?: InputMaybe<Scalars['String']['input']>;
-};
-
-
-export type MutationDeleteMedicalEventArgs = {
-  input?: InputMaybe<DeleteMedicalEventInput>;
 };
 
 
@@ -11393,8 +10802,8 @@ export type MutationUnarchive_Pet_ApplicationArgs = {
 };
 
 
-export type MutationUpdateMedicalEventArgs = {
-  input?: InputMaybe<UpdateMedicalEventInput>;
+export type MutationUpdateFinancialsSettingsArgs = {
+  input?: InputMaybe<UpdateFinancialsSettingsInput>;
 };
 
 
@@ -11489,12 +10898,6 @@ export type Note = {
   text?: Maybe<Scalars['String']['output']>;
 };
 
-export type NoteOperationInput = {
-  create?: InputMaybe<CreateNoteInput>;
-  delete?: InputMaybe<DeleteNoteInput>;
-  update?: InputMaybe<UpdateNoteInput>;
-};
-
 export type NotesConnectionInput = {
   create?: InputMaybe<Array<InputMaybe<CreateNoteInput>>>;
   delete?: InputMaybe<Array<InputMaybe<DeleteNoteInput>>>;
@@ -11561,6 +10964,28 @@ export type NotificationsConnection = {
   next_token?: Maybe<Scalars['String']['output']>;
   offset?: Maybe<Scalars['Int']['output']>;
   total_count?: Maybe<Scalars['Int']['output']>;
+};
+
+export type OfflinePaymentMethod = {
+  __typename?: 'OfflinePaymentMethod';
+  id?: Maybe<Scalars['UUID']['output']>;
+  is_global?: Maybe<Scalars['Boolean']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+export type OfflinePaymentMethodOperationInput = {
+  create?: InputMaybe<CreateOfflinePaymentMethodInput>;
+  delete?: InputMaybe<DeleteOfflinePaymentMethodInput>;
+  update?: InputMaybe<UpdateOfflinePaymentMethodInput>;
+};
+
+export type OfflinePaymentMethodRefInput = {
+  id: Scalars['UUID']['input'];
+};
+
+export type OfflinePaymentMethodRefOperationInput = {
+  add?: InputMaybe<OfflinePaymentMethodRefInput>;
+  remove?: InputMaybe<OfflinePaymentMethodRefInput>;
 };
 
 export type Organization = {
@@ -11668,8 +11093,6 @@ export type OrganizationIntakesFilterInput = {
 /** A historical record of a pet's location change */
 export type OrganizationPetLocationHistoryEntry = {
   __typename?: 'OrganizationPetLocationHistoryEntry';
-  /** The user who created this location entry */
-  author?: Maybe<User>;
   /** When this location was recorded */
   date: Scalars['Instant']['output'];
   /** Unique identifier for this history entry */
@@ -12246,6 +11669,37 @@ export type Payload_Pet_Medical_Event_Delete = {
   /** The deleted medical event id */
   medical_event_id?: Maybe<Scalars['UUID']['output']>;
   organization_id?: Maybe<Scalars['UUID']['output']>;
+};
+
+export type PaymentWidget = {
+  __typename?: 'PaymentWidget';
+  id?: Maybe<Scalars['UUID']['output']>;
+  is_global?: Maybe<Scalars['Boolean']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+export type PaymentWidgetOperationInput = {
+  create?: InputMaybe<CreatePaymentWidgetInput>;
+  delete?: InputMaybe<DeletePaymentWidgetInput>;
+  update?: InputMaybe<UpdatePaymentWidgetInput>;
+};
+
+export type PaymentWidgetRefInput = {
+  id: Scalars['UUID']['input'];
+};
+
+export type PaymentWidgetRefOperationInput = {
+  add?: InputMaybe<PaymentWidgetRefInput>;
+  remove?: InputMaybe<PaymentWidgetRefInput>;
+};
+
+export type Percentage = {
+  __typename?: 'Percentage';
+  percent?: Maybe<Scalars['Float']['output']>;
+};
+
+export type PercentageOperationInput = {
+  create?: InputMaybe<CreatePercentageInput>;
 };
 
 export type PeriodInput = {
@@ -15095,10 +14549,9 @@ export type Query = {
   econtract_template_by_id: EcontractTemplate;
   econtract_templates: EcontractTemplateConnection;
   export_organization_pet?: Maybe<Exported_Organization_Pet>;
+  financialsSettings?: Maybe<FinancialsSettings>;
   get_job?: Maybe<Job>;
   global_custom_reports?: Maybe<Array<Maybe<CustomReport>>>;
-  medicalEventById?: Maybe<MedicalEvent>;
-  medicalEventsByPetId: MedicalEventsConnection;
   /** System-wide organization metrics */
   metrics_organizations?: Maybe<Array<Maybe<MetricsOrganization>>>;
   /** System-wide user metrics */
@@ -15219,20 +14672,14 @@ export type QueryExport_Organization_PetArgs = {
 };
 
 
+export type QueryFinancialsSettingsArgs = {
+  organization_id: Scalars['UUID']['input'];
+};
+
+
 export type QueryGet_JobArgs = {
   job_id: Scalars['UUID']['input'];
   organization_id: Scalars['UUID']['input'];
-};
-
-
-export type QueryMedicalEventByIdArgs = {
-  medical_event_id: Scalars['UUID']['input'];
-};
-
-
-export type QueryMedicalEventsByPetIdArgs = {
-  organization_id: Scalars['UUID']['input'];
-  pet_id: Scalars['UUID']['input'];
 };
 
 
@@ -15459,6 +14906,13 @@ export type QueryUser_PermissionsArgs = {
   pagination?: InputMaybe<Pagination>;
 };
 
+export type ReceiptSettings = {
+  __typename?: 'ReceiptSettings';
+  display_ein_charity_number?: Maybe<Scalars['Boolean']['output']>;
+  display_tax_deduction_statement?: Maybe<Scalars['Boolean']['output']>;
+  tax_deduction_statement?: Maybe<Scalars['String']['output']>;
+};
+
 /** Reminder */
 export type Reminder = {
   /** Reminder external id */
@@ -15497,6 +14951,28 @@ export type ReportDownload = {
   expires_at: Scalars['Instant']['output'];
   id: Scalars['UUID']['output'];
   url: Scalars['String']['output'];
+};
+
+export type RevenueSubtype = {
+  __typename?: 'RevenueSubtype';
+  id?: Maybe<Scalars['UUID']['output']>;
+  is_global?: Maybe<Scalars['Boolean']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+};
+
+export type RevenueSubtypeOperationInput = {
+  create?: InputMaybe<CreateRevenueSubtypeInput>;
+  delete?: InputMaybe<DeleteRevenueSubtypeInput>;
+  update?: InputMaybe<UpdateRevenueSubtypeInput>;
+};
+
+export type RevenueSubtypeRefInput = {
+  id: Scalars['UUID']['input'];
+};
+
+export type RevenueSubtypeRefOperationInput = {
+  add?: InputMaybe<RevenueSubtypeRefInput>;
+  remove?: InputMaybe<RevenueSubtypeRefInput>;
 };
 
 /** Schedule for a reminder */
@@ -15756,184 +15232,6 @@ export type UnarchivePetApplicationInput = {
   organization_id: Scalars['UUID']['input'];
 };
 
-export type UpdateDiagnosisAggressionInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<NoteOperationInput>>>;
-  diagnosis_id: Scalars['UUID']['input'];
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type UpdateDiagnosisAllergyInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<NoteOperationInput>>>;
-  diagnosis_id: Scalars['UUID']['input'];
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-  type?: InputMaybe<DiagnosisAllergyType>;
-  type_other?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type UpdateDiagnosisAnxietyInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<NoteOperationInput>>>;
-  diagnosis_id: Scalars['UUID']['input'];
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type UpdateDiagnosisCoccidiaInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<NoteOperationInput>>>;
-  diagnosis_id: Scalars['UUID']['input'];
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type UpdateDiagnosisDemodexInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<NoteOperationInput>>>;
-  diagnosis_id: Scalars['UUID']['input'];
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type UpdateDiagnosisDentalDiseaseInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<NoteOperationInput>>>;
-  diagnosis_id: Scalars['UUID']['input'];
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type UpdateDiagnosisDermatophytosisRingwormInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<NoteOperationInput>>>;
-  diagnosis_id: Scalars['UUID']['input'];
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type UpdateDiagnosisDiarrheaCauseUnknownInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<NoteOperationInput>>>;
-  diagnosis_id: Scalars['UUID']['input'];
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type UpdateDiagnosisEarMitesInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<NoteOperationInput>>>;
-  diagnosis_id: Scalars['UUID']['input'];
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type UpdateDiagnosisFelineImmunodeficiencyVirusFivInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<NoteOperationInput>>>;
-  diagnosis_id: Scalars['UUID']['input'];
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type UpdateDiagnosisFelineInfectiousPeritonitisFipInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<NoteOperationInput>>>;
-  diagnosis_id: Scalars['UUID']['input'];
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type UpdateDiagnosisFelineLeukemiaVirusFelvInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<NoteOperationInput>>>;
-  diagnosis_id: Scalars['UUID']['input'];
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type UpdateDiagnosisFelineLowerUrinaryTractDiseaseFlutdInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<NoteOperationInput>>>;
-  diagnosis_id: Scalars['UUID']['input'];
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type UpdateDiagnosisGiardiaInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<NoteOperationInput>>>;
-  diagnosis_id: Scalars['UUID']['input'];
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type UpdateDiagnosisHeartwormInfectionInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<NoteOperationInput>>>;
-  diagnosis_id: Scalars['UUID']['input'];
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type UpdateDiagnosisOtitisEarInfectionInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<NoteOperationInput>>>;
-  diagnosis_id: Scalars['UUID']['input'];
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type UpdateDiagnosisPanleukopeniaVirusFelineInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<NoteOperationInput>>>;
-  diagnosis_id: Scalars['UUID']['input'];
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type UpdateDiagnosisParvovirusCanineInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<NoteOperationInput>>>;
-  diagnosis_id: Scalars['UUID']['input'];
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type UpdateDiagnosisResourceGuardingInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<NoteOperationInput>>>;
-  diagnosis_id: Scalars['UUID']['input'];
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type UpdateDiagnosisUpperRespiratoryTractInfectionUriInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<NoteOperationInput>>>;
-  diagnosis_id: Scalars['UUID']['input'];
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type UpdateDiagnosisUrinaryTractInfectionUtiInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<NoteOperationInput>>>;
-  diagnosis_id: Scalars['UUID']['input'];
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type UpdateDiagnosisUrolithiasisBladderStonesInput = {
-  datetime?: InputMaybe<Scalars['Instant']['input']>;
-  description?: InputMaybe<Array<InputMaybe<NoteOperationInput>>>;
-  diagnosis_id: Scalars['UUID']['input'];
-  resolution?: InputMaybe<CreateDiagnosisResolutionInput>;
-  share_with_adopters?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
 export type UpdateEcontractTemplateInput = {
   econtract_template_id: Scalars['UUID']['input'];
   organization_id: Scalars['UUID']['input'];
@@ -15941,51 +15239,72 @@ export type UpdateEcontractTemplateInput = {
   template_title?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type UpdateExpenseSubtypeInput = {
+  id?: InputMaybe<Scalars['UUID']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
 /** Input for updating a file. */
 export type UpdateFileInput = {
   file_id: Scalars['UUID']['input'];
 };
 
-export type UpdateMedicalEventInput = {
-  date?: InputMaybe<Scalars['Instant']['input']>;
-  line_items?: InputMaybe<Array<InputMaybe<MedicalEventLineItemOperationInput>>>;
-  medical_event_id: Scalars['UUID']['input'];
+export type UpdateFinancialsSettingsInput = {
+  expense_subtypes?: InputMaybe<Array<InputMaybe<ExpenseSubtypeOperationInput>>>;
+  invoice_settings?: InputMaybe<UpdateInvoiceSettingsInput>;
+  offline_payment_methods?: InputMaybe<Array<InputMaybe<OfflinePaymentMethodOperationInput>>>;
   organization_id: Scalars['UUID']['input'];
+  payment_widgets?: InputMaybe<Array<InputMaybe<PaymentWidgetOperationInput>>>;
+  receipt_settings?: InputMaybe<UpdateReceiptSettingsInput>;
+  revenue_subtypes?: InputMaybe<Array<InputMaybe<RevenueSubtypeOperationInput>>>;
 };
 
-export type UpdateMedicalEventLineItemInput = {
-  diagnosis_aggression?: InputMaybe<UpdateDiagnosisAggressionInput>;
-  diagnosis_allergy?: InputMaybe<UpdateDiagnosisAllergyInput>;
-  diagnosis_anxiety?: InputMaybe<UpdateDiagnosisAnxietyInput>;
-  diagnosis_coccidia?: InputMaybe<UpdateDiagnosisCoccidiaInput>;
-  diagnosis_demodex?: InputMaybe<UpdateDiagnosisDemodexInput>;
-  diagnosis_dental_disease?: InputMaybe<UpdateDiagnosisDentalDiseaseInput>;
-  diagnosis_dermatophytosis_ringworm?: InputMaybe<UpdateDiagnosisDermatophytosisRingwormInput>;
-  diagnosis_diarrhea_cause_unknown?: InputMaybe<UpdateDiagnosisDiarrheaCauseUnknownInput>;
-  diagnosis_ear_mites?: InputMaybe<UpdateDiagnosisEarMitesInput>;
-  diagnosis_feline_immunodeficiency_virus_fiv?: InputMaybe<UpdateDiagnosisFelineImmunodeficiencyVirusFivInput>;
-  diagnosis_feline_infectious_peritonitis_fip?: InputMaybe<UpdateDiagnosisFelineInfectiousPeritonitisFipInput>;
-  diagnosis_feline_leukemia_virus_felv?: InputMaybe<UpdateDiagnosisFelineLeukemiaVirusFelvInput>;
-  diagnosis_feline_lower_urinary_tract_disease_flutd?: InputMaybe<UpdateDiagnosisFelineLowerUrinaryTractDiseaseFlutdInput>;
-  diagnosis_giardia?: InputMaybe<UpdateDiagnosisGiardiaInput>;
-  diagnosis_heartworm_infection?: InputMaybe<UpdateDiagnosisHeartwormInfectionInput>;
-  diagnosis_otitis_ear_infection?: InputMaybe<UpdateDiagnosisOtitisEarInfectionInput>;
-  diagnosis_panleukopenia_virus_feline?: InputMaybe<UpdateDiagnosisPanleukopeniaVirusFelineInput>;
-  diagnosis_parvovirus_canine?: InputMaybe<UpdateDiagnosisParvovirusCanineInput>;
-  diagnosis_resource_guarding?: InputMaybe<UpdateDiagnosisResourceGuardingInput>;
-  diagnosis_upper_respiratory_tract_infection_uri?: InputMaybe<UpdateDiagnosisUpperRespiratoryTractInfectionUriInput>;
-  diagnosis_urinary_tract_infection_uti?: InputMaybe<UpdateDiagnosisUrinaryTractInfectionUtiInput>;
-  diagnosis_urolithiasis_bladder_stones?: InputMaybe<UpdateDiagnosisUrolithiasisBladderStonesInput>;
+export type UpdateFinancialsSettingsResult = {
+  __typename?: 'UpdateFinancialsSettingsResult';
+  financials_settings: FinancialsSettings;
 };
 
-export type UpdateMedicalEventResult = {
-  __typename?: 'UpdateMedicalEventResult';
-  medical_event: MedicalEvent;
+export type UpdateInvoiceDiscountOptionInput = {
+  amount?: InputMaybe<CreateDiscountInput>;
+  id?: InputMaybe<Scalars['UUID']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UpdateInvoiceLineItemInput = {
+  amount?: InputMaybe<CreateMoneyInput>;
+  id?: InputMaybe<Scalars['UUID']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UpdateInvoiceSettingsInput = {
+  discount_options?: InputMaybe<Array<InputMaybe<DiscountOptionOperationInput>>>;
+  invoice_templates?: InputMaybe<Array<InputMaybe<InvoiceTemplateOperationInput>>>;
+  line_items?: InputMaybe<Array<InputMaybe<LineItemOperationInput>>>;
+};
+
+export type UpdateInvoiceTemplateInput = {
+  add_option_for_additional_donation?: InputMaybe<Scalars['Boolean']['input']>;
+  add_tax_percent_to_final_amount?: InputMaybe<Scalars['Boolean']['input']>;
+  discounts?: InputMaybe<Array<InputMaybe<DiscountOptionRefOperationInput>>>;
+  id?: InputMaybe<Scalars['UUID']['input']>;
+  line_items?: InputMaybe<Array<InputMaybe<LineItemRefOperationInput>>>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  revenue_subtype?: InputMaybe<RevenueSubtypeRefOperationInput>;
 };
 
 export type UpdateNoteInput = {
   note_id: Scalars['ID']['input'];
   text: Scalars['String']['input'];
+};
+
+export type UpdateOfflinePaymentMethodInput = {
+  id?: InputMaybe<Scalars['UUID']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UpdatePaymentWidgetInput = {
+  id?: InputMaybe<Scalars['UUID']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type UpdatePetApplicationInput = {
@@ -16000,6 +15319,17 @@ export type UpdatePetImagesInput = {
   file_updates?: InputMaybe<Array<UpdateFileInput>>;
   /** ID of the organization-pet to update images for. */
   organization_pet_id: Scalars['UUID']['input'];
+};
+
+export type UpdateReceiptSettingsInput = {
+  display_ein_charity_number?: InputMaybe<Scalars['Boolean']['input']>;
+  display_tax_deduction_statement?: InputMaybe<Scalars['Boolean']['input']>;
+  tax_deduction_statement?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UpdateRevenueSubtypeInput = {
+  id?: InputMaybe<Scalars['UUID']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** updateTextTemplate input */
@@ -16134,7 +15464,7 @@ export type GetCatInfoQueryVariables = Exact<{
 }>;
 
 
-export type GetCatInfoQuery = { __typename?: 'Query', organization_pet_by_id?: { __typename?: 'Organization_Pet', id?: any | null, adoption_fee?: { __typename?: 'Money', amount: number, currency: Currency } | null, pet?: { __typename?: 'Pet', name?: string | null, description?: string | null, breed_cat?: Array<Pet_Breed_Cat | null> | null, estimated_birth_date?: any | null, special_needs?: string | null, distinguishing_marks?: string | null, weight_lbs?: number | null, youtube_video_url?: string | null, gender?: Pet_Gender | null, siblings?: Array<{ __typename?: 'Pet', id?: any | null, name?: string | null } | null> | null, images?: Array<{ __typename?: 'File', url?: string | null } | null> | null } | null } | null };
+export type GetCatInfoQuery = { __typename?: 'Query', organization_pet_by_id?: { __typename?: 'Organization_Pet', id?: any | null, adoption_fee?: { __typename?: 'Money', amount: number, currency: Currency } | null, pet?: { __typename?: 'Pet', name?: string | null, description?: string | null, breed_cat?: Array<Pet_Breed_Cat | null> | null, estimated_birth_date?: any | null, special_needs?: string | null, good_with_cats?: boolean | null, good_with_children?: boolean | null, good_with_dogs?: boolean | null, needs_experienced_adopter?: boolean | null, housetrained?: boolean | null, distinguishing_marks?: string | null, weight_lbs?: number | null, youtube_video_url?: string | null, gender?: Pet_Gender | null, siblings?: Array<{ __typename?: 'Pet', id?: any | null, name?: string | null } | null> | null, images?: Array<{ __typename?: 'File', url?: string | null } | null> | null } | null } | null };
 
 export class TypedDocumentString<TResult, TVariables>
   extends String
@@ -16208,6 +15538,11 @@ export const GetCatInfoDocument = new TypedDocumentString(`
       breed_cat
       estimated_birth_date
       special_needs
+      good_with_cats
+      good_with_children
+      good_with_dogs
+      needs_experienced_adopter
+      housetrained
       distinguishing_marks
       weight_lbs
       youtube_video_url

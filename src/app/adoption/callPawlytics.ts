@@ -8,7 +8,7 @@ import {
     Pet_Gender,
     Pet_Species,
     Pet_Status,
-    WeightUnit
+    WeightUnit,
 } from '@/__generated__/resolvers-types';
 
 // TODO: strip out entities from here after seeing which ones are really needed on Adoption page
@@ -109,6 +109,11 @@ const GET_CAT_INFO = gql(`
                 breed_cat
                 estimated_birth_date
                 special_needs
+                good_with_cats
+                good_with_children
+                good_with_dogs
+                needs_experienced_adopter
+                housetrained
                 distinguishing_marks
                 weight_lbs
                 youtube_video_url
@@ -127,7 +132,7 @@ const GET_CAT_INFO = gql(`
 
 export const getCatInfo = async (petId: string) => {
     if (process.env.LOCAL) {
-        return adoptableCatsStubResponse.find(cat => cat.id === petId);
+        return adoptableCatsStubResponse.find((cat) => cat.id === petId);
     }
 
     const authToken = await getPawlyticsAuthToken();
@@ -225,7 +230,7 @@ const adoptableCatsStubResponse: Organization_Pet[] = [
         status: Organization_Pet_Status.Adoptable,
         adoption_fee: {
             currency: Currency.Gbp,
-            amount: 20000
+            amount: 20000,
         },
         pet: {
             name: 'Mo',
@@ -245,7 +250,7 @@ const adoptableCatsStubResponse: Organization_Pet[] = [
                 {
                     id: '316fffca-8ea5-46bd-9f2d-8f7d7cce806f',
                     name: 'Alf',
-                }
+                },
             ],
             images: [
                 {
