@@ -31,6 +31,28 @@ const SupportUs = () => (
                 </li>
                 {/* TODO: Amazon Wishlist?   */}
             </ul>
+            <div>
+                <p className="font-semibold">Paypal</p>
+                <p>
+                    <em>admin@mansfieldcatrescue.co.uk</em>
+                </p>
+                <p className="mb-2 text-xs">
+                    (please select family and friends when making the donation so that PayPal don't take a % of your
+                    donation before it reaches us)
+                </p>
+                <form action="https://www.paypal.com/donate" method="post" target="_top">
+                    <input type="hidden" name="hosted_button_id" value="4U89UMWAPWTL6" />
+                    <input
+                        type="image"
+                        src="https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif"
+                        border="0"
+                        name="submit"
+                        title="PayPal - The safer, easier way to pay online!"
+                        alt="Donate with PayPal button"
+                    />
+                    <img alt="" border="0" src="https://www.paypal.com/en_GB/i/scr/pixel.gif" width="1" height="1" />
+                </form>
+            </div>
         </section>
         {/*<section className="px-6">*/}
         {/*    <h2>Our Shop</h2>*/}
