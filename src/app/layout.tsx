@@ -4,6 +4,7 @@ import './globals.css';
 import NavMenu from '@/components/NavMenu/NavMenu';
 import Footer from '@/components/Footer/Footer';
 import React from 'react';
+import { Analytics } from '@vercel/analytics/next';
 
 // TODO: figure out why Geist isn't actually being used
 const geistSans = localFont({
@@ -79,7 +80,10 @@ export default function RootLayout({
             {/* TODO: on tablet there seems to be big empty space after the footer? */}
             <body className={`${superclarendon.variable} flex min-h-screen flex-col font-serif antialiased`}>
                 <NavMenu />
-                <div className="flex-auto">{children}</div>
+                <div className="flex-auto">
+                    {children}
+                    <Analytics />
+                </div>
                 <Footer />
             </body>
         </html>
