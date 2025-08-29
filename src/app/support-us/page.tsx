@@ -25,7 +25,7 @@ const SupportUs = () => (
                 <li>Volunteering at our events</li>
                 <li>
                     Visit our{' '}
-                    <StyledExternalLink href="https://www.svgrepo.com/svg/275561/pet-shop">
+                    <StyledExternalLink href="https://mansfield-cat-rescue.sumupstore.com/products">
                         SumUp Shop
                     </StyledExternalLink>
                 </li>
