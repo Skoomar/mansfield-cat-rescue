@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { Pet } from '@/__generated__/resolvers-types';
 import { Button } from '@/components/ui/button';
 import { StyledLink } from '@/components/UtilComponents/StyledLink';
+import { adoptionFormUrl } from '@/utils/linkStore';
 
 export const revalidate = 43200;
 
@@ -96,16 +97,11 @@ const CatPage = async ({ params }: { params: Promise<{ catId: string }> }) => {
                         </Attribute>
                     </div>
                     <div className="mt-5 flex max-lg:justify-center">
-                        {/* TODO: see if there's a short link for this form that doesn't go through Facebook*/}
                         <Button
                             asChild
                             className="h-10 w-full max-w-72 bg-secondary text-secondary-foreground shadow-md hover:bg-accent hover:text-accent-foreground"
                         >
-                            <Link
-                                href="https://airtable.com/appVgA56eU86STVtf/shrb7ATet89QdSXCp"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
+                            <Link href={adoptionFormUrl} target="_blank" rel="noopener noreferrer">
                                 Apply for adoption
                             </Link>
                         </Button>
