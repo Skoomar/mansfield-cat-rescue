@@ -1,6 +1,7 @@
 import { PageHeader } from '@/components/PageHeader';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { fosterFormUrl } from '@/utils/linkStore';
 
 const Fostering = () => (
     <>
@@ -33,11 +34,7 @@ const Fostering = () => (
                     asChild
                     className="h-10 bg-secondary text-secondary-foreground shadow-md hover:bg-accent hover:text-accent-foreground"
                 >
-                    <Link
-                        href="https://airtable.com/appxlbpsyoahJocVA/shrQnwZyQlO04xlKF"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
+                    <Link href={fosterFormUrl} target="_blank" rel="noopener noreferrer">
                         Apply to foster
                     </Link>
                 </Button>

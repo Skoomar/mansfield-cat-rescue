@@ -1,8 +1,9 @@
 // https://www.svgrepo.com/svg/275561/pet-shop
 import Link from 'next/link';
+import { sumUpStoreUrl } from '@/utils/linkStore';
 
 const ShopIconLink = () => (
-    <Link href="https://mansfield-cat-rescue.sumupstore.com/products" target="_blank" rel="noopener noreferrer">
+    <Link href={sumUpStoreUrl} target="_blank" rel="noopener noreferrer">
         <svg
             height="35"
             width="35"
