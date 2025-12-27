@@ -102,7 +102,7 @@ const CatPage = async ({ params }: { params: Promise<{ catId: string }> }) => {
                             className="h-10 w-full max-w-72 bg-secondary text-secondary-foreground shadow-md hover:bg-accent hover:text-accent-foreground"
                         >
                             <Link
-                                href="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAANAAShwW7pUM1BHVEtFOVJBUTNPRklWQTZQWE82Nk81US4u"
+                                href="https://airtable.com/appVgA56eU86STVtf/shrb7ATet89QdSXCp"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
