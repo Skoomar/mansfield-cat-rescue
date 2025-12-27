@@ -1,6 +1,6 @@
 // TODO: sliding banner of cats
 import { StyledExternalLink, StyledLink } from '@/components/UtilComponents/StyledLink';
-import { adoptionFormUrl } from '@/utils/linkStore';
+import { adoptionFormUrl, amazonWishlistUrl } from '@/utils/linkStore';
 
 const Home = () => (
     <main>
@@ -99,10 +99,7 @@ const Home = () => (
                     <p className="font-semibold">Amazon Wishlist</p>
                     <p>
                         If you would like to purchase items for the cats and kittens in our care, please see our{' '}
-                        <StyledExternalLink href="https://www.amazon.co.uk/hz/wishlist/ls/1UDC50S3D85VY?ref_=wl_share">
-                            Amazon Wishlist
-                        </StyledExternalLink>
-                        .
+                        <StyledExternalLink href={amazonWishlistUrl}>Amazon Wishlist</StyledExternalLink>.
                     </p>
                 </div>
             </div>
