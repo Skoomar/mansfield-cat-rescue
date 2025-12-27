@@ -46,7 +46,7 @@ const Home = () => (
                 <br />
                 <p>
                     If you would like to enquire about adopting a cat or kitten from Mansfield Cat Rescue, please{' '}
-                    <StyledExternalLink href="https://bit.ly/3ucplsL">click here</StyledExternalLink>.
+                    <StyledExternalLink href="https://airtable.com/appVgA56eU86STVtf/shrb7ATet89QdSXCp">click here</StyledExternalLink>.
                 </p>
                 <br />
                 <p>
