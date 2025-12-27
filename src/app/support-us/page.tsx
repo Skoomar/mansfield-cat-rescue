@@ -1,6 +1,7 @@
 import { PageHeader } from '@/components/PageHeader';
 import { Button } from '@/components/ui/button';
 import { StyledExternalLink, StyledLink } from '@/components/UtilComponents/StyledLink';
+import { sumUpStoreUrl } from '@/utils/linkStore';
 
 const SupportUs = () => (
     <>
@@ -24,10 +25,7 @@ const SupportUs = () => (
                 <li>Sharing our Facebook posts</li>
                 <li>Volunteering at our events</li>
                 <li>
-                    Visit our{' '}
-                    <StyledExternalLink href="https://mansfield-cat-rescue.sumupstore.com/products">
-                        SumUp Shop
-                    </StyledExternalLink>
+                    Visit our <StyledExternalLink href={sumUpStoreUrl}>SumUp Shop</StyledExternalLink>
                 </li>
                 {/* TODO: Amazon Wishlist?   */}
             </ul>

@@ -4,6 +4,7 @@ import FacebookIconLink from '@/components/Footer/FacebookIconLink';
 import { LucideMail } from 'lucide-react';
 import ContactForm from '@/app/contact-us/ContactForm';
 import { StyledExternalLink } from '@/components/UtilComponents/StyledLink';
+import { mcrFacebookUrl } from '@/utils/linkStore';
 
 const ContactUs = () => (
     <>
@@ -27,8 +28,7 @@ const ContactUs = () => (
             <div className="mb-3 flex items-center gap-3 pl-2">
                 <FacebookIconLink />
                 <p>
-                    Contact us through{' '}
-                    <StyledExternalLink href="https://www.facebook.com/Mansfieldcat/">Facebook</StyledExternalLink>{' '}
+                    Contact us through <StyledExternalLink href={mcrFacebookUrl}>Facebook</StyledExternalLink>{' '}
                 </p>
             </div>
             <br />
