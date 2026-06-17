@@ -1,7 +1,8 @@
 import { PageHeader } from '@/components/PageHeader';
 import { Button } from '@/components/ui/button';
-import { StyledExternalLink, StyledLink } from '@/components/UtilComponents/StyledLink';
+import { StyledExternalLink, StyledLink } from '@/components/UtilComponents/links';
 import { sumUpStoreUrl } from '@/utils/linkStore';
+import { UnorderedList } from '@/components/UtilComponents/lists';
 
 const SupportUs = () => (
     <>
@@ -15,7 +16,7 @@ const SupportUs = () => (
             </p>
             <br />
             <p>Ways you can help us are:</p>
-            <ul className="mb-3 list-disc space-y-1 pl-10">
+            <UnorderedList>
                 {/* TODO: make this link styling a global */}
                 <li>
                     Fostering for us - see our <StyledLink href="/fostering">fostering page</StyledLink>
@@ -28,7 +29,7 @@ const SupportUs = () => (
                     Visit our <StyledExternalLink href={sumUpStoreUrl}>SumUp Shop</StyledExternalLink>
                 </li>
                 {/* TODO: Amazon Wishlist?   */}
-            </ul>
+            </UnorderedList>
             <div>
                 <p className="font-semibold">Paypal</p>
                 <p>

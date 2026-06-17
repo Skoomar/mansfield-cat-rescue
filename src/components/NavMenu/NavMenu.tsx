@@ -3,8 +3,8 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import MiniLogo from '@/components/NavMenu/MiniLogo';
 import MobileSidebar from '@/components/NavMenu/MobileSidebar';
+import { sumUpStoreUrl } from '@/utils/linkStore';
 
-// TODO: Shop link?
 const links = [
     {
         href: '/',
@@ -23,8 +23,17 @@ const links = [
         label: 'Support Us',
     },
     {
+        href: '/faqs',
+        label: 'FAQs',
+    },
+    {
         href: '/contact-us',
         label: 'Contact Us',
+    },
+    {
+        href: sumUpStoreUrl,
+        label: 'Shop',
+        isExternal: true,
     },
 ];
 
@@ -37,7 +46,13 @@ const NavMenu = () => (
         <nav className="mx-auto hidden items-center gap-14 font-bold lg:flex">
             {links.map((link) => (
                 <Button key={link.label.toLowerCase()} asChild variant="ghost">
-                    <Link href={link.href}>{link.label}</Link>
+                    <Link
+                        href={link.href}
+                        target={link.isExternal ? '_blank' : undefined}
+                        rel={link.isExternal ? 'noopener noreferrer' : undefined}
+                    >
+                        {link.label}
+                    </Link>
                 </Button>
             ))}
         </nav>

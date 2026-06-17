@@ -1,5 +1,5 @@
 // TODO: sliding banner of cats
-import { StyledExternalLink, StyledLink } from '@/components/UtilComponents/StyledLink';
+import { StyledExternalLink, StyledLink } from '@/components/UtilComponents/links';
 import { adoptionFormUrl, amazonWishlistUrl } from '@/utils/linkStore';
 
 const Home = () => (

@@ -7,7 +7,8 @@ import {
     Pet_Breed_Cat,
     Pet_Gender,
     Pet_Species,
-    Pet_Status, WeightUnit
+    Pet_Status,
+    WeightUnit,
 } from '@/__generated__/resolvers-types';
 
 const catsDetails: Organization_Pet[] = [
