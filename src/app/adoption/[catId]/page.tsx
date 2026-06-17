@@ -6,7 +6,7 @@ import { PageHeader } from '@/components/PageHeader';
 import Link from 'next/link';
 import { Pet } from '@/__generated__/resolvers-types';
 import { Button } from '@/components/ui/button';
-import { StyledLink } from '@/components/UtilComponents/StyledLink';
+import { StyledLink } from '@/components/UtilComponents/links';
 import { adoptionFormUrl } from '@/utils/linkStore';
 
 export const revalidate = 43200;
