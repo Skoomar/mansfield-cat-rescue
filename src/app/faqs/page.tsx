@@ -23,7 +23,7 @@ const faqItems = [
         answer: (
             <>
                 We are always on the lookout for new cat fosterers. Whether that be for kittens, adult cats, or
-                long-term sanctuary cats. Please in the{' '}
+                long-term sanctuary cats. Please fill in the{' '}
                 <StyledExternalLink href={fosterFormUrl}>fostering form</StyledExternalLink>.
             </>
         ),
